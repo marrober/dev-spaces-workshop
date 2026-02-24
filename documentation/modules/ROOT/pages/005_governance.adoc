@@ -1,0 +1,162 @@
+= Governance, Risk, and Compliance
+
+== Creating Policies in ACM
+
+In the Cluster Lifecycle Lab, you learned how RHACM can help manage the lifecycles of your Kubernetes clusters, including both deploying new clusters and importing existing clusters. In that lab, you configured your RHACM instance to manage an OpenShift cluster.
+
+Now that you have a cluster, you need to make sure that they do not drift from their original configurations. This kind of drift is a serious problem, because it can happen from benign and benevolent fixes and changes, as well as malicious activities that you might not notice but can cause significant problems. The solution that RHACM provides for this is the Governance, Risk, and Compliance, or GRC, functionality.
+
+== Review GRC Functionality
+
+To begin, it is important to define exactly what GRC is. In RHACM, you build policies that are applied to managed clusters. These policies can do different things, which are described below, but they ultimately serve to govern the configurations of your clusters. This governance over your cluster configurations reduces risk and ensures compliance with standards defined by stakeholders, which can include security teams and operations teams
+
+The three types of policy controllers available in RHACM along with the remediation mode they support:
+
+=== Configuration
+
+Used to configure any Kubernetes resource across your clusters. Where these resources are created or configured is determined by the namespaces you include (or exclude) in the policy.
+
+Enforcement and inform
+
+=== Certificate
+
+Used to detect certificates that are close to expiring. You can configure the certificate policy controller by updating the minimum duration parameter in your controller policy. When a certificate expires in less than the minimum duration, the policy becomes noncompliant. Certificates are identified from secrets in the included namespaces.
+
+Inform only
+
+=== Identity and access management
+
+The IAM policy controller monitors for the desired maximum number of users with a particular cluster role (i.e. ClusterRole) in your cluster.
+
+Inform only
+
+image::ACM_governance.png[Governance,width=6500px,float="left",align="center"]
+
+== Governance resources
+
+You need to create three different resources in order to implement the policy controllers:
+
+=== Policy
+
+The Policy defines what you actually want to check and possibly configure (with enforce). Policies include a policy-template which defines a list of objectDefinitions. The policy also determines the namespaces it is applied to, as well as the remediation actions it takes.
+
+=== PlacementRule
+
+Identifies a list of managed clusters that are targeted when using this PlacementRule.
+
+=== PlacementBinding
+
+Connect the policy to the PlacementRule.
+
+=== Creating Governance resources
+
+Fortunately, the RHACM console provides an easy way to start creating basic policies, as shown below. In this example, you can see that when you change values for elements in the RHACM console, the YAML content is updated.
+
+image::ACM_creating_policy.png[Creating policy,width=6500px,float="left",align="center"]
+
+Please consult the GRC product https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/governance/index[documentation] for more details on any of these policy controllers.
+
+
+== Creating Governance Policies
+
+Navigate to the Governance screen and click *create policy*. 
+
+image::ACM_create_policy_start.png[Creating policy,width=6500px,float="left",align="center"]
+
+Build a policy with the following information. Watch how the yaml evolves on the right hand side as you add details. Yaml based policies can be stored in a Git repository to be applied to the clusters using a GitOps model.
+
+Name
+[.console-input]
+[source,bash]
+----
+policy-grc-cert
+----
+
+Namespace
+[.console-input]
+[source,bash]
+----
+default
+----
+
+Click 'next'
+
+In the Templates - remediation section select a remediation action of inform.
+
+In the Templates - policy templates section select a policy-certificate template. Many different templates exist and you can use this as a guide on what is required for each template type. Later on, you can use the yaml definition to copy a template and create another similar template. All policies can be added to a git repository from where they can be applied to the hub cluster. 
+
+Leave all other selections at the default settings.
+
+Click 'next'
+
+On the placement section select a new placement rule. You will see a pop up window stating that no cluster sets exist. Actually two cluster sets do exist but they are not used for policies. 
+
+Click on the blue link for 'Add cluster set' 
+
+When the cluster set section appears in a new browser tab click 'Create cluster set' and give the cluster set a name of all-clusters.  After creating the cluster set you are able to manage the clusters in the cluster set using the 'Manage resource assignments' button. Add both the development and the production clusters.
+
+[NOTE]
+====
+
+Cluster sets are used to manage associated resources. These may be a set of clusters that support a specific business initiative covering development, QA and production. Alternatively a cluster set may be appropriate for a specific purpose such as all production clusters in London.
+====
+
+After saving the cluster set you should see a screen similar to that shown below.
+
+image::ACM_cluster_set.png[Creating policy,width=6500px,float="left",align="center"]
+
+Click on the pencil next to the namespace binding and associate the cluster set with the default namespace that was used to store the policy. This creates a binding between the cluster set and the namespace.
+
+Switch back to the policy creation browser tab and select the cluster set in the drop down box.
+
+Click next at the bottom of the screen to move to the policy annotation screen that allows you to associate specific standards, categories and controls with the policy. Based on the previous selection for the specification of the policy this should already be completed.
+
+Click next at the bottom of the screen.
+
+Click Submit at the bottom of the screen.
+
+Initially the policy will show a warning triangle but this is an indicator that it is in the process of assessing the compliance of the selected cluster(s). After a minute or so it will switch to the compliant indicator as shown below. The text on cluster violations indicates that there are 0 out of 1 cluster out of compliance.
+
+== Other Example Policies
+
+A number of other example policies are available in a git repository that can be cloned and applied as shown below.
+
+To illustrate a different approach these policies use a label selector to apply the policy to a specific cluster.
+
+In the web terminal on the host cluster, or in a local command shell logged into the host cluster, execute the command below to clone the git repository :
+
+[.console-input]
+[source,bash]
+----
+git clone https://github.com/marrober/acm-workshop.git
+----
+
+=== Compliance operator
+
+Open a web interface tab on one of the managed clusters and select the administrator perspective in the top left hand corner. From the menu on the left hand side select Operators and then Installed Operators. This is selected first so that you can quickly move to that tab and watch the operator be installed. 
+
+In the web terminal on the host cluster, switch to the policies directory :
+
+[.console-input]
+[source,bash]
+----
+cd acm-workshop/policies/
+----
+
+Install the compliance operator policy :
+
+[.console-input]
+[source,bash]
+----
+oc apply -f compliance-operator/
+----
+
+Ensure that there are no errors reported from the application of the yaml file and then switch to the policies tab of the ACM host. You should see the new policy has been created. 
+
+==== Policy Status
+
+The new policy will initially show a yellow triangle for the managed clusters to indicate that it doesn't have enough information to assess compliance with the policy at this time. 
+
+After a few secconds the policy will show a red warning and a count for the number of clusters that are out of compliance. Check the operators in the tab that was prepared a few moments ago and you should see the operator installing. 
+
+After the policy is installed check the status in the ACM policies again and you should see that it has a green status showing all clusters are compliant with the policy.
