@@ -7,8 +7,8 @@ Using hosted control planes is a way to deploy the Control Plane of Red Hat Open
 The instructions in this workshop cover the following scenarios:
 
 * Introduction (this document)
-* https://github.com/marrober/acm-workshop/blob/main/documentation/modules/ROOT/pages/007_explore_environment.adoc[Exploring the Environment]
-* https://github.com/marrober/acm-workshop/blob/main/documentation/modules/ROOT/pages/008_deploy_cluster.adoc[Deploy a cluster using HyperShift]
+* https://github.com/marrober/dev-spaces-workshop/blob/main/documentation/modules/ROOT/pages/007_explore_environment.adoc[Exploring the Environment]
+* https://github.com/marrober/dev-spaces-workshop/blob/main/documentation/modules/ROOT/pages/008_deploy_cluster.adoc[Deploy a cluster using HyperShift]
 
 == Documentation
 

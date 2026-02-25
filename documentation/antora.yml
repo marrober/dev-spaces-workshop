@@ -1,6 +1,6 @@
-name: acm-workshop
-title: Clusters and Governance
-version: 4.16
+name: dev-spaces-workshop
+title: OpenShift DevSpaces
+version: "4.20"
 nav:
   - modules/ROOT/nav.adoc
 

@@ -1,33 +1,19 @@
 
 
-= Advanced Cluster Management
+= Red Hat OpenShift DevSpaces
 
-image::ACM-Logo.png[ACM Logo,width=190px,float="Left",align="center"]
+image::Dev_Spaces-Standard-CMYK.jpg[DevSpaces Logo,width=190px,float="Left",align="center"]
 
-== *An introduction to Red Hat Advanced Cluster Management*
+== *An Introduction to OpenShift DevSpaces*
 
-This workshop will guide you through the use of Red Hat Advanced Cluster Management (ACM)
-for specific operations covering cluster management and cluster governance. Multiple people will 
-use the workshop today and you will operate with a shared ACM management hub and managed 
-clusters that are specific to you personally. 
+This workshop will guide you through the use of Red Hat OpenShift DevSpaces ....
 
-== Workshop infrastructure
+== *Workshop infrastructure*
 
 The workshop facilitators will give you URL's and credentials for the clusters that you will 
 use throughout the workshop. 
 
-Credentials will be provided for :
-
-* The ACM Hub
-* The AWS environment to which you need to connect the Hub cluster
-* A single node OpenShift instance
-
-The cluster configuration is shown below, with the shared ACM Hub cluster and 
-individual managed clusters for each user.
-
-image::ACM_workshop_clusters.png[ACM Clusters,width=500px,float="Left",align="center"]
-
-The modules are self-paced. Within the description of the Modules there will be Tips and Notes; tips give hints as to what is being done, Notes go into more details about the exercises within the Module.
+The modules are self-paced. Within the description of the Modules there will be Tips and Notes; tips give hints regarding what is being done, Notes go into more details about the exercises within the Module.
 
 [TIP]
 ====
@@ -40,8 +26,13 @@ They will relate to the flow of the Module
 Notes will contain in-depth information around the concepts; they are added for interest and detailed knowledge
 ====
 
-To personalise the Modules add the cluster address (given below with a 'copy' button) and the Project you are using into the text entry boxes at the top of the interface. These are propagated through the
-examples so you only need to add them once.
+To personalise the Modules add the cluster address (given below with a 'copy' button) and the Project you are using into the text entry boxes at the top of the interface. These are propagated through the examples so you only need to add them once.
 
+== *Cluster Address*
 
+[.console-input]
+[source,bash]
+----
+cluster-name.op[enshift.blah.com]
+----
 

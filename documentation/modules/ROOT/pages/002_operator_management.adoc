@@ -1,0 +1,13 @@
+= Operator management
+
+The operators required to operate DevSpaces were introduced in the previous section. In this section
+information is presented on how to manage and configure DevSpaces for a specific requirement. A number of 
+configuration parameters exist which are detailed below.
+
+[NOTE]
+====
+Since you are sharing the OpenShift cluster with other users, it is not possible for you all to make the 
+described changes to the cluster. This section is therefore an exercise in viewing the parameters and options.
+To make a change you would simply change a value and hit save in the screens that you will see below, so 
+there is little missing from the workshop.
+====

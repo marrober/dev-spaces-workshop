@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Governance, Risk, and Compliance :: OpenShift DevSpaces</title>
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () { 
+      const urlParams = new URLSearchParams(window.location.search);
+      const clusterName = urlParams.get('CLUSTER_SUBDOMAIN');
+      const projectName = urlParams.get('PROJECT');
+      if (clusterName) {
+        showCluster( clusterName );
+      }
+      else {
+        showClusterForm();
+      }
+
+      if (projectName) {
+        showProject( projectName );
+      } else {
+        showProjectForm();
+      }
+    } );
+
+
+    function sliceCluster(clusterName){
+      if (clusterName.length > 70) {
+          return "..." + clusterName.slice(35);
+      } else {
+          return clusterName;
+      }
+    }
+
+    function showCluster( clusterName ) {
+      document.getElementById('navbar-form-empty').style.display = "none";
+      document.getElementById('navbar-form-filled').style.display = "flex";
+      document.getElementById('cluster_subdomain').textContent = sliceCluster(clusterName);
+      document.getElementById('clusterfield2').value = clusterName;
+
+    }
+
+    function showClusterForm( clusterName ) {
+      document.getElementById('navbar-form-empty').style.display = "flex";
+      document.getElementById('navbar-form-filled').style.display = "none";
+    }
+
+    function gowithcluster() {
+      elClusterInput = document.getElementById('clusterfield');
+      elProjectInput = document.getElementById('projectfield2');
+
+      window.location.search = ('&CLUSTER_SUBDOMAIN=' + elClusterInput.value + '&PROJECT=' + elProjectInput.value);
+    }
+
+    function showProject( projectName ) {
+      document.getElementById('navbar-form-project-empty').style.display = "none";
+      document.getElementById('navbar-form-project-filled').style.display = "flex";
+      document.getElementById('project').textContent = projectName;
+      document.getElementById('projectfield2').value = projectName;
+    }
+
+    function showProjectForm( projectName ) {
+      document.getElementById('navbar-form-project-empty').style.display = "flex";
+      document.getElementById('navbar-form-project-filled').style.display = "none";
+    }
+
+    function gowithproject() {
+      elProjectInput = document.getElementById('projectfield');
+      elClusterInput = document.getElementById('clusterfield2');
+      window.location.search = ('&CLUSTER_SUBDOMAIN=' + elClusterInput.value + '&PROJECT=' + elProjectInput.value);
+    }
+
+  </script>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="../..">OpenShift DevSpaces</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item" id="navbar-form-empty">
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i style="color: orange;"
+              class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+
+          <form action="javascript:void(0);" onsubmit="gowithcluster();">
+            <input size="40" id="clusterfield" type="text" placeholder="Enter Cluster Subdomain">
+            <input type="hidden" id="projectfield2" name="projectfield2" value="">
+          </form>
+        </div>
+
+        <div class="navbar-item" id="navbar-form-filled" style="display: none;">
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+          <span class="navbar-text" id="cluster_subdomain"></span>
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+        </div>
+
+         <div class="navbar-item" id="navbar-form-project-empty">
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i style="color: orange;"
+              class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
+
+          <form action="javascript:void(0);" onsubmit="gowithproject();">
+            <input size="40" id="projectfield" type="text" placeholder="Enter Project Name">
+            <input type="hidden" id="clusterfield2" name="clusterfield2" value="">
+          </form>
+        </div>
+
+        <div class="navbar-item" id="navbar-form-project-filled" style="display: none;">
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">|</span>
+          <span class="navbar-text" id="project"></span>
+          <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">&nbsp;<i onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i></span>
+        </div>
+<!---
+        <a class="navbar-item" href="https://developers.redhat.com/ebooks/" target="_blank">Books</a>
+        <a class="navbar-item" href="https://developers.redhat.com/cheatsheets/" target="_blank">Cheat Sheets</a>
+        <a class="navbar-item" href="https://developers.redhat.com/events/" target="_blank">Upcoming Events</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://redhat-scholars.github.io/kubernetes-tutorial/" target="_blank">Kubernetes</a>
+            <a class="navbar-item" href="https://redhat-scholars.github.io/istio-tutorial/" target="_blank">Istio</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/quarkus-tutorial/" target="_blank">Quarkus</a>
+            <a class="navbar-item" href="https://redhat-developer-demos.github.io/knative-tutorial/" target="_blank">Knative</a>
+            <a class="navbar-item" href="https://redhat-scholars.github.io/tekton-tutorial/" target="_blank">Tekton</a>
+          </div>
+--->
+      </div>
+    </div>
+  </nav>
+</header><div class="body">
+<div class="nav-container" data-component="dev-spaces-workshop" data-version="4.20">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">OpenShift DevSpaces</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="001_architectural_review.html">DevSpaces Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="002_operator_management.html">Operator Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="003_create_cluster.html">Create cluster</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="004_adding_a_cluster_to_ACM.html">Adding a cluster to ACM</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="006_hcp_introduction.html">HCP Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="007_explore_environment.html">Explore HCP Environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="008_deploy_cluster.html">Deploy HCP cluster</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="005_governance.html">Governance</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenShift DevSpaces</span>
+    <span class="version">4.20</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenShift DevSpaces</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">4.20</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">OpenShift DevSpaces</a></li>
+    <li><a href="005_governance.html">Governance</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/005_governance.adoc">Edit this Page</a></div>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Governance, Risk, and Compliance</h1>
+<div class="sect1">
+<h2 id="_creating_policies_in_acm"><a class="anchor" href="#_creating_policies_in_acm"></a>Creating Policies in ACM</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the Cluster Lifecycle Lab, you learned how RHACM can help manage the lifecycles of your Kubernetes clusters, including both deploying new clusters and importing existing clusters. In that lab, you configured your RHACM instance to manage an OpenShift cluster.</p>
+</div>
+<div class="paragraph">
+<p>Now that you have a cluster, you need to make sure that they do not drift from their original configurations. This kind of drift is a serious problem, because it can happen from benign and benevolent fixes and changes, as well as malicious activities that you might not notice but can cause significant problems. The solution that RHACM provides for this is the Governance, Risk, and Compliance, or GRC, functionality.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_review_grc_functionality"><a class="anchor" href="#_review_grc_functionality"></a>Review GRC Functionality</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To begin, it is important to define exactly what GRC is. In RHACM, you build policies that are applied to managed clusters. These policies can do different things, which are described below, but they ultimately serve to govern the configurations of your clusters. This governance over your cluster configurations reduces risk and ensures compliance with standards defined by stakeholders, which can include security teams and operations teams</p>
+</div>
+<div class="paragraph">
+<p>The three types of policy controllers available in RHACM along with the remediation mode they support:</p>
+</div>
+<div class="sect2">
+<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<div class="paragraph">
+<p>Used to configure any Kubernetes resource across your clusters. Where these resources are created or configured is determined by the namespaces you include (or exclude) in the policy.</p>
+</div>
+<div class="paragraph">
+<p>Enforcement and inform</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_certificate"><a class="anchor" href="#_certificate"></a>Certificate</h3>
+<div class="paragraph">
+<p>Used to detect certificates that are close to expiring. You can configure the certificate policy controller by updating the minimum duration parameter in your controller policy. When a certificate expires in less than the minimum duration, the policy becomes noncompliant. Certificates are identified from secrets in the included namespaces.</p>
+</div>
+<div class="paragraph">
+<p>Inform only</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_identity_and_access_management"><a class="anchor" href="#_identity_and_access_management"></a>Identity and access management</h3>
+<div class="paragraph">
+<p>The IAM policy controller monitors for the desired maximum number of users with a particular cluster role (i.e. ClusterRole) in your cluster.</p>
+</div>
+<div class="paragraph">
+<p>Inform only</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/ACM_governance.png" alt="Governance" width="6500px">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_governance_resources"><a class="anchor" href="#_governance_resources"></a>Governance resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You need to create three different resources in order to implement the policy controllers:</p>
+</div>
+<div class="sect2">
+<h3 id="_policy"><a class="anchor" href="#_policy"></a>Policy</h3>
+<div class="paragraph">
+<p>The Policy defines what you actually want to check and possibly configure (with enforce). Policies include a policy-template which defines a list of objectDefinitions. The policy also determines the namespaces it is applied to, as well as the remediation actions it takes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_placementrule"><a class="anchor" href="#_placementrule"></a>PlacementRule</h3>
+<div class="paragraph">
+<p>Identifies a list of managed clusters that are targeted when using this PlacementRule.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_placementbinding"><a class="anchor" href="#_placementbinding"></a>PlacementBinding</h3>
+<div class="paragraph">
+<p>Connect the policy to the PlacementRule.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_governance_resources"><a class="anchor" href="#_creating_governance_resources"></a>Creating Governance resources</h3>
+<div class="paragraph">
+<p>Fortunately, the RHACM console provides an easy way to start creating basic policies, as shown below. In this example, you can see that when you change values for elements in the RHACM console, the YAML content is updated.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/ACM_creating_policy.png" alt="Creating policy" width="6500px">
+</div>
+</div>
+<div class="paragraph">
+<p>Please consult the GRC product <a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/governance/index">documentation</a> for more details on any of these policy controllers.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_governance_policies"><a class="anchor" href="#_creating_governance_policies"></a>Creating Governance Policies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Navigate to the Governance screen and click <strong>create policy</strong>.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/ACM_create_policy_start.png" alt="Creating policy" width="6500px">
+</div>
+</div>
+<div class="paragraph">
+<p>Build a policy with the following information. Watch how the yaml evolves on the right hand side as you add details. Yaml based policies can be stored in a Git repository to be applied to the clusters using a GitOps model.</p>
+</div>
+<div class="paragraph">
+<p>Name</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">policy-grc-cert</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Namespace</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">default</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Click 'next'</p>
+</div>
+<div class="paragraph">
+<p>In the Templates - remediation section select a remediation action of inform.</p>
+</div>
+<div class="paragraph">
+<p>In the Templates - policy templates section select a policy-certificate template. Many different templates exist and you can use this as a guide on what is required for each template type. Later on, you can use the yaml definition to copy a template and create another similar template. All policies can be added to a git repository from where they can be applied to the hub cluster.</p>
+</div>
+<div class="paragraph">
+<p>Leave all other selections at the default settings.</p>
+</div>
+<div class="paragraph">
+<p>Click 'next'</p>
+</div>
+<div class="paragraph">
+<p>On the placement section select a new placement rule. You will see a pop up window stating that no cluster sets exist. Actually two cluster sets do exist but they are not used for policies.</p>
+</div>
+<div class="paragraph">
+<p>Click on the blue link for 'Add cluster set'</p>
+</div>
+<div class="paragraph">
+<p>When the cluster set section appears in a new browser tab click 'Create cluster set' and give the cluster set a name of all-clusters.  After creating the cluster set you are able to manage the clusters in the cluster set using the 'Manage resource assignments' button. Add both the development and the production clusters.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Cluster sets are used to manage associated resources. These may be a set of clusters that support a specific business initiative covering development, QA and production. Alternatively a cluster set may be appropriate for a specific purpose such as all production clusters in London.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After saving the cluster set you should see a screen similar to that shown below.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/ACM_cluster_set.png" alt="Creating policy" width="6500px">
+</div>
+</div>
+<div class="paragraph">
+<p>Click on the pencil next to the namespace binding and associate the cluster set with the default namespace that was used to store the policy. This creates a binding between the cluster set and the namespace.</p>
+</div>
+<div class="paragraph">
+<p>Switch back to the policy creation browser tab and select the cluster set in the drop down box.</p>
+</div>
+<div class="paragraph">
+<p>Click next at the bottom of the screen to move to the policy annotation screen that allows you to associate specific standards, categories and controls with the policy. Based on the previous selection for the specification of the policy this should already be completed.</p>
+</div>
+<div class="paragraph">
+<p>Click next at the bottom of the screen.</p>
+</div>
+<div class="paragraph">
+<p>Click Submit at the bottom of the screen.</p>
+</div>
+<div class="paragraph">
+<p>Initially the policy will show a warning triangle but this is an indicator that it is in the process of assessing the compliance of the selected cluster(s). After a minute or so it will switch to the compliant indicator as shown below. The text on cluster violations indicates that there are 0 out of 1 cluster out of compliance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_example_policies"><a class="anchor" href="#_other_example_policies"></a>Other Example Policies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A number of other example policies are available in a git repository that can be cloned and applied as shown below.</p>
+</div>
+<div class="paragraph">
+<p>To illustrate a different approach these policies use a label selector to apply the policy to a specific cluster.</p>
+</div>
+<div class="paragraph">
+<p>In the web terminal on the host cluster, or in a local command shell logged into the host cluster, execute the command below to clone the git repository :</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/marrober/dev-spaces-workshop.git</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_compliance_operator"><a class="anchor" href="#_compliance_operator"></a>Compliance operator</h3>
+<div class="paragraph">
+<p>Open a web interface tab on one of the managed clusters and select the administrator perspective in the top left hand corner. From the menu on the left hand side select Operators and then Installed Operators. This is selected first so that you can quickly move to that tab and watch the operator be installed.</p>
+</div>
+<div class="paragraph">
+<p>In the web terminal on the host cluster, switch to the policies directory :</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd dev-spaces-workshop/policies/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install the compliance operator policy :</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f compliance-operator/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ensure that there are no errors reported from the application of the yaml file and then switch to the policies tab of the ACM host. You should see the new policy has been created.</p>
+</div>
+<div class="sect3">
+<h4 id="_policy_status"><a class="anchor" href="#_policy_status"></a>Policy Status</h4>
+<div class="paragraph">
+<p>The new policy will initially show a yellow triangle for the managed clusters to indicate that it doesn&#8217;t have enough information to assess compliance with the policy at this time.</p>
+</div>
+<div class="paragraph">
+<p>After a few secconds the policy will show a red warning and a count for the number of clusters that are out of compliance. Check the operators in the tab that was prepared a few moments ago and you should see the operator installing.</p>
+</div>
+<div class="paragraph">
+<p>After the policy is installed check the status in the ACM policies again and you should see that it has a green status showing all clusters are compliant with the policy.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../../_/js/vendor/clipboard.js"></script>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

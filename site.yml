@@ -3,11 +3,11 @@ runtime:
 
 site:
   title: Advanced Cluster Management Workshop
-  start_page: acm-workshop::index.adoc
+  start_page: dev-spaces-workshop::index.adoc
 
 content:
   sources:
-    - url: git@github.com:marrober/acm-workshop.git
+    - url: git@github.com:marrober/dev-spaces-workshop.git
       tags: []
       branches: []
       start_path: documentation
@@ -28,4 +28,4 @@ asciidoc:
 #  supplemental_files: ./supplemental-ui
 
 output:
-  dir: ./acm-workshop
+  dir: ./dev-spaces-workshop

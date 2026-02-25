@@ -128,7 +128,7 @@ In the web terminal on the host cluster, or in a local command shell logged into
 [.console-input]
 [source,bash]
 ----
-git clone https://github.com/marrober/acm-workshop.git
+git clone https://github.com/marrober/dev-spaces-workshop.git
 ----
 
 === Compliance operator
@@ -140,7 +140,7 @@ In the web terminal on the host cluster, switch to the policies directory :
 [.console-input]
 [source,bash]
 ----
-cd acm-workshop/policies/
+cd dev-spaces-workshop/policies/
 ----
 
 Install the compliance operator policy :

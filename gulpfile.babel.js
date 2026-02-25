@@ -28,7 +28,7 @@ function watchGlobs() {
 
 const siteWatch = () => watch(watchGlobs(), series(build, reload));
 
-const removeSite = done => remove("acm-workshop", done);
+const removeSite = done => remove("dev-spaces-workshop", done);
 const removeCache = done => remove(".cache", done);
 
 function build(done) {
@@ -61,7 +61,7 @@ function reload(done) {
 function serve(done) {
   server.init({
     server: {
-      baseDir: "./acm-workshop"
+      baseDir: "./dev-spaces-workshop"
     }
   });
   done();
