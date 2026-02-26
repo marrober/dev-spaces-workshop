@@ -222,10 +222,40 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="_openshift_dev_spaces_introduction"><a class="anchor" href="#_openshift_dev_spaces_introduction"></a><strong>OpenShift Dev Spaces Introduction</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenShift Dev Spaces is a container based development environment that runs on the OpenShift cluster. Dev Spaces provides the following.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A secure environment for development, running on OpenShift - Because Dev Spaces environments run on OpenShift they inherit the security of the OpenShift cluster. It is not necessary for any code, or other business assets, to be stored on a laptop or other computer.</p>
+</li>
+<li>
+<p>A connection to the right container registries, OpenShift clusters and data repositories - Dev Spaces provides connectivity to container registries so that the right images are pulled and images are pushed to the correct place. It also provides connections to the OpenShift cluster on which it runs, to enable teams to deploy microservices such tat they ca be integrated into a wider application. Finally, Dev Spaces provides connections to Git repositories so that development teams can access and update the code for which they are responsible.</p>
+</li>
+<li>
+<p>A curated set of commands to accelerate development and ensure consistency - Dev Spaces environments contain commands that are executed regularly,  such as compiling applications, so that there is consistency across development teams.</p>
+</li>
+<li>
+<p>A familiar editor using either VS Code or IntelliJ IDEA - Users and organisations have their preferences for Integrated Development Environments (IDEs) and DevSpaces offers a choice between VS Code and IntelliJ editors. Extensions for each editor environment can be added to Dev Spaces to further personalise the development experience.</p>
+</li>
+<li>
+<p>A platform optimized for low resource consumption - Dev Spaces environments consume a fraction of the compute and memory resources of a virtual machine that may otherwise be use for a development environment. The containerised development environment is executed on a node of an OpenShift cluster orchestrated by the Kubernetes platform to ensure an appropriate distribution of workload amongst the nodes. This helps ensure a high density of Dev Spaces in the cluster and the optimal usage of physical resources.</p>
+</li>
+<li>
+<p>A terminal for command line operations - Each Dev Spaces environment includes a terminal with access to the source code that has been cloned from one of the Git repositories. This enables developers to perform any ad-hoc operations they need, based on executables that are included in the container image on which the environment is based.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_an_introduction_to_openshift_devspaces"><a class="anchor" href="#_an_introduction_to_openshift_devspaces"></a><strong>An Introduction to OpenShift DevSpaces</strong></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This workshop will guide you through the use of Red Hat OpenShift DevSpaces &#8230;&#8203;.</p>
+<p>This workshop will guide you through the use of Red Hat OpenShift DevSpaces both as a user and as a platform administrator.</p>
 </div>
 </div>
 </div>
