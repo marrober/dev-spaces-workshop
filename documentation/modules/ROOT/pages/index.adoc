@@ -44,11 +44,3 @@ Notes will contain in-depth information around the concepts; they are added for 
 
 To personalise the Modules add the cluster address (given below with a 'copy' button) and the Project you are using into the text entry boxes at the top of the interface. These are propagated through the examples so you only need to add them once.
 
-== *Cluster Address*
-
-[.console-input]
-[source,bash]
-----
-cluster-name.op[enshift.blah.com]
-----
-

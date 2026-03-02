@@ -153,7 +153,7 @@
     <a class="nav-link" href="001_architectural_review.html">DevSpaces Architecture</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="002_operator_management.html">Operator Management</a>
+    <a class="nav-link" href="002_operators.html">Operators</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="003_create_cluster.html">Create cluster</a>
@@ -212,17 +212,185 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">The Architecture of DevSpaces</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="_architecture_introduction"><a class="anchor" href="#_architecture_introduction"></a>Architecture Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Blah</p>
+<p>The Dev Spaces platform comprises two operators that are installed on the OpenShift cluster that provide the various services explained below. For a user the main mechanism for interacting with Dev Spaces is the devfile. This YAML resource contains information including :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The repositories to which the development environment should connect to get access to assets for development</p>
+</li>
+<li>
+<p>Commands to be executed within the development environment</p>
+</li>
+<li>
+<p>Container images that hold the commands that are to be executed</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The user creates, or locates, a devfile that they wish to use. This is launched on the DevSpaces server platform, via the Dev Spaces dashboard, a web interface. The Dev Spaces server will create the workspace for the user by running appropriate container images on the OpenShift cluster, as shown below.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/overview-architecture.png" alt="Overview Architecture" width="6500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_devspaces_operators"><a class="anchor" href="#_devspaces_operators"></a>DevSpaces operators</h2>
+<h2 id="_architercture_further_components"><a class="anchor" href="#_architercture_further_components"></a>Architercture Further Components</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>The Dev Spaces platform actually contains a number of additional components that perform the actions described below.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/architecture-detail.png" alt="Architecture detail" width="6500px">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_gateway"><a class="anchor" href="#_the_gateway"></a>The gateway</h3>
+<div class="paragraph">
+<p>This is a central server component that manages access and traffic for the entire platform. It acts as a secure entry point for all user and system requests, performing the following tasks :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Routing Requests: It uses <a href="https://github.com/traefik/traefik">Traefik</a> to route incoming requests to the appropriate internal services, such as the User Dashboard, devfile Registries, or individual user workspaces.</p>
+</li>
+<li>
+<p>User Authentication: It authenticates users via OpenID Connect (OIDC) using the OpenShift OAuth2 proxy, ensuring that only authorised personnel can access the development environment.</p>
+</li>
+<li>
+<p>Access Control: It applies OpenShift Role-Based Access Control (RBAC) policies using kube-rbac-proxy to strictly control which resources a user can view or modify.</p>
+</li>
+<li>
+<p>Infrastructure Management: Managed by the OpenShift Dev Spaces operator as the che-gateway deployment, it serves as the secure front-end for various backend components, including the Plug-in Registry and the main Dev Spaces.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_plugin_repository"><a class="anchor" href="#_the_plugin_repository"></a>The Plugin Repository</h3>
+<div class="paragraph">
+<p>This is a collection of ready-to-use plugins and extensions for development environments in OpenShift Dev Spaces. It is recommended that organisations create and manage their own plugin repository to offer specific content and to ensure that unauthorised extensions and plugins from internet sites are not used. The plugin registry offers the following facilities :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Curated Extensions: A selected subset of extensions from the Open VSX Registry, ensuring compatibility with the Visual Studio Code environment.</p>
+</li>
+<li>
+<p>Air-Gapped Support: The repository is specifically designed to support offline, proxy-restricted, and air-gapped environments, allowing developers to use essential tools without an active internet connection to public registries.</p>
+</li>
+<li>
+<p>Language &amp; Tech Support: It provides plugins for various programming languages (e.g., Java, Python, Go, Node.js) and technologies like Ansible, supporting features like syntax highlighting, linting, and autocomplete.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_devfile_registry"><a class="anchor" href="#_the_devfile_registry"></a>The devfile registry</h3>
+<div class="paragraph">
+<p>This is a core service that provides a collection of ready-to-use devfiles</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sample-Based Workspaces: The devfile registry can contain language specific devfiles that are created by members of the organisation to ensure consistency of:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Base container images used for the development environment which promotes consistency of command versions used.</p>
+</li>
+<li>
+<p>A set of commands that are to be executed for the rapid building of application code which again ensures consistency.</p>
+</li>
+<li>
+<p>References to plugins and extensions so that everyone has the same development experience.</p>
+</li>
+<li>
+<p>Rapid access to appropriate repositories of content.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>OCI-Compatible Storage: devfile stacks are stored as OCI (Open Container Initiative) artifacts in an OCI-compatible registry, making them easy to distribute and version.</p>
+</li>
+<li>
+<p>Integration with Dashboard: The User Dashboard communicates with the registry to display these samples to users on the "Create Workspace" page. This makes it easy for new users to browse content and select the appropriate devfile based on the language they are using and their preference of editor (VS Code or IntelliJ IDEA).</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dev_spaces_dashboard"><a class="anchor" href="#_dev_spaces_dashboard"></a>Dev Spaces dashboard</h3>
+<div class="paragraph">
+<p>This is a interface that serves as the central control hub for managing containerised development environments. It allows developers to create, start, stop, delete and edit workspaces</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Workspace Management: Users can view a list of their existing workspaces together with status information (e.g., Running, Starting, Stopped).</p>
+</li>
+<li>
+<p>Seamless Creation: The dashboard acts as a landing page where users can spin up new environments by:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Entering a Git repository URL.</p>
+</li>
+<li>
+<p>Selecting from a list of pre-configured sample tiles provided by the devfile registry.</p>
+</li>
+<li>
+<p>Using a raw devfile URL.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Resource Access: It provides links and entry points to the web-based IDEs once a workspace pod is active.</p>
+</li>
+<li>
+<p>User Authentication: Integrates with OpenShift OAuth to automatically manage user identities and permissions within the cluster.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dev_spaces_server"><a class="anchor" href="#_dev_spaces_server"></a>Dev Spaces Server</h3>
+<div class="paragraph">
+<p>The central function for the Dev Spaces platform providing the following code functions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Workspace Management: Managing the lifecycle of workspaces based on user requests.</p>
+</li>
+<li>
+<p>Configuration Orchestration: It processes devfiles, runtimes, and environment variables for a specific project.</p>
+</li>
+<li>
+<p>Integration: Connecting with external services like Git repositories to automatically configure developer credentials via OAuth.</p>
+</li>
+<li>
+<p>API Gateway: Internal and external REST and WebSocket APIs used by the dashboard and IDEs to communicate with the underlying Kubernetes cluster.</p>
+</li>
+<li>
+<p>PostgreSQL connection : Dev Spaces uses PostgreSQL as its primary persistent data store to manage the state of development environments and user configurations.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </article>

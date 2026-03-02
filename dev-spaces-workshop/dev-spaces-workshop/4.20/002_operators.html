@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift DevSpaces :: OpenShift DevSpaces</title>
+    <title>Dev Spaces Operators :: OpenShift DevSpaces</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -152,7 +152,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="001_architectural_review.html">DevSpaces Architecture</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="002_operators.html">Operators</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -200,108 +200,169 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
-    <li><a href="index.html">Red Hat OpenShift DevSpaces</a></li>
+    <li><a href="002_operators.html">Operators</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/002_operators.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift DevSpaces</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="imageblock Left text-center">
-<div class="content">
-<img src="_images/Dev_Spaces-Standard-CMYK.jpg" alt="DevSpaces Logo" width="190px">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_openshift_dev_spaces_introduction"><a class="anchor" href="#_openshift_dev_spaces_introduction"></a><strong>OpenShift Dev Spaces Introduction</strong></h2>
-<div class="sectionbody">
+<h1 class="page">Dev Spaces Operators</h1>
 <div class="paragraph">
-<p>OpenShift Dev Spaces is a container based development environment that runs on the OpenShift cluster. Dev Spaces provides the following.</p>
+<p>To install Dev Spaces a single operator is installed from the ecosystem catalog. This is an administrative function that only a subset of people in the organisation will have the permission to do. Additionally, the installation of operators onto clusters is generally an automated process performed by Red Hat Advanced Cluster Management policies, ArgoCD infrastructure automation or similar automation solutions.  For the purposes of the workshop you will install the operator by hand from the ecosystem catalog.</p>
+</div>
+<div class="paragraph">
+<p>As a user with appropriate permission on the cluster select the 'Administrator' perspective and then select the 'Software Catalog' sub menu of the 'Ecosystem' menu as shown below.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/ecosystem-software-catalog.png" alt="Ecosystem software catalog" width="6500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>In the filter field enter the text below and press return.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DevSpaces</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The OpenShift Dev Spaces operator tile will be displayed, which should then be selected. The Dev Spaces installation screen is displayed as shown below. There are two options displayed on the screen :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A secure environment for development, running on OpenShift - Because Dev Spaces environments run on OpenShift they inherit the security of the OpenShift cluster. It is not necessary for any code, or other business assets, to be stored on a laptop or other computer.</p>
+<p>Channel - Should be left at stable, unless there is a requirement on a test cluster to ever install a candidate version to investigate a new capability.</p>
 </li>
 <li>
-<p>A connection to the right container registries, OpenShift clusters and data repositories - Dev Spaces provides connectivity to container registries so that the right images are pulled and images are pushed to the correct place. It also provides connections to the OpenShift cluster on which it runs, to enable teams to deploy microservices such tat they ca be integrated into a wider application. Finally, Dev Spaces provides connections to Git repositories so that development teams can access and update the code for which they are responsible.</p>
+<p>Version - Again, this should be left as the latest version available unless there is a reason to restrict this to a slightly older version as guided by the Red Hat team.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The text of the operator installation screen shows useful information and links regarding the creation of a Dev Spaces instance and the option to install customer certificates for access to the routes managed by Dev Spaces.</p>
+</div>
+<div class="paragraph">
+<p>Leave the channel set to 'stable' and the Version as the latest version and click the blue 'Install' button.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/dev-spaces-operator-install-part-1.png" alt="Dev Spaces operator installation - part 1" width="6500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>On the next screen there is a second opportunity to edit the update channel and the version to be installed as shown below. Additionally, the installation mode is displayed (but cannot be changed) and the installation namespace is displayed. The operator recommends that it is installed in the openshift-operators namespace, and since this will already exist there will be a warning to that effect. This warning can be ignored.</p>
+</div>
+<div class="paragraph">
+<p>Finally, the update strategy for the operator can be selected to be either automatic (default) or manual.</p>
+</div>
+<div class="paragraph">
+<p>leave all settings at the default and press the install button.</p>
+</div>
+<div class="imageblock left text-center">
+<div class="content">
+<img src="_images/dev-spaces-operator-install-part-2.png" alt="Dev Spaces operator installation - part 2" width="6500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>The operator installation will then take place, which may take a minute or two to complete. When it has completed the screen will show that it has installed correctly. Click the blue button to 'View operator' as shown below.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/dev-spaces-operator-install-part-3.png" alt="Dev Spaces operator completed" width="500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>The screen will then show the details of the installed operator as displayed below.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/dev-spaces-operator-install-part-4.png" alt="Dev Spaces operator installation - post install" width="1000px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>On the sub menu, currently with 'Details' highlighted above select the 'Red Hat OpenShift Dev Spaces interface Specification' menu item. This will give you the opportunity to create a 'Che Cluster'.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">The Che Cluster</div>
+<div class="paragraph">
+<p><strong>CheCluster</strong> is a Kubernetes Custom Resource (CR) used to define and manage the entire installation and configuration of the Dev Spaces server.</p>
+</div>
+<div class="paragraph">
+<p>Eclipse Che is the name of the upstream open-source project upon which Dev Spaces is based.</p>
+</div>
+<div class="paragraph">
+<p>The Che cluster provides the following capabilities</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Central Configuration: It allows administrators to configure all major components of the environment, including the cheServer, devWorkspace operator, dashboard, and image registries.</p>
 </li>
 <li>
-<p>A curated set of commands to accelerate development and ensure consistency - Dev Spaces environments contain commands that are executed regularly,  such as compiling applications, so that there is consistency across development teams.</p>
+<p>Operator Management: The OpenShift Dev Spaces Operator monitors this resource. When you edit the CheCluster YAML file, the Operator translates those changes into Kubernetes objects like ConfigMaps and restarts the necessary pods to apply the new settings.</p>
 </li>
 <li>
-<p>A familiar editor using either VS Code or IntelliJ IDEA - Users and organisations have their preferences for Integrated Development Environments (IDEs) and DevSpaces offers a choice between VS Code and IntelliJ editors. Extensions for each editor environment can be added to Dev Spaces to further personalise the development experience.</p>
-</li>
-<li>
-<p>A platform optimized for low resource consumption - Dev Spaces environments consume a fraction of the compute and memory resources of a virtual machine that may otherwise be use for a development environment. The containerised development environment is executed on a node of an OpenShift cluster orchestrated by the Kubernetes platform to ensure an appropriate distribution of workload amongst the nodes. This helps ensure a high density of Dev Spaces in the cluster and the optimal usage of physical resources.</p>
-</li>
-<li>
-<p>A terminal for command line operations - Each Dev Spaces environment includes a terminal with access to the source code that has been cloned from one of the Git repositories. This enables developers to perform any ad-hoc operations they need, based on executables that are included in the container image on which the environment is based.</p>
+<p>Customization: You can use it to set resource limits, define default IDEs (like VS Code or IntelliJ), manage GitHub/GitLab OAuth credentials, and enable features like the Kubernetes Image Puller.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_an_introduction_to_openshift_devspaces"><a class="anchor" href="#_an_introduction_to_openshift_devspaces"></a><strong>An Introduction to OpenShift DevSpaces</strong></h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>This workshop will guide you through the use of Red Hat OpenShift DevSpaces both as a user and as a platform administrator.</p>
+<p>Click the 'Create CheCluster' blue button and then you will see a screen similar to below.</p>
 </div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/dev-spaces-operator-install-part-5.png" alt="Dev Spaces operator installation - che cluster" width="1000px">
 </div>
-</div>
-<div class="sect1">
-<h2 id="_workshop_infrastructure"><a class="anchor" href="#_workshop_infrastructure"></a><strong>Workshop infrastructure</strong></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The workshop facilitators will give you URL&#8217;s and credentials for the clusters that you will
-use throughout the workshop.</p>
 </div>
 <div class="paragraph">
-<p>The modules are self-paced. Within the description of the Modules there will be Tips and Notes; tips give hints regarding what is being done, Notes go into more details about the exercises within the Module.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Tips contain useful additional information around the exercises<br>
-They will relate to the flow of the Module</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Notes will contain in-depth information around the concepts; they are added for interest and detailed knowledge</p>
-</div>
-</td>
-</tr>
-</table>
+<p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>To personalise the Modules add the cluster address (given below with a 'copy' button) and the Project you are using into the text entry boxes at the top of the interface. These are propagated through the examples so you only need to add them once.</p>
+<p>It is possible to switch the installation process between the form view and the YAML view using the radio buttons at the top of the screen. The YAML view is good if you have a pre-defined configuration for the Dev Spaces instance that you want to past over the existing YAML objects, or if you understand the options well and want to modify a small number of values. The form view is good to open up the option fields to explore the settings that are available.</p>
 </div>
+<div class="paragraph">
+<p>Click on the 'Developer environments' view and you will see various options, some of which are highlighted below :</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>startTimoutSeconds - Maximum duration of a workspace start action. Default is 300 seconds.</p>
+</li>
+<li>
+<p>secondsOfRunBeforeIdling - Maximum runtime for a workspace in seconds. Helpful to ensure workspaces do not run forever, once started. A value of -1 disables the timout.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The result of installing the DevSpaces operator is that two operators are added to the platform as shown below.</p>
+</div>
+<div class="paragraph">
+<p>Dev Spaces - Manages the lifecycle of the user dashboard and platform server etc.
+DevWorkspace Operator - Manages the lifecycle of individual workspaces</p>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
