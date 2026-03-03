@@ -156,10 +156,16 @@
     <a class="nav-link" href="002_operators.html">Operators</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="003_create_cluster.html">Create cluster</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="003_devfile.html">The devfile introduction</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="004_using_an_existing_devfile.html">Using a devfile</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="004_adding_a_cluster_to_ACM.html">Adding a cluster to ACM</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="005_creating_a_devfile.html">Creating a new devfile</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="006_hcp_introduction.html">HCP Introduction</a>
@@ -171,7 +177,7 @@
     <a class="nav-link" href="008_deploy_cluster.html">Deploy HCP cluster</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="005_governance.html">Governance</a>
+    <a class="nav-link" href="#005_governance.adoc">Governance</a>
   </li>
 </ul>
   </li>
@@ -212,9 +218,16 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Dev Spaces Operators</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>To install Dev Spaces a single operator is installed from the ecosystem catalog. This is an administrative function that only a subset of people in the organisation will have the permission to do. Additionally, the installation of operators onto clusters is generally an automated process performed by Red Hat Advanced Cluster Management policies, ArgoCD infrastructure automation or similar automation solutions.  For the purposes of the workshop you will install the operator by hand from the ecosystem catalog.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_software_ecosystem_catalog"><a class="anchor" href="#_software_ecosystem_catalog"></a>Software ecosystem catalog</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>As a user with appropriate permission on the cluster select the 'Administrator' perspective and then select the 'Software Catalog' sub menu of the 'Ecosystem' menu as shown below.</p>
 </div>
@@ -234,6 +247,11 @@
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DevSpaces</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_installation"><a class="anchor" href="#_operator_installation"></a>Operator installation</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The OpenShift Dev Spaces operator tile will be displayed, which should then be selected. The Dev Spaces installation screen is displayed as shown below. There are two options displayed on the screen :</p>
 </div>
@@ -297,9 +315,11 @@
 <img src="_images/dev-spaces-operator-install-part-4.png" alt="Dev Spaces operator installation - post install" width="1000px">
 </div>
 </div>
-<div class="paragraph">
-<p>&#160;</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_creation_of_the_che_cluster"><a class="anchor" href="#_creation_of_the_che_cluster"></a>Creation of the Che cluster</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>On the sub menu, currently with 'Details' highlighted above select the 'Red Hat OpenShift Dev Spaces interface Specification' menu item. This will give you the opportunity to create a 'Che Cluster'.</p>
 </div>
@@ -358,11 +378,49 @@
 </ul>
 </div>
 <div class="paragraph">
+<p>Other options include the connection of the Dev Spaces instance to a number of different Git platforms for easy access to repositories.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Git platform integrations are possible to enable users to authenticate quickly and easily. To setup the connection will require a DevSpaces FQDN which you don’t get until the DevSpaces instance is actually created. So, the guidance here is to create the DevSpaces instance and then go back into the CheCluster configure settings to add the the Git integration as a secondary operation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation_summary"><a class="anchor" href="#_installation_summary"></a>Installation summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
 <p>The result of installing the DevSpaces operator is that two operators are added to the platform as shown below.</p>
 </div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/dev-spaces-operator-install-part-6.png" alt="Dev Spaces operator installation - summary" width="1000px">
+</div>
+</div>
 <div class="paragraph">
-<p>Dev Spaces - Manages the lifecycle of the user dashboard and platform server etc.
-DevWorkspace Operator - Manages the lifecycle of individual workspaces</p>
+<p>&#160;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Dev Spaces - Manages the lifecycle of the user dashboard and platform server etc.</p>
+</li>
+<li>
+<p>DevWorkspace Operator - Manages the lifecycle of individual workspaces</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

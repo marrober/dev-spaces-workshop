@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Adding an Existing Cluster to ACM :: OpenShift DevSpaces</title>
+    <title>Dev Spaces Devfile :: OpenShift DevSpaces</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -155,15 +155,15 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="002_operators.html">Operators</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="003_devfile.html">The devfile introduction</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#004_using_an_existing_devfile.adoc ">Using a devfile</a>
+    <a class="nav-link" href="004_using_an_existing_devfile.html">Using a devfile</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#005_creating_a_devfile.adoc">Adding a cluster to ACM</a>
+    <a class="nav-link" href="005_creating_a_devfile.html">Creating a new devfile</a>
   </li>
 </ul>
   </li>
@@ -177,7 +177,7 @@
     <a class="nav-link" href="008_deploy_cluster.html">Deploy HCP cluster</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="005_governance.html">Governance</a>
+    <a class="nav-link" href="#005_governance.adoc">Governance</a>
   </li>
 </ul>
   </li>
@@ -210,51 +210,147 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
-    <li><a href="004_adding_a_cluster_to_ACM.html">Adding an Existing Cluster to ACM</a></li>
+    <li><a href="003_devfile.html">The devfile introduction</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/004_adding_a_cluster_to_ACM.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/003_devfile.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Adding an Existing Cluster to ACM</h1>
+<h1 class="page">Dev Spaces Devfile</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is also possible to add clusters to ACM control for management and governance
-that predate the installation of ACM.</p>
+<p>A Devfile is a YAML-based configuration file used to describe and manage development environments. Originally introduced as part of the Eclipse Che and OpenShift development ecosystems, it has since gained broader adoption.</p>
 </div>
 <div class="paragraph">
-<p>You were given cluster URL and credentials for a single node OpenShift cluster that was not created by ACM, but we want to place it under ACM management.</p>
+<p>Devfiles help streamline development by providing a consistent, automated, and cloud-native approach to setting up and managing development environments. This makes it particularly beneficial for teams working on modern, distributed, and containerized applications.</p>
 </div>
 <div class="paragraph">
-<p>To do this we are going to import the cluster into ACM.</p>
+<p>A Devfile defines the dependencies, tools, and configurations required for a developer to build, test, and run applications consistently across different platforms. It is mainly used in cloud-native development environments, especially in Kubernetes and OpenShift-based platforms.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/devfile-introduction.png" alt="Devfile introduction" width="1000px">
+</div>
 </div>
 <div class="paragraph">
-<p>Login to the bastion host associated with the single node OpenShift using the supplied credentials.</p>
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>The Devfile function can be grouped into the three main categories shown above.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>References to container images that have specific command line software installed such as compilers and packaging tools.</p>
+</li>
+<li>
+<p>Commands to execute to poerform specific tasks such as compiling and packaging code using the tools mentioned above.</p>
+</li>
+<li>
+<p>Endpoints that are exposed for other microservices and API based solutions to use to interact with the code under development.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_the_import_command"><a class="anchor" href="#_generating_the_import_command"></a>Generating the import command</h2>
+<h2 id="_benefits_of_using_a_devfile"><a class="anchor" href="#_benefits_of_using_a_devfile"></a>Benefits of Using a Devfile</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On the ACM web user interface go to the <strong>clusters</strong> section and then select <strong>Import cluster</strong>.</p>
+<p><strong>Consistent Environments</strong></p>
+</div>
+<div class="paragraph">
+<p>Developers can define all aspects of the development environment in one place. This ensures that environments are consistent across different machines or teams, reducing "it works on my machine" issues.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cloud-Native Development</strong></p>
+</div>
+<div class="paragraph">
+<p>Devfiles are designed to work seamlessly with cloud-native environments like Kubernetes or OpenShift, enabling rapid scaling, collaboration, and on-demand provisioning of development resources.</p>
+</div>
+<div class="paragraph">
+<p><strong>Portability</strong></p>
+</div>
+<div class="paragraph">
+<p>Since the Devfile is declarative and uses standard components, it can be easily ported across different development setups and infrastructure, including cloud-based Integrated Development Environments (IDEs) like OpenShift Dev Spaces.</p>
+</div>
+<div class="paragraph">
+<p><strong>Simplifies Onboarding</strong></p>
+</div>
+<div class="paragraph">
+<p>New developers can get up and running quickly by simply cloning the Devfile and spinning up the predefined environment, reducing the setup time for new projects or contributors.</p>
+</div>
+<div class="paragraph">
+<p><strong>Collaboration and Versioning</strong></p>
+</div>
+<div class="paragraph">
+<p>Devfiles can be stored in source control along with the project source code, making it easy to version, share, and collaborate on development environments in the same way as with code.</p>
+</div>
+<div class="paragraph">
+<p><strong>Support for Multiple Languages</strong></p>
+</div>
+<div class="paragraph">
+<p>Devfiles are flexible and can be used with various programming languages, frameworks, and technologies, making them adaptable to a wide range of development projects.</p>
+</div>
+<div class="paragraph">
+<p><strong>Extensible and Customizable</strong></p>
+</div>
+<div class="paragraph">
+<p>Devfiles can be extended and customized to suit specific development workflows by adding new components or adjusting commands, making them a powerful tool for developers with diverse needs.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>It is a good practice to always include a Devfile to create a Workspace and customize the environment to your application needs. You do not mandatorily need a Devfile to start a workspace. If you do not include a Devfile in your project repository, Red Hat OpenShift Dev Spaces automatically loads a default Devfile with the Universal Developer Image (UDI) as the base container image.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_a_new_openshift_cluster_in_aws"><a class="anchor" href="#_create_a_new_openshift_cluster_in_aws"></a>Create a new OpenShift cluster in AWS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the Clusters page, select <strong>Create Cluster</strong></p>
+</div>
+<div class="paragraph">
+<p>Select Amazon Web services.</p>
+</div>
+<div class="paragraph">
+<p>Select the Infrastructure provider credential: aws-&lt;initials&gt;</p>
+</div>
+<div class="paragraph">
+<p>Click <strong>Next</strong></p>
+</div>
+<div class="paragraph">
+<p>Enter the cluster details as described below:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name the cluster : cluster-2-&lt;initials&gt;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name: cluster-1-&lt;initials&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Leave the cluster set empty</p>
+<p>Leave the Cluster set empty for now</p>
 </div>
 <div class="paragraph">
-<p>Additional labels - Add a label of:</p>
+<p>Select a <strong>Release Image</strong>, choose the latest version that is listed.</p>
+</div>
+<div class="paragraph">
+<p>Add a label:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> environment=prod</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">environment=prod</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -266,43 +362,26 @@ that predate the installation of ACM.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Import mode : <strong>Run import command manually</strong></p>
+<p>Click <strong>NEXT</strong></p>
 </div>
 <div class="paragraph">
-<p>Click on the blue button marked: <strong>Save import and generate code</strong></p>
-</div>
-<div class="paragraph">
-<p>You should then see a screen similar to below:</p>
+<p>Change the region to eu-west-2 or eu-west-3 as shown below.</p>
 </div>
 <div class="imageblock left text-center">
 <div class="content">
-<img src="_images/ACM_cluster_import_cmd.png" alt="Cluster import cmd" width="6500px">
+<img src="_images/ACM_Cluster_Creation_select_location.png" alt="Cluster location" width="6500px">
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_executing_the_import_command"><a class="anchor" href="#_executing_the_import_command"></a>Executing the import command</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Click the <strong>Copy</strong> command button and paste the content into the ssh command window on the bastion host.</p>
 </div>
 <div class="paragraph">
-<p>The command is a lot of text and will end with the line base64 -d.</p>
-</div>
-<div class="paragraph">
-<p>You may see a warning about pod security and privilege escalation but that is not a problem in the demonstration environment.</p>
-</div>
-<div class="paragraph">
-<p>Wait a couple of minutes for the Multi-Cluster Management operators to be installed into the single node openshift cluster. When this is complete and the cluster has ‘called home’ to the ACM hub you will see the new cluster appear in the list of clusters as shown below.</p>
+<p>Leave everything else as is(default) and then click <strong>NEXT</strong> on the other screens until you can press <strong>Create</strong> to create the cluster as shown below.</p>
 </div>
 <div class="imageblock left text-center">
 <div class="content">
-<img src="_images/ACM_imported_cluster.png" alt="Imported cluster" width="6500px">
+<img src="_images/ACM_Cluster_Create_Confirm.png" alt="Cluster creation" width="6500px">
 </div>
 </div>
 <div class="paragraph">
-<p>You can now exit the ssh shell of the single node OpenShift bastion host.</p>
+<p>After about 45 minutes the cluster will be available.</p>
 </div>
 </div>
 </div>

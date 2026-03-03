@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: git-config
+  namespace: mark-devspaces
+  labels:
+    controller.devfile.io/mount-to-devworkspace: 'true'
+    controller.devfile.io/watch-configmap: 'true'
+  annotations:
+    controller.devfile.io/mount-path: /home/user/
+    controller.devfile.io/mount-as: file
+data:
+  .gitconfig: |
+    [user]
+      name = "Mark Roberts"
+      email = "marrober@redhat.com"
+

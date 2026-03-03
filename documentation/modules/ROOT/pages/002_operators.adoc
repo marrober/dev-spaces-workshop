@@ -2,6 +2,8 @@
 
 To install Dev Spaces a single operator is installed from the ecosystem catalog. This is an administrative function that only a subset of people in the organisation will have the permission to do. Additionally, the installation of operators onto clusters is generally an automated process performed by Red Hat Advanced Cluster Management policies, ArgoCD infrastructure automation or similar automation solutions.  For the purposes of the workshop you will install the operator by hand from the ecosystem catalog.
 
+== Software ecosystem catalog
+
 As a user with appropriate permission on the cluster select the 'Administrator' perspective and then select the 'Software Catalog' sub menu of the 'Ecosystem' menu as shown below.
 
 image::ecosystem-software-catalog.png[Ecosystem software catalog,width=6500px,float="left",align="center"]
@@ -14,6 +16,8 @@ In the filter field enter the text below and press return.
 ----
 DevSpaces
 ----
+
+== Operator installation
 
 The OpenShift Dev Spaces operator tile will be displayed, which should then be selected. The Dev Spaces installation screen is displayed as shown below. There are two options displayed on the screen :
 
@@ -44,7 +48,8 @@ image::dev-spaces-operator-install-part-3.png[Dev Spaces operator completed,widt
 The screen will then show the details of the installed operator as displayed below.
 
 image::dev-spaces-operator-install-part-4.png[Dev Spaces operator installation - post install,width=1000px, align="centre"]
-{nbsp}
+
+== Creation of the Che cluster
 
 On the sub menu, currently with 'Details' highlighted above select the 'Red Hat OpenShift Dev Spaces interface Specification' menu item. This will give you the opportunity to create a 'Che Cluster'. 
 
@@ -73,13 +78,22 @@ Click on the 'Developer environments' view and you will see various options, som
 * startTimoutSeconds - Maximum duration of a workspace start action. Default is 300 seconds.
 * secondsOfRunBeforeIdling - Maximum runtime for a workspace in seconds. Helpful to ensure workspaces do not run forever, once started. A value of -1 disables the timout.
 
+Other options include the connection of the Dev Spaces instance to a number of different Git platforms for easy access to repositories. 
 
+[NOTE]
+====
+Git platform integrations are possible to enable users to authenticate quickly and easily. To setup the connection will require a DevSpaces FQDN which you don’t get until the DevSpaces instance is actually created. So, the guidance here is to create the DevSpaces instance and then go back into the CheCluster configure settings to add the the Git integration as a secondary operation.
+====
+
+== Installation summary
 
 The result of installing the DevSpaces operator is that two operators are added to the platform as shown below.
 
+image::dev-spaces-operator-install-part-6.png[Dev Spaces operator installation - summary,width=1000px, align="centre"]
+{nbsp}
 
-Dev Spaces - Manages the lifecycle of the user dashboard and platform server etc.
-DevWorkspace Operator - Manages the lifecycle of individual workspaces 
+* Dev Spaces - Manages the lifecycle of the user dashboard and platform server etc.
+* DevWorkspace Operator - Manages the lifecycle of individual workspaces 
 
 
 

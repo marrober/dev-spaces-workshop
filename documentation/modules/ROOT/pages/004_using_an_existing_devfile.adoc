@@ -1,0 +1,23 @@
+= Using an existing Devfile
+
+Devfiles, that define a Dev Spaces workspace can be stored in a number of different locations.
+
+== Devfile registry
+
+A Devfile Registry is a central repository or catalog that stores a collection of predefined Devfiles. These devfiles can be used by developers to quickly create and configure consistent development environments for various applications, frameworks, and programming languages.
+
+The registry is often hosted as a service, which can be publicly accessible or private (self-hosted). The registry server provides access to the available devfiles and facilitates their discovery and retrieval.
+
+An example of a publicly accessible and widely used devfile registry is https://registry.devfile.io. It offers a variety of predefined devfiles for languages like Python, Java, Node.js, Quarkus, and more.
+
+[NOTE]
+=====
+It is not anticipated that any security concious customers will allow general access to external public devfile repositories, such repositories may be useful for autheorised individuals to use as a source of useful content that can be added to devfiles built for use within the organisation.
+=====
+
+== Git repository
+
+
+
+== Local machine
+== Collaboration platforms such as Teams

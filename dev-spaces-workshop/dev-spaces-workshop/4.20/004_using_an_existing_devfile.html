@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Adding an Existing Cluster to ACM :: OpenShift DevSpaces</title>
+    <title>Using an existing Devfile :: OpenShift DevSpaces</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -159,11 +159,11 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="003_devfile.html">The devfile introduction</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#004_using_an_existing_devfile.adoc ">Using a devfile</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="004_using_an_existing_devfile.html">Using a devfile</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#005_creating_a_devfile.adoc">Adding a cluster to ACM</a>
+    <a class="nav-link" href="005_creating_a_devfile.html">Creating a new devfile</a>
   </li>
 </ul>
   </li>
@@ -177,7 +177,7 @@
     <a class="nav-link" href="008_deploy_cluster.html">Deploy HCP cluster</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="005_governance.html">Governance</a>
+    <a class="nav-link" href="#005_governance.adoc">Governance</a>
   </li>
 </ul>
   </li>
@@ -210,100 +210,66 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
-    <li><a href="004_adding_a_cluster_to_ACM.html">Adding an Existing Cluster to ACM</a></li>
+    <li><a href="003_devfile.html">The devfile introduction</a></li>
+    <li><a href="004_using_an_existing_devfile.html">Using a devfile</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/004_adding_a_cluster_to_ACM.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/004_using_an_existing_devfile.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Adding an Existing Cluster to ACM</h1>
+<h1 class="page">Using an existing Devfile</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is also possible to add clusters to ACM control for management and governance
-that predate the installation of ACM.</p>
-</div>
-<div class="paragraph">
-<p>You were given cluster URL and credentials for a single node OpenShift cluster that was not created by ACM, but we want to place it under ACM management.</p>
-</div>
-<div class="paragraph">
-<p>To do this we are going to import the cluster into ACM.</p>
-</div>
-<div class="paragraph">
-<p>Login to the bastion host associated with the single node OpenShift using the supplied credentials.</p>
+<p>Devfiles, that define a Dev Spaces workspace can be stored in a number of different locations.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_generating_the_import_command"><a class="anchor" href="#_generating_the_import_command"></a>Generating the import command</h2>
+<h2 id="_devfile_registry"><a class="anchor" href="#_devfile_registry"></a>Devfile registry</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>On the ACM web user interface go to the <strong>clusters</strong> section and then select <strong>Import cluster</strong>.</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Name the cluster : cluster-2-&lt;initials&gt;</code></pre>
-</div>
+<p>A Devfile Registry is a central repository or catalog that stores a collection of predefined Devfiles. These devfiles can be used by developers to quickly create and configure consistent development environments for various applications, frameworks, and programming languages.</p>
 </div>
 <div class="paragraph">
-<p>Leave the cluster set empty</p>
+<p>The registry is often hosted as a service, which can be publicly accessible or private (self-hosted). The registry server provides access to the available devfiles and facilitates their discovery and retrieval.</p>
 </div>
 <div class="paragraph">
-<p>Additional labels - Add a label of:</p>
+<p>An example of a publicly accessible and widely used devfile registry is <a href="https://registry.devfile.io" class="bare">https://registry.devfile.io</a>. It offers a variety of predefined devfiles for languages like Python, Java, Node.js, Quarkus, and more.</p>
 </div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> environment=prod</code></pre>
-</div>
-</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Also add a label to identify clusters created by you. For this use:</p>
+<p>It is not anticipated that any security concious customers will allow general access to external public devfile repositories, such repositories may be useful for autheorised individuals to use as a source of useful content that can be added to devfiles built for use within the organisation.</p>
 </div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">lab-name=&lt;initials&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Import mode : <strong>Run import command manually</strong></p>
-</div>
-<div class="paragraph">
-<p>Click on the blue button marked: <strong>Save import and generate code</strong></p>
-</div>
-<div class="paragraph">
-<p>You should then see a screen similar to below:</p>
-</div>
-<div class="imageblock left text-center">
-<div class="content">
-<img src="_images/ACM_cluster_import_cmd.png" alt="Cluster import cmd" width="6500px">
-</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_executing_the_import_command"><a class="anchor" href="#_executing_the_import_command"></a>Executing the import command</h2>
+<h2 id="_git_repository"><a class="anchor" href="#_git_repository"></a>Git repository</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Click the <strong>Copy</strong> command button and paste the content into the ssh command window on the bastion host.</p>
-</div>
-<div class="paragraph">
-<p>The command is a lot of text and will end with the line base64 -d.</p>
-</div>
-<div class="paragraph">
-<p>You may see a warning about pod security and privilege escalation but that is not a problem in the demonstration environment.</p>
-</div>
-<div class="paragraph">
-<p>Wait a couple of minutes for the Multi-Cluster Management operators to be installed into the single node openshift cluster. When this is complete and the cluster has ‘called home’ to the ACM hub you will see the new cluster appear in the list of clusters as shown below.</p>
-</div>
-<div class="imageblock left text-center">
-<div class="content">
-<img src="_images/ACM_imported_cluster.png" alt="Imported cluster" width="6500px">
+
 </div>
 </div>
-<div class="paragraph">
-<p>You can now exit the ssh shell of the single node OpenShift bastion host.</p>
+<div class="sect1">
+<h2 id="_local_machine"><a class="anchor" href="#_local_machine"></a>Local machine</h2>
+<div class="sectionbody">
+
 </div>
+</div>
+<div class="sect1">
+<h2 id="_collaboration_platforms_such_as_teams"><a class="anchor" href="#_collaboration_platforms_such_as_teams"></a>Collaboration platforms such as Teams</h2>
+<div class="sectionbody">
+
 </div>
 </div>
 </article>
