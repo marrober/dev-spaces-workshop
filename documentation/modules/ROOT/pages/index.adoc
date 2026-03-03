@@ -20,11 +20,11 @@ OpenShift Dev Spaces is a container based development environment that runs on t
 
 * A terminal for command line operations - Each Dev Spaces environment includes a terminal with access to the source code that has been cloned from one of the Git repositories. This enables developers to perform any ad-hoc operations they need, based on executables that are included in the container image on which the environment is based.
 
-== *An Introduction to OpenShift DevSpaces*
+== *An Introduction to OpenShift DevSpaces Workshop*
 
 This workshop will guide you through the use of Red Hat OpenShift DevSpaces both as a user and as a platform administrator.
 
-== *Workshop infrastructure*
+=== *Workshop infrastructure*
 
 The workshop facilitators will give you URL's and credentials for the clusters that you will 
 use throughout the workshop. 

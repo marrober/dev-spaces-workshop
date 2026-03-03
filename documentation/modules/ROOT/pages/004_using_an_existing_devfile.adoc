@@ -10,13 +10,21 @@ The registry is often hosted as a service, which can be publicly accessible or p
 
 An example of a publicly accessible and widely used devfile registry is https://registry.devfile.io. It offers a variety of predefined devfiles for languages like Python, Java, Node.js, Quarkus, and more.
 
+A number of sample Devfiles for Dev Spaces are available at https://github.com/devspaces-samples. You can explore and customize these samples to your needs.
+
 [NOTE]
 =====
 It is not anticipated that any security concious customers will allow general access to external public devfile repositories, such repositories may be useful for autheorised individuals to use as a source of useful content that can be added to devfiles built for use within the organisation.
 =====
 
+[NOTE]
+=====
+You can create and run your own customized devfile registry outside the cluster. The process to do so is outside the scope of this course. Consult the README file at https://github.com/devfile/registry for details.
+=====
+
 == Git repository
 
+A git repository can host a series of devfiles for different languages and frameworks, however, it is often particularly helpful to host a devfile for a specific repository inside the repository. This ensures that all members of a team need to be sent is the location of a repository such as 
 
 
 == Local machine

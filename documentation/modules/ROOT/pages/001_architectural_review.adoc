@@ -40,12 +40,16 @@ This is a collection of ready-to-use plugins and extensions for development envi
 
 This is a core service that provides a collection of ready-to-use devfiles
 
+[TIP]
+=====
+Treat the DevSpaces registry as a source of base devfiles that can be used for more specific purposes in a repository. Without the context of a repository to be cloned into the workspace the devfile is only partially complete. It is a better practice to store the devfile alongside the code to which it refers which is explained further in the subsequent detailed section on devfiles.
+=====
+
 * Sample-Based Workspaces: The devfile registry can contain language specific devfiles that are created by members of the organisation to ensure consistency of:
 
 ** Base container images used for the development environment which promotes consistency of command versions used.
 ** A set of commands that are to be executed for the rapid building of application code which again ensures consistency.
 ** References to plugins and extensions so that everyone has the same development experience.
-** Rapid access to appropriate repositories of content. 
 
 * OCI-Compatible Storage: devfile stacks are stored as OCI (Open Container Initiative) artifacts in an OCI-compatible registry, making them easy to distribute and version.
 * Integration with Dashboard: The User Dashboard communicates with the registry to display these samples to users on the "Create Workspace" page. This makes it easy for new users to browse content and select the appropriate devfile based on the language they are using and their preference of editor (VS Code or IntelliJ IDEA).
