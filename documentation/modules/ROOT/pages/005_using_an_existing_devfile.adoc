@@ -1,0 +1,114 @@
+= Using an existing Devfile
+
+In the previous section it was stated that the ideal location for a devfile is a git repository. An example repository that contains a devfile in the root of the repository is : https://github.com/marrober/pacman.git.
+
+image::pacman-repo-with-devfile.png[Pacman repo with a devfile, width=400px, align="centre"]
+{nbsp}
+
+To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the git repository given above.
+
+== Launch Dev Spaces 
+
+There are two methods for launching DevSpaces
+
+=== Get the DevSpaces URL from a route
+A URL made available as a route from the OpenShift Cluster. The URL can be found from executing the following command, which assumes that Dev Spaces has been installed in a namespace 'devspaces'. If this is not the case adjust the -n parameter below.
+
+[.console-input]
+[source,bash]
+----
+oc get route/devspaces -n devspaces -o jsonpath='{"https://"}{.spec.host}'
+----
+
+For the cluster that you are using right now the above command should show a result of :
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+https://devspaces.%CLUSTER_SUBDOMAIN%/
+----
+
+[NOTE]
+=====
+The URL above can be put into a global load balancer alongside DevSpaces URLs from other OpenShift cluster instances. This will enable a load balancer to distribute users across a number of OpenShift clusters for DevSpaces access which is recommended when the number of users exceeds 1000.
+=====
+
+=== Use the Quick Launch Menu Button
+
+For a specific OpenShift cluster instance it is possible to launch DevSpaces from the header banner as shown below. Click the 9 box icon in the menu and then select Red Hat OpenShift Dev Spaces from the pop up window. 
+
+image::dev-spaces-launcher.png[Dev Spaces OpenShift launcher,width=500px, align="centre"]
+{nbsp}
+
+== Creating a workspace - Method 1
+
+After the DevSpaced web UI has launched you need to create a workspace. Select the 'add workspace' button on the screen shown below.
+
+image::add-workspace.png[Dev Spaces add workspace,width=1000px, align="centre"]
+{nbsp}
+
+Copy the URL below and paste it into the field 'Git repo URL', after clicking the 'add workspace' button.
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+https://github.com/marrober/pacman.git
+----
+
+As the workspace starts the progress is displayed as shown below. Log and event tabs are also available for tracking the progress in more detail.
+
+image::workspace-startup-process.png[Dev Spaces workspace startup,width=500px, align="centre"]
+{nbsp}
+
+As soon as the workspace has loaded the display will change to be similar to that which is shown below. You are promoted to trust the author of the content being cloned into the workspace. Generally you will be cloning trusted content from you organisations' repositories so you can expect to say yes to this if it is internal content.
+
+image::welcome-and-trust-message.png[Welcome and trust message,width=1000px, align="centre"]
+{nbsp}
+
+The welcome screen gives information and links. This page can be dismissed in the same manner as closing a file in VS Code. 
+
+=== Browsing the workspace
+
+Take a look at the following areas of the workspace :
+
+* Left hand side menu (top) - The file browser, file search, source code integration, debug and test, Extensions
+* The explorer view next the icon menu on the left - This has options to display the file tree, file outline, SCM timeline and endpoints. The explorer view has three dots on the right hand side that can be used to switch off some of these views if they are not required.
+* The bottom toolbar - This shows the current SCM branch, which can be clicked to change the branch or create a new branch. This area also shows the current memory and cpu consumption of the workspace including the percentage of memory being used compared to the limit. Clicking on the resource consumption text gives a pop-up window at the top of the workspace showing the breakdown of cpu and memory consumption for the different container images in the workspace. 
+* The left hand side white corner - This gives you access to a number of options for workspace management without having to go back to the DevSpaces UI screen. When you press the white corner you will get a pop-up menu in the toolbar at the top of the screen giving the following options :
+    ** Stop workspace
+    ** Restart workspace
+    ** Restart workspace from local devFile - When this option is selected you are promoted to select a devfile from the files loaded in the workspace. Don't be confused that 'local' means your local laptop, local means the content within the workspace.
+    ** Open dashboard
+    ** Open OpenShift console
+    ** Open documentation
+
+image::bottom-left-area-dev-space.png[Bottom left menu,width=500px, align="centre"]
+{nbsp}
+
+* Left hand side menu (bottom) - Just above the white corner is the cog icon for access to :
+    ** Command palette
+    ** Profiles
+    ** Settings
+    ** Extensions
+    ** Keyboard shortcuts
+    ** Snippets
+    ** Tasks
+    ** Themes
+
+The command palette results in a menu of commands being displayed in the top central window as shown below
+
+image::command-palette.png[Command palette,width=500px, align="centre"]
+{nbsp}
+
+The command palette can also be displayed simply by clicking on the workspace search function at the top centre of the screen shown below.
+
+image::workspace-search.png[Workspace search,width=1000px, align="centre"]
+{nbsp}
+
+As soon as you click into the workspace search field you will see a list of commonly used options. Press the '>' greater than character to see a full list of all available commands as shown below. There are a lot of items in the list so it scrolls to show all options. 
+
+image::workspace-search-populated.png[Workspace search,width=1000px, align="centre"]
+{nbsp}
+
+Some of the entries above have a keyboard shortcut to get to the popular items quickly. The top item (highlighted in dark blue) has a settings wheel next to it which can be used to assign a keyboard shortcut to any of the items in the list.
+

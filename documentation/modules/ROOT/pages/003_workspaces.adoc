@@ -1,0 +1,14 @@
+= Dev Spaces Workspaces
+
+A workspace should always be considered to be temporary and ephemeral. Anything that is created in a workspace should be stored in a Git repository before the workspace is suspended or shutdown. A workspace is not a replacement for a laptop, it is simply a place to do work with an expectation that the next time work restarts you may re-use the workspace or you may create a new workspace. You are able to suspend a workspace when work is complete. After a period of no activity the workspace will automatically suspend so you may need to restart after being away for lunch or a meeting. It is a good practice to get into the habit of deleting and re-creating the workspace as this ensures that your workspace is using the latest container image and has any updates to commands and properties made by the administration team.
+
+Workspace cleanup processes will run on the clusters periodically to delete any stale workspaces. 
+
+Subsequent sections of the workshop will cover :
+
+* The devfile structure
+* Using an existing devfile
+* Creating and using a VS Code extension repository
+
+
+

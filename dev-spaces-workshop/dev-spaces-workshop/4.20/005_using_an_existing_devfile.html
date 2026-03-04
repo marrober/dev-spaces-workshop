@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dev Spaces Operators :: OpenShift DevSpaces</title>
+    <title>Using an existing Devfile :: OpenShift DevSpaces</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -152,7 +152,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="001_architectural_review.html">DevSpaces Architecture</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="002_operators.html">Operators</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -162,7 +162,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="004_devfile.html">The devfile introduction</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="005_using_an_existing_devfile.html">Using a devfile</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -216,175 +216,56 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
-    <li><a href="002_operators.html">Operators</a></li>
+    <li><a href="003_workspaces.html">Workspaces</a></li>
+    <li><a href="005_using_an_existing_devfile.html">Using a devfile</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/002_operators.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/005_using_an_existing_devfile.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Dev Spaces Operators</h1>
+<h1 class="page">Using an existing Devfile</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>To install Dev Spaces a single operator is installed from the ecosystem catalog. This is an administrative function that only a subset of people in the organisation will have the permission to do. Additionally, the installation of operators onto clusters is generally an automated process performed by Red Hat Advanced Cluster Management policies, ArgoCD infrastructure automation or similar automation solutions.  For the purposes of the workshop you will install the operator by hand from the ecosystem catalog.</p>
+<p>In the previous section it was stated that the ideal location for a devfile is a git repository. An example repository that contains a devfile in the root of the repository is : <a href="https://github.com/marrober/pacman.git" class="bare">https://github.com/marrober/pacman.git</a>.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_software_ecosystem_catalog"><a class="anchor" href="#_software_ecosystem_catalog"></a>Software ecosystem catalog</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>As a user with appropriate permission on the cluster select the 'Administrator' perspective and then select the 'Software Catalog' sub menu of the 'Ecosystem' menu as shown below.</p>
-</div>
-<div class="imageblock left text-center">
+<div class="imageblock text-centre">
 <div class="content">
-<img src="_images/ecosystem-software-catalog.png" alt="Ecosystem software catalog" width="6500px">
+<img src="_images/pacman-repo-with-devfile.png" alt="Pacman repo with a devfile" width="400px">
 </div>
 </div>
 <div class="paragraph">
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>In the filter field enter the text below and press return.</p>
+<p>To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the git repository given above.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_launch_dev_spaces"><a class="anchor" href="#_launch_dev_spaces"></a>Launch Dev Spaces</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two methods for launching DevSpaces</p>
+</div>
+<div class="sect2">
+<h3 id="_get_the_devspaces_url_from_a_route"><a class="anchor" href="#_get_the_devspaces_url_from_a_route"></a>Get the DevSpaces URL from a route</h3>
+<div class="paragraph">
+<p>A URL made available as a route from the OpenShift Cluster. The URL can be found from executing the following command, which assumes that Dev Spaces has been installed in a namespace 'devspaces'. If this is not the case adjust the -n parameter below.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">DevSpaces</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route/devspaces -n devspaces -o jsonpath='{"https://"}{.spec.host}'</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_operator_installation"><a class="anchor" href="#_operator_installation"></a>Operator installation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The OpenShift Dev Spaces operator tile will be displayed, which should then be selected. The Dev Spaces installation screen is displayed as shown below. There are two options displayed on the screen :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Channel - Should be left at stable, unless there is a requirement on a test cluster to ever install a candidate version to investigate a new capability.</p>
-</li>
-<li>
-<p>Version - Again, this should be left as the latest version available unless there is a reason to restrict this to a slightly older version as guided by the Red Hat team.</p>
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<p>The text of the operator installation screen shows useful information and links regarding the creation of a Dev Spaces instance and the option to install customer certificates for access to the routes managed by Dev Spaces.</p>
+<p>For the cluster that you are using right now the above command should show a result of :</p>
 </div>
-<div class="paragraph">
-<p>Leave the channel set to 'stable' and the Version as the latest version and click the blue 'Install' button.</p>
-</div>
-<div class="imageblock left text-center">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/dev-spaces-operator-install-part-1.png" alt="Dev Spaces operator installation - part 1" width="6500px">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://devspaces.%CLUSTER_SUBDOMAIN%/</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>On the next screen there is a second opportunity to edit the update channel and the version to be installed as shown below. Additionally, the installation mode is displayed (but cannot be changed) and the installation namespace is displayed. The operator recommends that it is installed in the openshift-operators namespace, and since this will already exist there will be a warning to that effect. This warning can be ignored.</p>
-</div>
-<div class="paragraph">
-<p>Finally, the update strategy for the operator can be selected to be either automatic (default) or manual.</p>
-</div>
-<div class="paragraph">
-<p>leave all settings at the default and press the install button.</p>
-</div>
-<div class="imageblock left text-center">
-<div class="content">
-<img src="_images/dev-spaces-operator-install-part-2.png" alt="Dev Spaces operator installation - part 2" width="6500px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>The operator installation will then take place, which may take a minute or two to complete. When it has completed the screen will show that it has installed correctly. Click the blue button to 'View operator' as shown below.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/dev-spaces-operator-install-part-3.png" alt="Dev Spaces operator completed" width="500px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>The screen will then show the details of the installed operator as displayed below.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/dev-spaces-operator-install-part-4.png" alt="Dev Spaces operator installation - post install" width="1000px">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creation_of_the_che_cluster"><a class="anchor" href="#_creation_of_the_che_cluster"></a>Creation of the Che cluster</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>On the sub menu, currently with 'Details' highlighted above select the 'Red Hat OpenShift Dev Spaces interface Specification' menu item. This will give you the opportunity to create a 'Che Cluster'.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">The Che Cluster</div>
-<div class="paragraph">
-<p><strong>CheCluster</strong> is a Kubernetes Custom Resource (CR) used to define and manage the entire installation and configuration of the Dev Spaces server.</p>
-</div>
-<div class="paragraph">
-<p>Eclipse Che is the name of the upstream open-source project upon which Dev Spaces is based.</p>
-</div>
-<div class="paragraph">
-<p>The Che cluster provides the following capabilities</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Central Configuration: It allows administrators to configure all major components of the environment, including the cheServer, devWorkspace operator, dashboard, and image registries.</p>
-</li>
-<li>
-<p>Operator Management: The OpenShift Dev Spaces Operator monitors this resource. When you edit the CheCluster YAML file, the Operator translates those changes into Kubernetes objects like ConfigMaps and restarts the necessary pods to apply the new settings.</p>
-</li>
-<li>
-<p>Customization: You can use it to set resource limits, define default IDEs (like VS Code or IntelliJ), manage GitHub/GitLab OAuth credentials, and enable features like the Kubernetes Image Puller.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Click the 'Create CheCluster' blue button and then you will see a screen similar to below.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/dev-spaces-operator-install-part-5.png" alt="Dev Spaces operator installation - che cluster" width="1000px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>It is possible to switch the installation process between the form view and the YAML view using the radio buttons at the top of the screen. The YAML view is good if you have a pre-defined configuration for the Dev Spaces instance that you want to past over the existing YAML objects, or if you understand the options well and want to modify a small number of values. The form view is good to open up the option fields to explore the settings that are available.</p>
-</div>
-<div class="paragraph">
-<p>Click on the 'Developer environments' view and you will see various options, some of which are highlighted below :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>startTimoutSeconds - Maximum duration of a workspace start action. Default is 300 seconds.</p>
-</li>
-<li>
-<p>secondsOfRunBeforeIdling - Maximum runtime for a workspace in seconds. Helpful to ensure workspaces do not run forever, once started. A value of -1 disables the timout.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Other options include the connection of the Dev Spaces instance to a number of different Git platforms for easy access to repositories.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -394,23 +275,122 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Git platform integrations are possible to enable users to authenticate quickly and easily. To setup the connection will require a DevSpaces FQDN which you don’t get until the DevSpaces instance is actually created. So, the guidance here is to create the DevSpaces instance and then go back into the CheCluster configure settings to add the the Git integration as a secondary operation.</p>
+<p>The URL above can be put into a global load balancer alongside DevSpaces URLs from other OpenShift cluster instances. This will enable a load balancer to distribute users across a number of OpenShift clusters for DevSpaces access which is recommended when the number of users exceeds 1000.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_installation_summary"><a class="anchor" href="#_installation_summary"></a>Installation summary</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_use_the_quick_launch_menu_button"><a class="anchor" href="#_use_the_quick_launch_menu_button"></a>Use the Quick Launch Menu Button</h3>
 <div class="paragraph">
-<p>The result of installing the DevSpaces operator is that two operators are added to the platform as shown below.</p>
+<p>For a specific OpenShift cluster instance it is possible to launch DevSpaces from the header banner as shown below. Click the 9 box icon in the menu and then select Red Hat OpenShift Dev Spaces from the pop up window.</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">
-<img src="_images/dev-spaces-operator-install-part-6.png" alt="Dev Spaces operator installation - summary" width="1000px">
+<img src="_images/dev-spaces-launcher.png" alt="Dev Spaces OpenShift launcher" width="500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_workspace_method_1"><a class="anchor" href="#_creating_a_workspace_method_1"></a>Creating a workspace - Method 1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After the DevSpaced web UI has launched you need to create a workspace. Select the 'add workspace' button on the screen shown below.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/add-workspace.png" alt="Dev Spaces add workspace" width="1000px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>Copy the URL below and paste it into the field 'Git repo URL', after clicking the 'add workspace' button.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://github.com/marrober/pacman.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As the workspace starts the progress is displayed as shown below. Log and event tabs are also available for tracking the progress in more detail.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/workspace-startup-process.png" alt="Dev Spaces workspace startup" width="500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>As soon as the workspace has loaded the display will change to be similar to that which is shown below. You are promoted to trust the author of the content being cloned into the workspace. Generally you will be cloning trusted content from you organisations' repositories so you can expect to say yes to this if it is internal content.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/welcome-and-trust-message.png" alt="Welcome and trust message" width="1000px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>The welcome screen gives information and links. This page can be dismissed in the same manner as closing a file in VS Code.</p>
+</div>
+<div class="sect2">
+<h3 id="_browsing_the_workspace"><a class="anchor" href="#_browsing_the_workspace"></a>Browsing the workspace</h3>
+<div class="paragraph">
+<p>Take a look at the following areas of the workspace :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Left hand side menu (top) - The file browser, file search, source code integration, debug and test, Extensions</p>
+</li>
+<li>
+<p>The explorer view next the icon menu on the left - This has options to display the file tree, file outline, SCM timeline and endpoints. The explorer view has three dots on the right hand side that can be used to switch off some of these views if they are not required.</p>
+</li>
+<li>
+<p>The bottom toolbar - This shows the current SCM branch, which can be clicked to change the branch or create a new branch. This area also shows the current memory and cpu consumption of the workspace including the percentage of memory being used compared to the limit. Clicking on the resource consumption text gives a pop-up window at the top of the workspace showing the breakdown of cpu and memory consumption for the different container images in the workspace.</p>
+</li>
+<li>
+<p>The left hand side white corner - This gives you access to a number of options for workspace management without having to go back to the DevSpaces UI screen. When you press the white corner you will get a pop-up menu in the toolbar at the top of the screen giving the following options :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Stop workspace</p>
+</li>
+<li>
+<p>Restart workspace</p>
+</li>
+<li>
+<p>Restart workspace from local devFile - When this option is selected you are promoted to select a devfile from the files loaded in the workspace. Don&#8217;t be confused that 'local' means your local laptop, local means the content within the workspace.</p>
+</li>
+<li>
+<p>Open dashboard</p>
+</li>
+<li>
+<p>Open OpenShift console</p>
+</li>
+<li>
+<p>Open documentation</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/bottom-left-area-dev-space.png" alt="Bottom left menu" width="500px">
 </div>
 </div>
 <div class="paragraph">
@@ -419,12 +399,74 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Dev Spaces - Manages the lifecycle of the user dashboard and platform server etc.</p>
+<p>Left hand side menu (bottom) - Just above the white corner is the cog icon for access to :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Command palette</p>
 </li>
 <li>
-<p>DevWorkspace Operator - Manages the lifecycle of individual workspaces</p>
+<p>Profiles</p>
+</li>
+<li>
+<p>Settings</p>
+</li>
+<li>
+<p>Extensions</p>
+</li>
+<li>
+<p>Keyboard shortcuts</p>
+</li>
+<li>
+<p>Snippets</p>
+</li>
+<li>
+<p>Tasks</p>
+</li>
+<li>
+<p>Themes</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The command palette results in a menu of commands being displayed in the top central window as shown below</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/command-palette.png" alt="Command palette" width="500px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>The command palette can also be displayed simply by clicking on the workspace search function at the top centre of the screen shown below.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/workspace-search.png" alt="Workspace search" width="1000px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>As soon as you click into the workspace search field you will see a list of commonly used options. Press the '&gt;' greater than character to see a full list of all available commands as shown below. There are a lot of items in the list so it scrolls to show all options.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/workspace-search-populated.png" alt="Workspace search" width="1000px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>Some of the entries above have a keyboard shortcut to get to the popular items quickly. The top item (highlighted in dark blue) has a settings wheel next to it which can be used to assign a keyboard shortcut to any of the items in the list.</p>
+</div>
 </div>
 </div>
 </div>
