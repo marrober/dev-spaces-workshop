@@ -2,120 +2,91 @@
 
 In this section you will launch the workspace using a link on the Git repository. This is a particularly helpful way to get into a workspace since all the user needs is a link to the git repository. The information on how to launch the workspace is then included in the repository readme file. 
 
-In the previous section you explored the workspace. Since this exercise uses the same workspace you will do different tasks involving using tasks to run the application code and interacting with the running application.
+In the previous section you explored the workspace. Since this exercise uses the same workspace you will be using workspace tasks to run the application code and interacting with the running application.
 
-image::pacman-repo-with-devfile.png[Pacman repo with a devfile, width=400px, align="centre"]
+== Accessing a workspace from a Git repository
+
+The git repository structure is shown below.
+
+image::git-repo-for-readme.png[Git repo structure with readme.md, width=400px, align="centre"]
 {nbsp}
 
-To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the git repository given above.
+The README.md file has a URL link that can launch DevSpaces with the specific devfile.yaml in the root of the repository. The URL link in the readme uses an icon to make it look better.
 
-== Launch Dev Spaces 
+The relevant section of the README.md is shown below :
 
-There are two methods for launching DevSpaces
-
-=== Get the DevSpaces URL from a route
-A URL made available as a route from the OpenShift Cluster. The URL can be found from executing the following command, which assumes that Dev Spaces has been installed in a namespace 'devspaces'. If this is not the case adjust the -n parameter below.
-
-[.console-input]
+[.nowebcopy]
 [source,bash]
 ----
-oc get route/devspaces -n devspaces -o jsonpath='{"https://"}{.spec.host}'
+[<img src=DevSpaces.png width=50>](https://devspaces.apps.ocp4.mr-openshift.co.uk/dashboard/#/load-factory?url=https://github.com/marrober/pacman.git)
 ----
 
-For the cluster that you are using right now the above command should show a result of :
+The format of the above line to add to a readme file is :
+
+[<image specification](<dev-spaces.url>/dashboard/#/load-factory?url=<git-repository-url>)
+
+Note that the git repository needs to have a devfile.yaml file in the root of the repository.
+
+The rendered result of the readme.md file when viewed through the Git web UI is shown below.
+
+image::git-readme.png[Git readme.md, width=1000px, align="centre"]
+
+== Launch the workspace
+
+Click on the Github link below to open the Git hub repository. 
 
 [.console-input]
 [source,bash,subs="+attributes"]
 ----
-https://devspaces.%CLUSTER_SUBDOMAIN%/
+https://github.com/marrober/pacman
 ----
 
-[NOTE]
-=====
-The URL above can be put into a global load balancer alongside DevSpaces URLs from other OpenShift cluster instances. This will enable a load balancer to distribute users across a number of OpenShift clusters for DevSpaces access which is recommended when the number of users exceeds 1000.
-=====
+Scroll down the window past the file browser until you get to the README file which should match the image shown above. 
 
-=== Use the Quick Launch Menu Button
+Float the mouse over the DevSpaces icon to view the URL to which it links, and then press the DevSpaces icon to launch it. You may be presented with a login dialog for the OpenShift cluster. If you are, press the blue 'Log in with OpenShift' button. Login with the provided credentials for your cluster.
 
-For a specific OpenShift cluster instance it is possible to launch DevSpaces from the header banner as shown below. Click the 9 box icon in the menu and then select Red Hat OpenShift Dev Spaces from the pop up window. 
-
-image::dev-spaces-launcher.png[Dev Spaces OpenShift launcher,width=500px, align="centre"]
-{nbsp}
-
-== Creating a workspace - Method 1
-
-After the DevSpaced web UI has launched you need to create a workspace. Select the 'add workspace' button on the screen shown below.
-
-image::add-workspace.png[Dev Spaces add workspace,width=1000px, align="centre"]
-{nbsp}
-
-Copy the URL below and paste it into the field 'Git repo URL', after clicking the 'add workspace' button.
-
-[.console-input]
-[source,bash,subs="+attributes"]
-----
-https://github.com/marrober/pacman.git
-----
-
-As the workspace starts the progress is displayed as shown below. Log and event tabs are also available for tracking the progress in more detail.
+The workspace creation process will then begin and the progress will be indicated as shown below.
 
 image::workspace-startup-process.png[Dev Spaces workspace startup,width=500px, align="centre"]
-{nbsp}
 
-.The devfile
+As soon as the workspace has loaded the display will change to be similar to that which is shown below. You are promoted to trust the author of the content being cloned into the workspace. Generally you will be cloning trusted content from you organisations' repositories so you can expect to say yes to this if it is internal content.
+
+image::welcome-and-trust-message.png[Welcome and trust message,width=1000px, align="centre"]
+
+The welcome screen gives information and links. This page can be dismissed in the same manner as closing a file in VS Code. 
+
+== Examining the contents of the repository
+
+In addition to the file browser on the left hand side of the workspace the terminal window can also be used to examine the files that exist within the workspace. Open a terminal window by clicking on the three bar menu on the top left hand corner and selecting terminal as shown below.
+
+image::launch-terminal.png[Launch terminal,width=500px, align="centre"]
+
+Execute the command below in the terminal to see the directory structure including the current location and the content of the directory. This should match with the paths mentioned above in the commands section.
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+pwd; ls
+----
+
+.Environment variables
+****
+In the commands section above the workingDir variable has a value that includes ${PROJECTS_ROOT}. This is one of many environment variables that can be used by the commands of a devfile to get access to information about the workspace it the contents within it.
+
+Execute the command below to see all the environment variables and the current values to see what could be useful to you in constructing devfiles.
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+printenv
+----
 ****
 
-The devfile that has just been loaded is explained below. 
+== Running the application
 
-_You don't have to read all of this detail but it is here if you are interested._
+The devfile content was shown in the previous section, and the section referring to command execution is repeated below for reference.
 
-*Header*
-
-Devfile header and a projects section to load the git repository into the workspace.
-
-[.console-input]
-[source,bash,subs="+attributes"]
-----
-dschemaVersion: 2.2.2
-metadata:
-  name: pacman
-projects:
-  - name: pacman
-    git:
-      remotes:
-        origin: 'https://github.com/marrober/pacman.git'
-      checkoutFrom:
-        revision: main
-----
-
-*Components*
-
-A component consisting of a universal developer image from Red Hat with specific cpu and memory resource requirements and limits. This section also exposes specific endpoints on ports that the application uses.
-
-[.console-input]
-[source,bash,subs="+attributes"]
-----
-components:
-  - name: tools
-    container:
-      image: registry.redhat.io/devspaces/udi-rhel8@sha256:d147892c643a0127cfcf868daee0ff416a8df922fe2a7c716ebfc457ff526fa2
-      endpoints:
-        - exposure: public
-          name: nodejs
-          protocol: https
-          targetPort: 8080
-      memoryLimit: 1Gi
-      memoryRequest: 600Mi
-      cpuLimit: '0.5'
-      cpuRequest: '0.25'
-      mountSources: true
-----
-
-*Commands*
-
-Commands that are made available from the 
-
-[.console-input]
+[.nowebcopy]
 [source,bash,subs="+attributes"]
 ----
 commands:
@@ -144,59 +115,94 @@ commands:
       group:
         kind: run
 ----
-****
 
-As soon as the workspace has loaded the display will change to be similar to that which is shown below. You are promoted to trust the author of the content being cloned into the workspace. Generally you will be cloning trusted content from you organisations' repositories so you can expect to say yes to this if it is internal content.
+The commands enable us to run the application in a two step process or a single step. 
 
-image::welcome-and-trust-message.png[Welcome and trust message,width=1000px, align="centre"]
-{nbsp}
+=== Two step process
 
-The welcome screen gives information and links. This page can be dismissed in the same manner as closing a file in VS Code. 
+Firstly download the project dependencies using the 'Download dependencies' command. Click in the workspace search section at the top of the screen to display the first level of task options as shown below.
 
-=== Browsing the workspace
+image::task-options-1.png[Task options first level, width=600px, align="centre"]
 
-Take a look at the following areas of the workspace :
+Select the option 'Run task' from the above menu. This will display a second menu from which you can select the source of the task you wish to run as shown below.
 
-* Left hand side menu (top) - The file browser, file search, source code integration, debug and test, Extensions
-* The explorer view next the icon menu on the left - This has options to display the file tree, file outline, SCM timeline and endpoints. The explorer view has three dots on the right hand side that can be used to switch off some of these views if they are not required.
-* The bottom toolbar - This shows the current SCM branch, which can be clicked to change the branch or create a new branch. This area also shows the current memory and cpu consumption of the workspace including the percentage of memory being used compared to the limit. Clicking on the resource consumption text gives a pop-up window at the top of the workspace showing the breakdown of cpu and memory consumption for the different container images in the workspace. 
-* The left hand side white corner - This gives you access to a number of options for workspace management without having to go back to the DevSpaces UI screen. When you press the white corner you will get a pop-up menu in the toolbar at the top of the screen giving the following options :
-    ** Stop workspace
-    ** Restart workspace
-    ** Restart workspace from local devFile - When this option is selected you are promoted to select a devfile from the files loaded in the workspace. Don't be confused that 'local' means your local laptop, local means the content within the workspace.
-    ** Open dashboard
-    ** Open OpenShift console
-    ** Open documentation
+image::task-options-2.png[Task options second level, width=600px, align="centre"]
 
-image::bottom-left-area-dev-space.png[Bottom left menu,width=500px, align="centre"]
-{nbsp}
+Select 'devfile' as the source of the tasks and you will see the menu shown below. The commands listed here match the labels of the commands in the devfile shown above.
 
-* Left hand side menu (bottom) - Just above the white corner is the cog icon for access to :
-    ** Command palette
-    ** Profiles
-    ** Settings
-    ** Extensions
-    ** Keyboard shortcuts
-    ** Snippets
-    ** Tasks
-    ** Themes
+image::task-options-3.png[Task options third level, width=600px, align="centre"]
 
-=== The command palette
+Select 'download dependencies' task.
 
-The command palette results in a menu of commands being displayed in the top central window as shown below
+The dependency download will then run in the terminal window and the output will be displayed. When you have ready anything that you need from the terminal window click into it and press any key to dismiss the results.
 
-image::command-palette.png[Command palette,width=500px, align="centre"]
-{nbsp}
+In the terminal window run the following commands to see that the time of the creation of the node_modules directory was just a minute or two ago.
 
-The command palette can also be displayed simply by clicking on the workspace search function at the top centre of the screen shown below.
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+clear
+cd ${PROJECTS_ROOT}/pacman/src
+ls -al | grep node_modules
+----
 
-image::workspace-search.png[Workspace search,width=1000px, align="centre"]
-{nbsp}
+Repeat the process described above to execute the command 'Run the web app'. The result will be similar to what is shown below.
 
-As soon as you click into the workspace search field you will see a list of commonly used options. Press the '>' greater than character to see a full list of all available commands as shown below. There are a lot of items in the list so it scrolls to show all options. 
+image::run-app-result.png[Run app result, width=1000px, align="centre"]
 
-image::workspace-search-populated.png[Workspace search,width=1000px, align="centre"]
-{nbsp}
+The terminal window shows that the application has started and is listening on port 8080. The prompt in the bottom right corner is indicating that the application is listening on this port and it gives you the option to open the application in either :
 
-Some of the entries above have a keyboard shortcut to get to the popular items quickly. The top item (highlighted in dark blue) has a settings wheel next to it which can be used to assign a keyboard shortcut to any of the items in the list.
+* A new tab - Launch the application in a separate browser tab alongside the workspace. 
+* Open in preview - Launch the application web page in a page within the workspace similar to an editor page.
+
+To stop the application when launched click on the terminal area that shows the application listening on port 8080 and press control-c.
+
+If you happen to miss the pop up window in the bottom right hand side of the screen then don't panic. It does timeout after a while, but you can simply open the endpoints list in the left hand side menu underneath the file browser as shown below.
+
+image::endpoints-list.png[Endpoints list, width=400px, align="centre"]
+
+Each published endpoint is listed above and as you position the mouse over each endpoint, three icons popup on the right hand side of the listed endpoint as shown above for the nodejs(8080/https) endpoint. The icons give you the following options :
+
+* Left icon - copy the url for pasting into another window or for use with commands on a terminal such as curl.
+* middle icon - Launch the url in a new browser tab.
+* Right icon - Open the url in preview mode alongside editor files in the workspace.
+
+Open the application url in either new browser tab or preview mode now.
+
+When you launch the application you will see the old faithful Pacman game from the 1980's. If you click to play you will see the background colour get brighter and you can use the arrow keys to move the yellow character around the screen eating white dots, as shown below for the preview option. You can move your character around the screen using either the arrow keys on the keyboard or the red arrows shown on screen. _If you feel like a break, try to clear the screen._
+
+image::pacman-running.png[Pacman running, width=1000px, align="centre"]
+
+[NOTE]
+=====
+You will see an error in the terminal window because the application does not have a database to which it can connect to store player high scores. This is not a problem for a simple execution of the application for testing.
+=====
+
+== Live code editing
+
+DevSpaces offers a facility for live code changes for certain specific languages, such as NodeJS in which this Pacman game was written. In the file browser on the left hand side of the screen open the file :
+
+[.nowebcopy]
+[source,bash,subs="+attributes"]
+----
+src/public/pacman-canvas.js
+----
+
+The file will open in a new browser tab, which will be alongside the Pacman application if you launched it in preview mode. Scroll down to line 292 and you will see a line of code as shown below. 
+
+[.nowebcopy]
+[source,bash,subs="+attributes"]
+----
+this.wallColor = "Blue";
+----
+
+[NOTE]
+===== 
+Note the VS Code syntax colouring of the code window.
+=====
+
+Change the colour blue to any primary colour such as Red, Green, White, Grey, Magenta, Cyan, Yellow. Black is probably not a great colour to choose. Just ensure that your chosen colour has a capital letter at the start of the word. 
+
+Immediately you have made the change switch to the running application in either a separate browser tab or an editor window alongside the source code if you used preview mode. Refresh the browser window and you will see the colour of the border for the game change. 
+
 

@@ -73,7 +73,7 @@ _You don't have to read all of this detail but it is here if you are interested.
 
 Devfile header and a projects section to load the git repository into the workspace.
 
-[.console-input]
+[.nowebcopy]
 [source,bash,subs="+attributes"]
 ----
 dschemaVersion: 2.2.2
@@ -92,7 +92,7 @@ projects:
 
 A component consisting of a universal developer image from Red Hat with specific cpu and memory resource requirements and limits. This section also exposes specific endpoints on ports that the application uses.
 
-[.console-input]
+[.nowebcopy]
 [source,bash,subs="+attributes"]
 ----
 components:
@@ -115,7 +115,7 @@ components:
 
 Commands that are made available from the 
 
-[.console-input]
+[.nowebcopy]
 [source,bash,subs="+attributes"]
 ----
 commands:

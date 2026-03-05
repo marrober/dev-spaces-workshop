@@ -176,18 +176,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="006_VSCode_Extension_repo.html">VS Code Extension Repository</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#006_hcp_introduction.adoc">HCP Introduction</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#007_explore_environment.adoc">Explore HCP Environment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#008_deploy_cluster.adoc">Deploy HCP cluster</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#005_governance.adoc">Governance</a>
-  </li>
 </ul>
   </li>
 </ul>
@@ -352,7 +340,7 @@
 <div class="paragraph">
 <p>Devfile header and a projects section to load the git repository into the workspace.</p>
 </div>
-<div class="listingblock console-input">
+<div class="listingblock nowebcopy">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dschemaVersion: 2.2.2
 metadata:
@@ -372,7 +360,7 @@ projects:
 <div class="paragraph">
 <p>A component consisting of a universal developer image from Red Hat with specific cpu and memory resource requirements and limits. This section also exposes specific endpoints on ports that the application uses.</p>
 </div>
-<div class="listingblock console-input">
+<div class="listingblock nowebcopy">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">components:
   - name: tools
@@ -396,7 +384,7 @@ projects:
 <div class="paragraph">
 <p>Commands that are made available from the</p>
 </div>
-<div class="listingblock console-input">
+<div class="listingblock nowebcopy">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">commands:
   - id: 1-dependencies

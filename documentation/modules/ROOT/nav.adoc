@@ -6,7 +6,3 @@
 ** xref:006_using_an_existing_devfile-part-2.adoc[Using a devfile - Part 2]
 ** xref:006_creating_a_devfile.adoc[Creating a new devfile]
 * xref:006_VSCode_Extension_repo.adoc[VS Code Extension Repository]
-* xref:006_hcp_introduction.adoc[HCP Introduction]
-* xref:007_explore_environment.adoc[Explore HCP Environment]
-* xref:008_deploy_cluster.adoc[Deploy HCP cluster]
-* xref:005_governance.adoc[Governance]
