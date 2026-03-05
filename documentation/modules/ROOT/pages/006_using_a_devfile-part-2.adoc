@@ -1,4 +1,4 @@
-= Using an existing Devfile
+= Using a Devfile - part 2
 
 In this section you will launch the workspace using a link on the Git repository. This is a particularly helpful way to get into a workspace since all the user needs is a link to the git repository. The information on how to launch the workspace is then included in the repository readme file. 
 

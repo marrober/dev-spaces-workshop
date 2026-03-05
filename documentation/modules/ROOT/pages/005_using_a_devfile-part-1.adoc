@@ -1,4 +1,4 @@
-= Using an existing Devfile
+= Using a Devfile - part 1
 
 In the previous section it was stated that the ideal location for a devfile is a git repository. An example repository that contains a devfile in the root of the repository is : https://github.com/marrober/pacman.git.
 

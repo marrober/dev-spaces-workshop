@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Red Hat OpenShift DevSpaces :: OpenShift DevSpaces</title>
+    <title>Links and References :: OpenShift DevSpaces</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -174,10 +174,7 @@
     <a class="nav-link" href="006_VSCode_Extension_repo.html">VS Code Extension Repository</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="015_monitoring.html">DevSpaces monitoring</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="018_management.html">Workspace management</a>
+    <a class="nav-link" href="#015_monitoring.adoc">DevSpaces monitoring</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="020_links_references.html">Links and References</a>
@@ -209,118 +206,19 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="index.html" class="home-link is-current"></a>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
-    <li><a href="index.html">Red Hat OpenShift DevSpaces</a></li>
+    <li><a href="020_links_references%20copy.html">Links and References</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/020_links_references%20copy.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Red Hat OpenShift DevSpaces</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="imageblock Left text-center">
-<div class="content">
-<img src="_images/Dev_Spaces-Standard-CMYK.jpg" alt="DevSpaces Logo" width="190px">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_openshift_dev_spaces_introduction"><a class="anchor" href="#_openshift_dev_spaces_introduction"></a><strong>OpenShift Dev Spaces Introduction</strong></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>OpenShift Dev Spaces is a container based development environment that runs on the OpenShift cluster. Dev Spaces provides the following.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A secure environment for development, running on OpenShift - Because Dev Spaces environments run on OpenShift they inherit the security of the OpenShift cluster. It is not necessary for any code, or other business assets, to be stored on a laptop or other computer.</p>
-</li>
-<li>
-<p>A connection to the right container registries, OpenShift clusters and data repositories - Dev Spaces provides connectivity to container registries so that the right images are pulled and images are pushed to the correct place. It also provides connections to the OpenShift cluster on which it runs, to enable teams to deploy microservices such tat they ca be integrated into a wider application. Finally, Dev Spaces provides connections to Git repositories so that development teams can access and update the code for which they are responsible.</p>
-</li>
-<li>
-<p>A curated set of commands to accelerate development and ensure consistency - Dev Spaces environments contain commands that are executed regularly,  such as compiling applications, so that there is consistency across development teams.</p>
-</li>
-<li>
-<p>A familiar editor using either VS Code or IntelliJ IDEA - Users and organisations have their preferences for Integrated Development Environments (IDEs) and DevSpaces offers a choice between VS Code and IntelliJ editors. Extensions for each editor environment can be added to Dev Spaces to further personalise the development experience.</p>
-</li>
-<li>
-<p>A platform optimized for low resource consumption - Dev Spaces environments consume a fraction of the compute and memory resources of a virtual machine that may otherwise be use for a development environment. The containerised development environment is executed on a node of an OpenShift cluster orchestrated by the Kubernetes platform to ensure an appropriate distribution of workload amongst the nodes. This helps ensure a high density of Dev Spaces in the cluster and the optimal usage of physical resources.</p>
-</li>
-<li>
-<p>A terminal for command line operations - Each Dev Spaces environment includes a terminal with access to the source code that has been cloned from one of the Git repositories. This enables developers to perform any ad-hoc operations they need, based on executables that are included in the container image on which the environment is based.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_an_introduction_to_openshift_devspaces_workshop"><a class="anchor" href="#_an_introduction_to_openshift_devspaces_workshop"></a><strong>An Introduction to OpenShift DevSpaces Workshop</strong></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This workshop will guide you through the use of Red Hat OpenShift DevSpaces both as a user and as a platform administrator.</p>
-</div>
-<div class="sect2">
-<h3 id="_workshop_infrastructure"><a class="anchor" href="#_workshop_infrastructure"></a><strong>Workshop infrastructure</strong></h3>
-<div class="paragraph">
-<p>The workshop facilitators will give you URL&#8217;s and credentials for the clusters that you will
-use throughout the workshop.</p>
-</div>
-<div class="paragraph">
-<p>The modules are self-paced. Within the description of the Modules there will be Tips and Notes; tips give hints regarding what is being done, Notes go into more details about the exercises within the Module.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Tips contain useful additional information around the exercises<br>
-They will relate to the flow of the Module</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Notes will contain in-depth information around the concepts; they are added for interest and detailed knowledge</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>To personalise the Modules add the cluster address (given by the workshop facilitators) to the 'Cluster Subdomain' field in the text entry boxes at the top of the interface and then press return to confirm. The screen image below shows the text entry fields.</p>
-</div>
-<div class="imageblock Left text-center">
-<div class="content">
-<img src="_images/cluster-project.png" alt="Cluster subdomain and project" width="4000px">
-</div>
-</div>
-<div class="paragraph">
-<p>Also add the Project 'devspaces' to the other field in the workshop guide top banner and press return to confirm the entry.</p>
-</div>
-<div class="paragraph">
-<p>These are propagated through the examples and URLs that you will use later in the workshop making subsequent pages of this guide specific to your environment.</p>
-</div>
-</div>
-</div>
-</div>
+<h1 class="page">Links and References</h1>
+
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>

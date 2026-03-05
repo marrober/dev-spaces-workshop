@@ -1,0 +1,7 @@
+= Management
+
+* Workspace management
+* Finding stale workspaces - ACM policy ?
+* Removal warnings
+* Management of resources
+
