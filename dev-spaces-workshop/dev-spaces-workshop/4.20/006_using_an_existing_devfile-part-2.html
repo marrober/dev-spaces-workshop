@@ -162,11 +162,11 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="004_devfile.html">The devfile introduction</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="005_using_an_existing_devfile.html">Using a devfile</a>
-  </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="006_VSCode_Extension_repo.html">VS Code Extension Repository</a>
+    <a class="nav-link" href="005_using_an_existing_devfile-part-1.html">Using a devfile - Part 1</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="006_using_an_existing_devfile-part-2.html">Using a devfile - Part 2</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#006_creating_a_devfile.adoc">Creating a new devfile</a>
@@ -174,13 +174,16 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="006_hcp_introduction.html">HCP Introduction</a>
+    <a class="nav-link" href="006_VSCode_Extension_repo.html">VS Code Extension Repository</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="007_explore_environment.html">Explore HCP Environment</a>
+    <a class="nav-link" href="#006_hcp_introduction.adoc">HCP Introduction</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="008_deploy_cluster.html">Deploy HCP cluster</a>
+    <a class="nav-link" href="#007_explore_environment.adoc">Explore HCP Environment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#008_deploy_cluster.adoc">Deploy HCP cluster</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="#005_governance.adoc">Governance</a>
@@ -217,10 +220,10 @@
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
     <li><a href="003_workspaces.html">Workspaces</a></li>
-    <li><a href="005_using_an_existing_devfile.html">Using a devfile</a></li>
+    <li><a href="006_using_an_existing_devfile-part-2.html">Using a devfile - Part 2</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/005_using_an_existing_devfile.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/006_using_an_existing_devfile-part-2.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
@@ -228,7 +231,10 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the previous section it was stated that the ideal location for a devfile is a git repository. An example repository that contains a devfile in the root of the repository is : <a href="https://github.com/marrober/pacman.git" class="bare">https://github.com/marrober/pacman.git</a>.</p>
+<p>In this section you will launch the workspace using a link on the Git repository. This is a particularly helpful way to get into a workspace since all the user needs is a link to the git repository. The information on how to launch the workspace is then included in the repository readme file.</p>
+</div>
+<div class="paragraph">
+<p>In the previous section you explored the workspace. Since this exercise uses the same workspace you will do different tasks involving using tasks to run the application code and interacting with the running application.</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">
@@ -331,6 +337,96 @@
 <div class="paragraph">
 <p>&#160;</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">The devfile</div>
+<div class="paragraph">
+<p>The devfile that has just been loaded is explained below.</p>
+</div>
+<div class="paragraph">
+<p><em>You don&#8217;t have to read all of this detail but it is here if you are interested.</em></p>
+</div>
+<div class="paragraph">
+<p><strong>Header</strong></p>
+</div>
+<div class="paragraph">
+<p>Devfile header and a projects section to load the git repository into the workspace.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dschemaVersion: 2.2.2
+metadata:
+  name: pacman
+projects:
+  - name: pacman
+    git:
+      remotes:
+        origin: 'https://github.com/marrober/pacman.git'
+      checkoutFrom:
+        revision: main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Components</strong></p>
+</div>
+<div class="paragraph">
+<p>A component consisting of a universal developer image from Red Hat with specific cpu and memory resource requirements and limits. This section also exposes specific endpoints on ports that the application uses.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">components:
+  - name: tools
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:d147892c643a0127cfcf868daee0ff416a8df922fe2a7c716ebfc457ff526fa2
+      endpoints:
+        - exposure: public
+          name: nodejs
+          protocol: https
+          targetPort: 8080
+      memoryLimit: 1Gi
+      memoryRequest: 600Mi
+      cpuLimit: '0.5'
+      cpuRequest: '0.25'
+      mountSources: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Commands</strong></p>
+</div>
+<div class="paragraph">
+<p>Commands that are made available from the</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">commands:
+  - id: 1-dependencies
+    exec:
+      label: Download dependencies
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/pacman/src
+      commandLine: npm install
+      group:
+        kind: build
+  - id: 2-run
+    exec:
+      label: Run the web app
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/pacman/src
+      commandLine: npm start
+      group:
+        kind: run
+  - id: 3-install-and-run
+    exec:
+      label: Run the web app (and download dependencies)
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/pacman/src
+      commandLine: npm install; npm start
+      group:
+        kind: run</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div class="paragraph">
 <p>As soon as the workspace has loaded the display will change to be similar to that which is shown below. You are promoted to trust the author of the content being cloned into the workspace. Generally you will be cloning trusted content from you organisations' repositories so you can expect to say yes to this if it is internal content.</p>
 </div>
@@ -431,6 +527,9 @@
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_the_command_palette"><a class="anchor" href="#_the_command_palette"></a>The command palette</h3>
 <div class="paragraph">
 <p>The command palette results in a menu of commands being displayed in the top central window as shown below</p>
 </div>

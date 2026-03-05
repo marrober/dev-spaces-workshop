@@ -2,6 +2,8 @@
 
 In the previous section it was stated that the ideal location for a devfile is a git repository. An example repository that contains a devfile in the root of the repository is : https://github.com/marrober/pacman.git.
 
+In this section you will experience launching a workspace from pasting the URL into the DevSpaces user interface. You will also explore some of the elements of the workspace. In the next section you will launch the workspace in a different way and will experience the code development process.
+
 image::pacman-repo-with-devfile.png[Pacman repo with a devfile, width=400px, align="centre"]
 {nbsp}
 
@@ -40,7 +42,7 @@ For a specific OpenShift cluster instance it is possible to launch DevSpaces fro
 image::dev-spaces-launcher.png[Dev Spaces OpenShift launcher,width=500px, align="centre"]
 {nbsp}
 
-== Creating a workspace - Method 1
+== Creating a workspace
 
 After the DevSpaced web UI has launched you need to create a workspace. Select the 'add workspace' button on the screen shown below.
 
@@ -59,6 +61,90 @@ As the workspace starts the progress is displayed as shown below. Log and event 
 
 image::workspace-startup-process.png[Dev Spaces workspace startup,width=500px, align="centre"]
 {nbsp}
+
+.The devfile
+****
+
+The devfile that has just been loaded is explained below. 
+
+_You don't have to read all of this detail but it is here if you are interested._
+
+*Header*
+
+Devfile header and a projects section to load the git repository into the workspace.
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+dschemaVersion: 2.2.2
+metadata:
+  name: pacman
+projects:
+  - name: pacman
+    git:
+      remotes:
+        origin: 'https://github.com/marrober/pacman.git'
+      checkoutFrom:
+        revision: main
+----
+
+*Components*
+
+A component consisting of a universal developer image from Red Hat with specific cpu and memory resource requirements and limits. This section also exposes specific endpoints on ports that the application uses.
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+components:
+  - name: tools
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:d147892c643a0127cfcf868daee0ff416a8df922fe2a7c716ebfc457ff526fa2
+      endpoints:
+        - exposure: public
+          name: nodejs
+          protocol: https
+          targetPort: 8080
+      memoryLimit: 1Gi
+      memoryRequest: 600Mi
+      cpuLimit: '0.5'
+      cpuRequest: '0.25'
+      mountSources: true
+----
+
+*Commands*
+
+Commands that are made available from the 
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+commands:
+  - id: 1-dependencies
+    exec:
+      label: Download dependencies
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/pacman/src
+      commandLine: npm install
+      group:
+        kind: build
+  - id: 2-run
+    exec:
+      label: Run the web app
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/pacman/src
+      commandLine: npm start
+      group:
+        kind: run
+  - id: 3-install-and-run
+    exec:
+      label: Run the web app (and download dependencies)
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/pacman/src
+      commandLine: npm install; npm start
+      group:
+        kind: run
+----
+****
 
 As soon as the workspace has loaded the display will change to be similar to that which is shown below. You are promoted to trust the author of the content being cloned into the workspace. Generally you will be cloning trusted content from you organisations' repositories so you can expect to say yes to this if it is internal content.
 
@@ -95,6 +181,8 @@ image::bottom-left-area-dev-space.png[Bottom left menu,width=500px, align="centr
     ** Tasks
     ** Themes
 
+=== The command palette
+
 The command palette results in a menu of commands being displayed in the top central window as shown below
 
 image::command-palette.png[Command palette,width=500px, align="centre"]
@@ -112,3 +200,35 @@ image::workspace-search-populated.png[Workspace search,width=1000px, align="cent
 
 Some of the entries above have a keyboard shortcut to get to the popular items quickly. The top item (highlighted in dark blue) has a settings wheel next to it which can be used to assign a keyboard shortcut to any of the items in the list.
 
+=== Delete the workspace
+
+Delete the workspace ready to recreate it in the next chapter.
+
+Click on the left hand side white corner area of the DevSpaces workspace described above and shown in the a prior screen image. The top menu will show a number of options as indicated below.
+
+image::workspace-top-menu-options.png[Workspace top menu,width=800px, align="centre"]
+{nbsp}
+
+Select the option 'Dev Spaces: Open Dashboard' 
+
+This will display an external website trust warning as shown below. Click 'Open' to accept that the website is OK. When working on your production implementation it is worth clicking the 'Configure Trust Domains' so that you don't get the warning again.
+
+image::external-website-trust-warning.png[External site warning,width=700px, align="centre"]
+{nbsp}
+
+A new browser tab will launch listing all workspaces that you have. A green dot next to a workspace indicates that it is running, as shown below.
+
+image::workspaces-list.png[Workspaces list,width=1000px, align="centre"]
+{nbsp}
+
+Click on the three dots to the right of your workspace. From here you can:
+
+* Open a workspace
+* Open a workspace in debug mode
+* Start a workspace in background (The difference between open and start is that 'open' will launch the workspace and take you to it in a new tab, while 'start' will start the workspace running but does not take you to it in a new tab).
+* Restart a workspace
+* Stop a workspace
+* Delete a workspace
+* View workspace details
+
+Click on the 'delete' option and accept the notification that you 'understand that it cannot be reverted' once delete. 
