@@ -1,2 +1,3 @@
 = Monitoring
 
+The DevSpaces instance on the cluster can be monitored 
