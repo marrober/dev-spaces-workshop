@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administration</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="app-heading">Red Hat Workshop Management</h1>
+    <img src="/hat-alone.png" alt="Red Hat" class="app-logo" />
+  </header>
+  <main class="admin-main">
+    <h2 class="page-title">Administration</h2>
+    <div class="admin-nav">
+      <a href="/clusters" class="admin-nav-btn">View clusters</a>
+    </div>
+    <section class="admin-workshop-url" aria-labelledby="admin-workshop-heading">
+      <h2 id="admin-workshop-heading">Workshop URL</h2>
+      <div class="admin-workshop-row">
+        <input type="url" id="admin-workshop-url" class="admin-workshop-input" placeholder="https://…" />
+        <button type="button" id="admin-workshop-save" class="admin-workshop-save">Save</button>
+      </div>
+    </section>
+    <p class="admin-hint">Drop or paste text below for the application to interpret.</p>
+    <form id="admin-form" class="admin-form">
+      <textarea
+        id="admin-text"
+        name="text"
+        class="admin-textarea"
+        placeholder="Paste or type text here…"
+        rows="12"
+      ></textarea>
+      <div class="admin-actions">
+        <button type="submit" class="admin-submit">Submit</button>
+        <button type="button" id="admin-clear" class="admin-clear">Clear</button>
+      </div>
+    </form>
+    <p id="admin-status" class="admin-status" aria-live="polite"></p>
+
+    <section class="admin-summary" aria-labelledby="admin-summary-heading">
+      <h2 id="admin-summary-heading">Stored credentials</h2>
+      <p id="admin-credential-count" class="admin-credential-count">0 credential set(s) imported</p>
+      <div id="admin-credential-summary" class="admin-credential-summary"></div>
+      <div class="admin-summary-actions">
+        <button type="button" id="admin-clear-stored" class="admin-clear-stored">Clear stored credentials</button>
+        <button type="button" id="admin-export-credentials" class="admin-export-credentials">Export credentials</button>
+      </div>
+    </section>
+  </main>
+  <div id="admin-export-overlay" class="admin-export-overlay" role="dialog" aria-modal="true" aria-labelledby="admin-export-title" hidden>
+    <div class="admin-export-dialog">
+      <h2 id="admin-export-title" class="admin-export-title">Exported credentials</h2>
+      <pre id="admin-export-content" class="admin-export-content"></pre>
+      <div class="admin-export-dialog-actions">
+        <button type="button" id="admin-export-copy" class="admin-export-copy">Copy</button>
+        <button type="button" id="admin-export-close" class="admin-export-close">Close</button>
+      </div>
+    </div>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

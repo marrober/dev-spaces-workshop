@@ -1,0 +1,212 @@
+.clusters-main {
+  max-width: 48rem;
+  width: 100%;
+  text-align: left;
+}
+
+.clusters-workshop {
+  margin-bottom: 1rem;
+}
+
+.clusters-workshop-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  background: #475569;
+  color: #e2e8f0;
+  border: none;
+  cursor: pointer;
+}
+
+.clusters-workshop-btn:hover {
+  background: #64748b;
+}
+
+.clusters-hint {
+  margin-bottom: 1.25rem;
+}
+
+.clusters-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.clusters-list li {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.clusters-list .cluster-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 0 0 0.5rem 0;
+}
+
+.clusters-list .cluster-reserve-form {
+  margin-bottom: 0.75rem;
+}
+
+.clusters-list .cluster-reserved {
+  margin-bottom: 0.5rem;
+}
+
+.clusters-list .cluster-credential-line {
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+  word-break: break-all;
+}
+
+.clusters-list .cluster-credential-label {
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #94a3b8;
+  margin-right: 0.5rem;
+}
+
+.clusters-list .cluster-workshop-url-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.25rem 0 0.5rem 0;
+  font-size: 0.875rem;
+  font-family: inherit;
+}
+
+.clusters-list .cluster-workshop-url-row .cluster-credential-label {
+  flex-shrink: 0;
+}
+
+.clusters-list .cluster-workshop-url-field {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.375rem;
+}
+
+.clusters-list .cluster-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.clusters-list .cluster-btn {
+  padding: 0.4rem 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.clusters-list .cluster-btn-primary {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.clusters-list .cluster-btn-primary:hover {
+  background: #2563eb;
+}
+
+.clusters-list .cluster-btn-secondary {
+  background: #475569;
+  color: #e2e8f0;
+}
+
+.clusters-list .cluster-btn-secondary:hover {
+  background: #64748b;
+}
+
+.clusters-list .cluster-btn-secondary:disabled,
+.clusters-list .cluster-actions--disabled .cluster-btn-secondary {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.clusters-list .cluster-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.clusters-list .cluster-reserved {
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #94a3b8;
+}
+
+.clusters-list .cluster-reserve-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clusters-list .cluster-reserve-form input {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.375rem;
+  min-width: 12rem;
+}
+
+.clusters-list .cluster-reserve-form input::placeholder {
+  color: #64748b;
+}
+
+.clusters-list .cluster-reserve-form input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.clusters-list .cluster-reserve-form button {
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+}
+
+.clusters-list .cluster-reserve-form button:hover {
+  background: #2563eb;
+}
+
+.clusters-status {
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  min-height: 1.25rem;
+}
+
+.clusters-status.success {
+  color: #22c55e;
+}
+
+.clusters-status.error {
+  color: #ef4444;
+}
+
+.clusters-empty {
+  color: #64748b;
+  font-size: 0.9375rem;
+  padding: 1rem 0;
+}

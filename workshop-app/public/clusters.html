@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clusters</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="clusters.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="app-heading">Red Hat Workshop Management</h1>
+    <img src="/hat-alone.png" alt="Red Hat" class="app-logo" />
+  </header>
+  <main class="clusters-main">
+    <h2 class="page-title">Clusters</h2>
+    <div id="clusters-workshop" class="clusters-workshop" style="display: none;"></div>
+    <p class="clusters-hint">Reserve a cluster by entering your name.</p>
+    <ul id="clusters-list" class="clusters-list" aria-label="Cluster list"></ul>
+    <p id="clusters-status" class="clusters-status" aria-live="polite"></p>
+  </main>
+  <script src="clusters.js"></script>
+</body>
+</html>

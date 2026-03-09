@@ -1,0 +1,365 @@
+.admin-main {
+  max-width: 48rem;
+  width: 100%;
+  text-align: left;
+}
+
+.admin-nav {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 1rem 0;
+}
+
+.admin-nav-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+}
+
+.admin-nav-btn:hover {
+  background: #2563eb;
+}
+
+.admin-workshop-url {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+.admin-workshop-url h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #e2e8f0;
+}
+
+.admin-workshop-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-workshop-input {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.375rem;
+}
+
+.admin-workshop-input::placeholder {
+  color: #64748b;
+}
+
+.admin-workshop-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.admin-workshop-save {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+}
+
+.admin-workshop-save:hover {
+  background: #2563eb;
+}
+
+.admin-hint {
+  margin-bottom: 1rem;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-textarea {
+  width: 100%;
+  min-height: 12rem;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  resize: vertical;
+}
+
+.admin-textarea::placeholder {
+  color: #64748b;
+}
+
+.admin-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.admin-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.admin-submit,
+.admin-clear {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+}
+
+.admin-submit {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.admin-submit:hover {
+  background: #2563eb;
+}
+
+.admin-clear {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.admin-clear:hover {
+  background: #475569;
+}
+
+.admin-status {
+  font-size: 0.875rem;
+  min-height: 1.25rem;
+}
+
+.admin-status.success {
+  color: #22c55e;
+}
+
+.admin-status.error {
+  color: #ef4444;
+}
+
+.admin-summary {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #334155;
+}
+
+.admin-summary h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #e2e8f0;
+}
+
+.admin-credential-count {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin: 0 0 0.75rem 0;
+}
+
+.admin-credential-summary {
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  min-height: 2rem;
+}
+
+.admin-credential-summary:empty::before {
+  content: 'No credentials stored yet.';
+  color: #64748b;
+}
+
+.admin-credential-summary .credential-set {
+  margin-bottom: 0.75rem;
+}
+
+.admin-credential-summary .credential-set:last-child {
+  margin-bottom: 0;
+}
+
+.admin-credential-summary .credential-line {
+  margin: 0.25rem 0;
+  word-break: break-all;
+}
+
+.admin-credential-summary .credential-line .label {
+  color: #94a3b8;
+  margin-right: 0.5rem;
+}
+
+.admin-credential-summary .admin-reveal-password {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border: 1px solid #475569;
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.admin-credential-summary .admin-reveal-password:hover {
+  background: #475569;
+}
+
+.admin-credential-summary a {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+.admin-credential-summary a:hover {
+  color: #bae6fd;
+}
+
+.admin-credential-summary a:visited {
+  color: #a5b4fc;
+}
+
+.admin-summary-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.admin-clear-stored {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  background: #475569;
+  color: #e2e8f0;
+}
+
+.admin-clear-stored:hover {
+  background: #64748b;
+}
+
+.admin-export-credentials {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  background: #475569;
+  color: #e2e8f0;
+}
+
+.admin-export-credentials:hover {
+  background: #64748b;
+}
+
+.admin-export-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 1000;
+}
+
+.admin-export-overlay[hidden] {
+  display: none;
+}
+
+.admin-export-dialog {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  max-width: 36rem;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-export-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #e2e8f0;
+}
+
+.admin-export-content {
+  font-size: 0.8125rem;
+  color: #cbd5e1;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  overflow: auto;
+  flex: 1;
+  min-height: 8rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.admin-export-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.admin-export-copy,
+.admin-export-close {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+}
+
+.admin-export-copy {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.admin-export-copy:hover {
+  background: #2563eb;
+}
+
+.admin-export-close {
+  background: #475569;
+  color: #e2e8f0;
+}
+
+.admin-export-close:hover {
+  background: #64748b;
+}
