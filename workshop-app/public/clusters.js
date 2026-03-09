@@ -1,5 +1,13 @@
 const listEl = document.getElementById('clusters-list');
 const statusEl = document.getElementById('clusters-status');
+const nameFormEl = document.getElementById('clusters-name-form');
+const nameInputEl = document.getElementById('clusters-name-input');
+const nameReserveBtn = document.getElementById('clusters-name-reserve');
+const nameDisplayEl = document.getElementById('clusters-name-display');
+const nameReadonlyEl = document.getElementById('clusters-name-readonly');
+
+const SESSION_NAME_KEY = 'clusters-reserved-name';
+const SESSION_CLUSTER_KEY = 'clusters-reserved-cluster';
 
 function setStatus(message, type) {
   statusEl.textContent = message;
@@ -41,7 +49,14 @@ function copyToClipboard(text, buttonEl) {
   }).catch(() => false);
 }
 
-function renderClusters(clusters) {
+function buildClusterWorkshopUrl(workshopBaseUrl, clusterSubdomain) {
+  const base = (workshopBaseUrl || '').trim();
+  if (!base || !/^https?:\/\//i.test(base) || !clusterSubdomain) return '';
+  const sep = base.includes('?') ? '&' : '?';
+  return base + sep + 'CLUSTER_SUBDOMAIN=' + encodeURIComponent(clusterSubdomain) + '&PROJECT=openshift-operators';
+}
+
+function renderClusters(clusters, workshopBaseUrl) {
   if (!clusters.length) {
     listEl.innerHTML = '<li class="clusters-empty">No clusters available yet.</li>';
     return;
@@ -54,25 +69,28 @@ function renderClusters(clusters) {
     const adminPassword = c.adminPassword != null ? c.adminPassword : '';
     const hasConsole = /^https?:\/\//i.test(consoleURL);
     const isReserved = !!c.reservedBy;
-    const reserveForm = c.reservedBy
-      ? `<p class="cluster-reserved">Reserved by: ${escapeHtml(c.reservedBy)}</p>`
-      : `<form class="cluster-reserve-form" data-index="${i}" aria-label="Reserve ${title}">
-           <input type="text" name="name" placeholder="Your name" required />
-           <button type="submit">Reserve</button>
-         </form>`;
+    const reservedLine = c.reservedBy
+      ? `<p class="cluster-reserved">Reserved by: <span class="cluster-reserved-name">${escapeHtml(c.reservedBy)}</span></p>`
+      : '';
     const workshopUrlPart = workshopUrlFromConsole(consoleURL);
+    const clusterWorkshopUrl = buildClusterWorkshopUrl(workshopBaseUrl, workshopUrlPart);
+    const hasClusterWorkshop = !!clusterWorkshopUrl;
     const actionsDisabled = isReserved ? '' : ' cluster-actions--disabled';
     const details = [];
-    if (c.adminUser != null) details.push(`<div class="cluster-credential-line"><span class="cluster-credential-label">adminUser:</span> ${adminUser}</div>`);
+    if (c.adminUser != null) details.push(`<div class="cluster-credential-line"><span class="cluster-credential-label">Admin user:</span> ${adminUser}</div>`);
     if (workshopUrlPart) details.push(`<div class="cluster-workshop-url-row"><span class="cluster-credential-label">Cluster URL for workshop</span><input type="text" class="cluster-workshop-url-field" value="${escapeAttr(workshopUrlPart)}" readonly /></div>`);
+    const workshopBtn = hasClusterWorkshop && isReserved
+      ? `<a href="${escapeAttr(clusterWorkshopUrl)}" target="_blank" rel="noopener" class="cluster-btn cluster-btn-secondary">Workshop</a>`
+      : `<span class="cluster-btn cluster-btn-secondary cluster-btn-disabled">Workshop</span>`;
     details.push(`<div class="cluster-actions${actionsDisabled}" data-reserved="${isReserved}">
-      ${hasConsole ? (isReserved ? `<a href="${escapeAttr(consoleURL)}" target="_blank" rel="noopener" class="cluster-btn cluster-btn-primary">Launch OpenShift console</a>` : `<span class="cluster-btn cluster-btn-primary cluster-btn-disabled">Launch OpenShift console</span>`) : ''}
+      ${hasConsole ? (isReserved ? `<a href="${escapeAttr(consoleURL)}" target="_blank" rel="noopener" class="cluster-btn cluster-btn-secondary">Launch OpenShift console</a>` : `<span class="cluster-btn cluster-btn-secondary cluster-btn-disabled">Launch OpenShift console</span>`) : ''}
       ${consoleURL ? `<button type="button" class="cluster-btn cluster-btn-secondary" data-copy-url="${escapeAttr(consoleURL)}" ${isReserved ? '' : 'disabled'}>Copy cluster URL</button>` : ''}
       ${adminPassword ? `<button type="button" class="cluster-btn cluster-btn-secondary" data-copy-password="${escapeAttr(adminPassword)}" ${isReserved ? '' : 'disabled'}>Copy admin password</button>` : ''}
+      ${workshopBtn}
     </div>`);
     return `<li>
       <h2 class="cluster-title">${title}</h2>
-      ${reserveForm}
+      ${reservedLine}
       ${details.join('')}
     </li>`;
   }).join('');
@@ -83,45 +101,63 @@ function renderClusters(clusters) {
   listEl.querySelectorAll('[data-copy-password]').forEach((btn) => {
     btn.addEventListener('click', () => copyToClipboard(btn.dataset.copyPassword, btn));
   });
-
-  listEl.querySelectorAll('.cluster-reserve-form').forEach((form) => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const index = parseInt(form.dataset.index, 10);
-      const name = form.querySelector('input[name="name"]').value.trim();
-      if (!name) return;
-      setStatus('Reserving…');
-      try {
-        const res = await fetch(`/api/clusters/${index}/reserve`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name }),
-        });
-        const data = await res.json();
-        if (res.ok && data.reserved) {
-          setStatus(`Cluster ${index + 1} reserved by ${escapeHtml(name)}.`, 'success');
-          loadClusters();
-        } else {
-          setStatus(data.error || 'Reserve failed.', 'error');
-        }
-      } catch {
-        setStatus('Network error.', 'error');
-      }
-    });
-  });
 }
 
 const workshopEl = document.getElementById('clusters-workshop');
 
+function updateNameSection() {
+  const name = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem(SESSION_NAME_KEY) : null;
+  if (name && nameDisplayEl && nameFormEl && nameReadonlyEl) {
+    nameReadonlyEl.value = name;
+    nameFormEl.style.display = 'none';
+    nameDisplayEl.style.display = 'flex';
+  } else if (nameFormEl && nameDisplayEl) {
+    nameFormEl.style.display = 'flex';
+    nameDisplayEl.style.display = 'none';
+  }
+}
+
+async function reserveFirstCluster() {
+  const name = nameInputEl?.value?.trim();
+  if (!name) {
+    setStatus('Please enter your name.', 'error');
+    return;
+  }
+  setStatus('Reserving…');
+  try {
+    const res = await fetch('/api/clusters/reserve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name }),
+    });
+    const data = await res.json();
+    if (res.ok && data.reserved) {
+      if (typeof sessionStorage !== 'undefined') {
+        sessionStorage.setItem(SESSION_NAME_KEY, name);
+        if (data.clusterNumber != null) sessionStorage.setItem(SESSION_CLUSTER_KEY, String(data.clusterNumber));
+      }
+      if (nameReadonlyEl) nameReadonlyEl.value = name;
+      if (nameFormEl) nameFormEl.style.display = 'none';
+      if (nameDisplayEl) nameDisplayEl.style.display = 'flex';
+      setStatus(`Cluster ${data.clusterNumber || data.index + 1} allocated to you.`, 'success');
+      loadClusters();
+    } else {
+      setStatus(data.error || 'Reserve failed.', 'error');
+    }
+  } catch {
+    setStatus('Network error.', 'error');
+  }
+}
+
 function renderWorkshopButton(workshopUrl) {
   if (!workshopEl) return;
   const url = (workshopUrl || '').trim();
-  if (!url || !/^https?:\/\//i.test(url)) {
-    workshopEl.style.display = 'none';
-    workshopEl.innerHTML = '';
-    return;
+  const hasUrl = url && /^https?:\/\//i.test(url);
+  if (hasUrl) {
+    workshopEl.innerHTML = `<a href="${escapeAttr(url)}" target="_blank" rel="noopener" class="clusters-workshop-btn">Workshop URL</a>`;
+  } else {
+    workshopEl.innerHTML = `<span class="clusters-workshop-btn clusters-workshop-btn--disabled" aria-disabled="true">Workshop URL</span>`;
   }
-  workshopEl.innerHTML = `<a href="${escapeAttr(url)}" target="_blank" rel="noopener" class="clusters-workshop-btn">Workshop URL</a>`;
   workshopEl.style.display = 'block';
 }
 
@@ -130,19 +166,23 @@ async function loadClusters() {
     const res = await fetch('/api/clusters');
     const data = await res.json();
     if (res.ok) {
-      renderClusters(data.clusters || []);
+      renderClusters(data.clusters || [], data.workshopUrl);
       renderWorkshopButton(data.workshopUrl);
+      updateNameSection();
       setStatus('');
     } else {
       listEl.innerHTML = '';
-      workshopEl && (workshopEl.style.display = 'none');
+      renderWorkshopButton('');
       setStatus('Failed to load clusters.', 'error');
     }
   } catch {
     listEl.innerHTML = '';
-    workshopEl && (workshopEl.style.display = 'none');
+    renderWorkshopButton('');
     setStatus('Network error.', 'error');
   }
 }
 
+if (nameReserveBtn) nameReserveBtn.addEventListener('click', reserveFirstCluster);
+updateNameSection();
+renderWorkshopButton(''); // show disabled until API returns
 loadClusters();

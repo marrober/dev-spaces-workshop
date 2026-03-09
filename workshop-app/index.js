@@ -134,6 +134,25 @@ app.post('/api/clusters/:index/reserve', (req, res) => {
   res.json({ reserved: true, index, reservedBy: name });
 });
 
+// Allocate first unallocated cluster to the given name (atomic, no double-allocation)
+app.post('/api/clusters/reserve', (req, res) => {
+  const name = typeof req.body?.name === 'string' ? req.body.name.trim() : '';
+  if (!name) {
+    return res.status(400).json({ error: 'Name is required' });
+  }
+  const index = storedCredentials.findIndex((c) => !c.reservedBy || c.reservedBy === '');
+  if (index === -1) {
+    return res.status(409).json({ error: 'No clusters available' });
+  }
+  storedCredentials[index].reservedBy = name;
+  res.json({
+    reserved: true,
+    index,
+    clusterNumber: index + 1,
+    reservedBy: name,
+  });
+});
+
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

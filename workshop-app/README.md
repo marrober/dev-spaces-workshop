@@ -38,4 +38,5 @@ npm run dev
 - `POST /api/admin/workshop-url` — Set workshop URL (body: `{ "url": "…" }`)
 - `DELETE /api/admin/credentials` — Clears all stored credentials (for restart)
 - `GET /api/clusters` — Returns clusters and workshop URL (`{ clusters, workshopUrl }`); clusters include consoleURL, adminUser, reservedBy per cluster (no password)
-- `POST /api/clusters/:index/reserve` — Reserve a cluster (body: `{ "name": "…" }`); sets `reservedBy` on that credential set
+- `POST /api/clusters/:index/reserve` — Reserve a specific cluster (body: `{ "name": "…" }`); sets `reservedBy` on that credential set
+- `POST /api/clusters/reserve` — Allocate the first unallocated cluster to the given name (body: `{ "name": "…" }`); returns `{ reserved, index, clusterNumber, reservedBy }` or 409 if no clusters available. Atomic to avoid double-allocation.

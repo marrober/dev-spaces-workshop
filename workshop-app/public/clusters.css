@@ -5,6 +5,7 @@
 }
 
 .clusters-workshop {
+  margin-top: 1.25rem;
   margin-bottom: 1rem;
 }
 
@@ -23,6 +24,76 @@
 
 .clusters-workshop-btn:hover {
   background: #64748b;
+}
+
+.clusters-workshop-btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.clusters-workshop-btn--disabled:hover {
+  background: #475569;
+}
+
+.clusters-name-section {
+  margin-bottom: 1rem;
+}
+
+.clusters-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.clusters-name-row .cluster-credential-label {
+  flex-shrink: 0;
+  min-width: 4rem;
+}
+
+.clusters-name-input {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.375rem;
+  min-width: 12rem;
+}
+
+.clusters-name-input::placeholder {
+  color: #64748b;
+}
+
+.clusters-name-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.clusters-name-readonly {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.375rem;
+  min-width: 12rem;
+}
+
+.clusters-name-reserve {
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  border: none;
+  background: #3b82f6;
+  color: #fff;
+}
+
+.clusters-name-reserve:hover {
+  background: #2563eb;
 }
 
 .clusters-hint {
@@ -57,7 +128,16 @@
 }
 
 .clusters-list .cluster-reserved {
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #94a3b8;
   margin-bottom: 0.5rem;
+}
+
+.clusters-list .cluster-reserved-name {
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #e2e8f0;
 }
 
 .clusters-list .cluster-credential-line {
