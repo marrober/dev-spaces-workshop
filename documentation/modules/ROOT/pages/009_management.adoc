@@ -1,0 +1,52 @@
+= Management
+
+== Workspace management
+
+Management of workspaces over time will be critical to the efficient use of the platform and to the general experience of users. A number of settings are available to help with this in the Che cluster configuration, some of which are mentioned below.
+
+=== Development environment
+
+* startTimeoutSeconds - Maximum duration of a workspace start action. Default is 300 seconds.
+* secondsOfRunBeforeIdling - Maximum runtime for a workspace in seconds. Helpful to ensure workspaces do not run forever, once started. A value of -1 disables the timeout.
+* maxNumberOfWorkspacesPerUser - The maximum number of workspaces a user may have, both running and idle.
+* maxNumberOfRunningWorkspacesPerUser - The maximum number of workspaces a user may have running at the same time.
+* maxNumberOfRunningWorkspacesPerCluster - The maximum number of running workspaces per cluster.
+* defaultNamespace - a template for the default name to use for a user when creating a namespace in which to store workspaces. The default is <username>-devspaces.
+* secondsOfInactivityBeforeIdling - The amount of time that a pod for a workspace container will continue to run while idle. The default is 1800 seconds (30 minutes).
+
+=== Component
+
+* Dashboard branding - Add a customer specific icon for branding the DevSpaces instance.
+* Dashboard header message - Display information to users about upcoming events. An example of this in the form view of creating a Che cluster is shown below.
+
+image::che-header-form-view.png[Che cluster - header view,width=1000px, align="centre"]
+{nbsp}
+
+However, since it is likely that the header message will need to be changed, or removed over time it is also useful to understand how to change this using a YAML view of the Che cluster. The (abbreviated) YAML view is shown below for the dashboard header section.
+
+[.nowebcopy]
+[source,bash,subs="+attributes"]
+----
+apiVersion: org.eclipse.che/v2
+kind: CheCluster
+metadata:
+  name: devspaces
+  generation: 2
+  namespace: openshift-operators
+spec:
+  components:
+    cheServer:
+      debug: false
+      logLevel: INFO
+    dashboard:
+      headerMessage:
+        show: true
+        text: DevSpaces instances will be cleaned down this Friday before cluster refresh.
+      logLevel: ERROR
+----
+
+The text in the dashboard message is displayed on the dashboard as shown below.
+
+image::dashboard-message-result.png[Dashboard message result,width=1000px, align="centre"]
+{nbsp}
+

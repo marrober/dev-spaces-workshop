@@ -59,8 +59,8 @@ Below is an example devfile that has been broken up into discrete parts with an 
 * ephemeral: Replaces all volumes with emptyDir volumes. All local changes are lost once the workspace stops.
 * async: Uses ephemeral emptyDir volumes for active work but includes a sidecar container to synchronise changes to a persistent volume.
 
-[.console-input]
-[source,bash]
+[.nowebcopy]
+[source,bash,subs="+attributes"]
 ----
 schemaVersion: 2.2.0
 attributes:
@@ -75,8 +75,8 @@ The container called 'podman' is created from the image at quay.io/cgruver0/che/
 *mountSources* : Automatically mounts your project source code into this container (usually at /projects)
 *env* : Sets environment variables (for example - VS Code knows which workspace file to open automatically on launch).
 
-[.console-input]
-[source,bash]
+[.nowebcopy]
+[source,bash,subs="+attributes"]
 ----
 components:
 - name: podman
@@ -91,8 +91,8 @@ components:
 
 Create a volume of 4GB persistent volume called 'projects'. Note that the VS Code default workspace is mounted to a location under /projects.
 
-[.console-input]
-[source,bash]
+[.nowebcopy]
+[source,bash,subs="+attributes"]
 ----
 - volume:
     size: 4Gi
@@ -101,8 +101,8 @@ Create a volume of 4GB persistent volume called 'projects'. Note that the VS Cod
 
 A second container image to be used in the workspace. This container image will run the bash command to make a directory and copy files to the directory structure when the container starts.
 
-[.console-input]
-[source,bash]
+[.nowebcopy]
+[source,bash,subs="+attributes"]
 ----
 - name: oc-cli
   container:
@@ -117,8 +117,8 @@ A second container image to be used in the workspace. This container image will 
 
 Ensure that the second container can see the shared persistent storage in /projects. This container has a small memory request and memory limit since it is only executing a series of file copy commands on startup to put content into the shared /projects location.
 
-[.console-input]
-[source,bash]
+[.nowebcopy]
+[source,bash,subs="+attributes"]
 ----
     sourceMapping: /projects
     mountSources: true
@@ -133,8 +133,8 @@ The sequence to use to read this information is :
 
 preStart -> calls a command -> calls the component -> executes the mkdir etc. commands.
 
-[.console-input]
-[source,bash]
+[.nowebcopy]
+[source,bash,subs="+attributes"]
 ----
 commands:
 - apply:

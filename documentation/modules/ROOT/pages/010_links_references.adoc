@@ -1,0 +1,29 @@
+= Links and References
+
+== Red Hat documentation for DevSpaces 
+
+https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.26/html/release_notes_and_known_issues[Release notes]
+https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.26/html/administration_guide[Administration guide]
+https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.26/html/user_guide[User guide]
+
+[NOTE]
+=====
+Red Hat product documentation always as a version identifier link in the URL. The links above are for DevSpaces version 3.26, but care should be taken when bookmarking such pages to check the drop down field on the left hand side to ensure that you have the latest version, or that you are looking at teh specific version of documentation for the version you are using on your clusters.
+=====
+
+== Red Hat blog posts on DevSpaces
+
+https://developers.redhat.com/articles/2026/01/23/enterprise-multi-cluster-scalability-openshift-dev-spaces?source=sso#[Enterprise multi-cluster scalability with OpenShift Dev Spaces]		
+
+https://developers.redhat.com/articles/2025/03/31/new-local-development-jetbrains-ides-openshift-dev-spaces?source=sso#[Local development with JetBrains IDEs in OpenShift Dev Spaces]
+
+https://developers.redhat.com/articles/2022/07/12/how-run-vs-code-openshift-dev-spaces#select_visual_studio_code_as_the_editor_of_a_dev_space_environment[IDE Customisation for VS Code in OpenShift DevSpaces]
+
+https://www.opensourcerers.org/2022/10/17/develop-the-inner-loop-with-openshift-dev-spaces/[Develop: The Inner Loop with OpenShift Dev Spaces]
+
+https://developers.redhat.com/articles/2023/06/22/how-create-workspace-try-dev-spaces-extension#[How to create a workspace via Try in Dev Spaces extension]
+
+[NOTE]
+=====
+The above blog post covers the concepts performed in the workshop in the section on 'Using a devfile -part 2'
+=====

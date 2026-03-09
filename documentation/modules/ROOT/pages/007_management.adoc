@@ -1,0 +1,6 @@
+= Management
+
+This section covers various management techniques covering :
+
+* Monitoring the platform and DevSpaces instance
+* Management of the workspace platform

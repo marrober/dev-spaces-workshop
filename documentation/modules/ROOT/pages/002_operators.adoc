@@ -80,10 +80,21 @@ Click on the 'Developer environments' view and you will see various options, som
 
 Other options include the connection of the Dev Spaces instance to a number of different Git platforms for easy access to repositories. 
 
+=== Disable Container Run Capability
+
+A specific option that is relevant to a number of customers references the ability to run containerised workloads within the containerised DevSpaces workspace. This is relevant for any customer who wants to run Podman within the workspace. 
+
+Scroll down the settings in the 'Developer environments' section until you get to the checkbox option for 'disableContainerRunCapabilities'. Ensure that this is NOT checked as shown below.
+
+image::disable-container-run.png[Che cluster - disable container run,width=1000px, align="centre"]
+{nbsp}
+
 [NOTE]
 ====
 Git platform integrations are possible to enable users to authenticate quickly and easily. To setup the connection will require a DevSpaces FQDN which you don’t get until the DevSpaces instance is actually created. So, the guidance here is to create the DevSpaces instance and then go back into the CheCluster configure settings to add the the Git integration as a secondary operation.
 ====
+
+Click the 'Create' button at the bottom of the screen to create the instance.
 
 == Installation summary
 
