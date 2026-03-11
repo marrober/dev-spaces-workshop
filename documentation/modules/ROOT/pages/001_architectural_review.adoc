@@ -13,7 +13,7 @@ The user creates, or locates, a devfile that they wish to use. This is launched 
 image::overview-architecture.png[Overview Architecture,width=6500px,float="left",align="center"]
 {nbsp}
 
-== Architercture Further Components
+== Architecture Further Components
 
 The Dev Spaces platform actually contains a number of additional components that perform the actions described below.
 

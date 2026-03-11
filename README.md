@@ -21,7 +21,7 @@ Charro :
     OpenVSX Registry repo : https://github.com/cgruver/che-openvsx-registry
     Demo workspaces : https://github.com/eclipse-che-demo-app/che-demo-app
 
-BYU OCP DevSPaces presentation : https://docs.google.com/presentation/d/1oBtnfE-i94fLtx0kYRILjND1w51QH7VTqEefffvQaEU/edit?slide=id.g36ac94dcf6f_0_1643#slide=id.g36ac94dcf6f_0_1643
+BU OCP DevSPaces presentation : https://docs.google.com/presentation/d/1oBtnfE-i94fLtx0kYRILjND1w51QH7VTqEefffvQaEU/edit?slide=id.g36ac94dcf6f_0_1643#slide=id.g36ac94dcf6f_0_1643
 
 My DevSpaces presentation with notes of content for workshop : https://docs.google.com/presentation/d/1QKOsY-WNETPwJVMK7fDZBZV-H7McEmP_5xJZQ-0vkLU/edit?slide=id.g24f1e77a47c_0_724#slide=id.g24f1e77a47c_0_724
 

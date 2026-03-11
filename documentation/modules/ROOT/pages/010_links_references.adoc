@@ -27,3 +27,19 @@ https://developers.redhat.com/articles/2023/06/22/how-create-workspace-try-dev-s
 =====
 The above blog post covers the concepts performed in the workshop in the section on 'Using a devfile -part 2'
 =====
+
+== Videos
+
+The following videos form a series recorded by Red Hat specialist Charro Gruver
+
+https://youtu.be/86S2ErWyorQ?si=HBGwb0lhetrvtdif[OpenShift Dev Spaces Overview]
+
+https://youtu.be/gvbpDDhAgxM?si=Y77BLfRrfv8TlixJ[OpenShift Dev Spaces Devfile Tour]
+
+https://youtu.be/A0Stdf8wTXA?si=fH-yOqSxKG8bWSO_[OpenShift Dev Spaces Resiliency]
+
+https://youtu.be/W_eQ4OZ_fJE?si=OEyjicM0j2yiIqtN[OpenShift Dev Spaces Chrome In Container]
+
+https://youtu.be/rLTpZEFQUsA?si=vyj9Vxwfm2e9FQts[OpenShift Dev Spaces Nested Containers]
+
+https://youtu.be/zjn8Oq8U6yM?si=bBq2Yc2enP62xa2u[Experimental - Open Source GitHub Copilot In OpenShift Dev Spaces]

@@ -220,7 +220,7 @@
     <li><a href="004_devfile.html">The devfile introduction</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/004_devfile.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/marrober/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/004_devfile.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
@@ -253,7 +253,7 @@
 <p>References to container images that have specific command line software installed such as compilers and packaging tools.</p>
 </li>
 <li>
-<p>Commands to execute to poerform specific tasks such as compiling and packaging code using the tools mentioned above.</p>
+<p>Commands to execute to perform specific tasks such as compiling and packaging code using the tools mentioned above.</p>
 </li>
 <li>
 <p>Endpoints that are exposed for other microservices and API based solutions to use to interact with the code under development.</p>
@@ -348,10 +348,16 @@ metadata:
 </div>
 <div class="paragraph">
 <p>This section defines the containers and storage that make up the workspace.
-The container called 'podman' is created from the image at quay.io/cgruver0/che/dev-tools:latest
-<strong>memoryLimit</strong> : Allocates up to 6GB of RAM to this container.
-<strong>mountSources</strong> : Automatically mounts your project source code into this container (usually at /projects)
-<strong>env</strong> : Sets environment variables (for example - VS Code knows which workspace file to open automatically on launch).</p>
+The container called 'podman' is created from the image at quay.io/cgruver0/che/dev-tools:latest</p>
+</div>
+<div class="paragraph">
+<p><strong>memoryLimit</strong> : Allocates up to 6GB of RAM to this container.</p>
+</div>
+<div class="paragraph">
+<p><strong>mountSources</strong> : Automatically mounts your project source code into this container (usually at /projects)</p>
+</div>
+<div class="paragraph">
+<p><strong>env</strong> : Sets environment variables (for example - VS Code knows which workspace file to open automatically on launch).</p>
 </div>
 <div class="listingblock nowebcopy">
 <div class="content">
@@ -482,7 +488,7 @@ events:
 <div class="sect2">
 <h3 id="_git_repository"><a class="anchor" href="#_git_repository"></a>Git repository</h3>
 <div class="paragraph">
-<p>A git repository can host a series of devfiles for different languages and frameworks, however, it is often particularly helpful to host a devfile for a specific repository inside the repository. This ensures that all members of a team need to be sent is the location of a repository such as <a href="https://github.com/marrober/pacman.git" class="bare">https://github.com/marrober/pacman.git</a>, and they will have everything they need to create a valid DevSpace for this repository.</p>
+<p>A Git repository can host a series of devfiles for different languages and frameworks, however, it is often particularly helpful to host a devfile for a specific repository inside the repository. This ensures that all members of a team need to be sent is the location of a repository such as <a href="https://github.com/marrober/pacman.git" class="bare">https://github.com/marrober/pacman.git</a>, and they will have everything they need to create a valid DevSpace for this repository.</p>
 </div>
 <div class="paragraph">
 <p>The root of this repository contains a devfile as indicated below.</p>
@@ -496,13 +502,13 @@ events:
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the git repository given above. This will be dine in the next chapter.</p>
+<p>To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the Git repository given above. This will be done in the next chapter.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_local_machine"><a class="anchor" href="#_local_machine"></a>Local machine</h3>
 <div class="paragraph">
-<p>A devfile is simply a file that users can keep on their local machine if they wish, however for consistency of environments between developers and for ensuring that the devfile is up to date with the latest versions of container images it is best to reference devfiles from git repositories.</p>
+<p>A devfile is simply a file that users can keep on their local machine if they wish, however for consistency of environments between developers and for ensuring that the devfile is up to date with the latest versions of container images it is best to reference devfiles from Git repositories.</p>
 </div>
 </div>
 <div class="sect2">

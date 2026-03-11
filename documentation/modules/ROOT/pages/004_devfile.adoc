@@ -12,7 +12,7 @@ image::devfile-introduction.png[Devfile introduction,width=1000px, align="centre
 The Devfile function can be grouped into the three main categories shown above.
 
 * References to container images that have specific command line software installed such as compilers and packaging tools.
-* Commands to execute to poerform specific tasks such as compiling and packaging code using the tools mentioned above.
+* Commands to execute to perform specific tasks such as compiling and packaging code using the tools mentioned above.
 * Endpoints that are exposed for other microservices and API based solutions to use to interact with the code under development.
 
 .Benefits of Using a Devfile
@@ -71,8 +71,11 @@ metadata:
 
 This section defines the containers and storage that make up the workspace. 
 The container called 'podman' is created from the image at quay.io/cgruver0/che/dev-tools:latest
+
 *memoryLimit* : Allocates up to 6GB of RAM to this container.
+
 *mountSources* : Automatically mounts your project source code into this container (usually at /projects)
+
 *env* : Sets environment variables (for example - VS Code knows which workspace file to open automatically on launch).
 
 [.nowebcopy]
@@ -174,18 +177,18 @@ You can create and run your own customized devfile registry outside the cluster.
 
 === Git repository
 
-A git repository can host a series of devfiles for different languages and frameworks, however, it is often particularly helpful to host a devfile for a specific repository inside the repository. This ensures that all members of a team need to be sent is the location of a repository such as https://github.com/marrober/pacman.git, and they will have everything they need to create a valid DevSpace for this repository. 
+A Git repository can host a series of devfiles for different languages and frameworks, however, it is often particularly helpful to host a devfile for a specific repository inside the repository. This ensures that all members of a team need to be sent is the location of a repository such as https://github.com/marrober/pacman.git, and they will have everything they need to create a valid DevSpace for this repository. 
 
 The root of this repository contains a devfile as indicated below.
 
 image::pacman-repo-with-devfile.png[Pacman repo with a devfile, width=400px, align="centre"]
 {nbsp}
 
-To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the git repository given above. This will be dine in the next chapter.
+To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the Git repository given above. This will be done in the next chapter.
 
 === Local machine
 
-A devfile is simply a file that users can keep on their local machine if they wish, however for consistency of environments between developers and for ensuring that the devfile is up to date with the latest versions of container images it is best to reference devfiles from git repositories.
+A devfile is simply a file that users can keep on their local machine if they wish, however for consistency of environments between developers and for ensuring that the devfile is up to date with the latest versions of container images it is best to reference devfiles from Git repositories.
 
 === Collaboration platforms such as Teams
 

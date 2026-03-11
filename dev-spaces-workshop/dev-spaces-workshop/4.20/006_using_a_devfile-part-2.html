@@ -220,7 +220,7 @@
     <li><a href="006_using_a_devfile-part-2.html">Using a devfile - Part 2</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///Users/mroberts/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/006_using_a_devfile-part-2.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/marrober/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/006_using_a_devfile-part-2.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
@@ -228,7 +228,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section you will launch the workspace using a link on the Git repository. This is a particularly helpful way to get into a workspace since all the user needs is a link to the git repository. The information on how to launch the workspace is then included in the repository readme file.</p>
+<p>In this section you will launch the workspace using a link in a Git repository. This is a particularly helpful way to get into a workspace since all the user needs is a link to the Git repository. The information on how to launch the workspace is included in the repository readme file.</p>
 </div>
 <div class="paragraph">
 <p>In the previous section you explored the workspace. Since this exercise uses the same workspace you will be using workspace tasks to run the application code and interacting with the running application.</p>
@@ -239,7 +239,7 @@
 <h2 id="_accessing_a_workspace_from_a_git_repository"><a class="anchor" href="#_accessing_a_workspace_from_a_git_repository"></a>Accessing a workspace from a Git repository</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The git repository structure is shown below.</p>
+<p>The Git repository structure is shown below.</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">
@@ -253,21 +253,26 @@
 <p>The README.md file has a URL link that can launch DevSpaces with the specific devfile.yaml in the root of the repository. The URL link in the readme uses an icon to make it look better.</p>
 </div>
 <div class="paragraph">
-<p>The relevant section of the README.md is shown below :</p>
+<p>The format of the URL link in the readme file is :</p>
 </div>
 <div class="listingblock nowebcopy">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[&lt;img src=DevSpaces.png width=50&gt;](https://devspaces.apps.ocp4.mr-openshift.co.uk/dashboard/#/load-factory?url=https://github.com/marrober/pacman.git)</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[&lt;image specification](&lt;dev-spaces.url&gt;/dashboard/#/load-factory?url=&lt;git-repository-url&gt;)</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>The format of the above line to add to a readme file is :</p>
+<p>The Git repository needs to have a devfile.yaml file in the root of the repository.</p>
 </div>
-<div class="paragraph">
-<p>[&lt;image specification](&lt;dev-spaces.url&gt;/dashboard/#/load-factory?url=&lt;git-repository-url&gt;)</p>
-</div>
-<div class="paragraph">
-<p>Note that the git repository needs to have a devfile.yaml file in the root of the repository.</p>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The rendered result of the readme.md file when viewed through the Git web UI is shown below.</p>
@@ -277,13 +282,21 @@
 <img src="_images/git-readme.png" alt="Git readme.md" width="1000px">
 </div>
 </div>
+<div class="paragraph">
+<p>The relevant section of the README.md containing the link to the devfile in the pacman.git repository is shown below :</p>
+</div>
+<div class="listingblock nowebcopy">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[&lt;img src=DevSpaces.png width=50&gt;](https://devspaces.apps.ocp4.mr-openshift.co.uk/dashboard/#/load-factory?url=https://github.com/marrober/pacman.git)</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_launch_the_workspace"><a class="anchor" href="#_launch_the_workspace"></a>Launch the workspace</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Click on the Github link below to open the Git hub repository.</p>
+<p>Open the URL shown below to access the Git hub repository, by copying the URL and pasting into a browser window.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -291,10 +304,10 @@
 </div>
 </div>
 <div class="paragraph">
-<p>Scroll down the window past the file browser until you get to the README file which should match the image shown above.</p>
+<p>Scroll down the window past the file browser section until you get to the README file which should match the image shown above.</p>
 </div>
 <div class="paragraph">
-<p>Float the mouse over the DevSpaces icon to view the URL to which it links, and then press the DevSpaces icon to launch it. You may be presented with a login dialog for the OpenShift cluster. If you are, press the blue 'Log in with OpenShift' button. Login with the provided credentials for your cluster.</p>
+<p>Float the mouse over the DevSpaces icon to view the URL to which it links, and then press the DevSpaces icon to launch it. You may be presented with a login screen for the OpenShift cluster. If you are, press the blue 'Log in with OpenShift' button and then login with the provided credentials for your cluster.</p>
 </div>
 <div class="paragraph">
 <p>The workspace creation process will then begin and the progress will be indicated as shown below.</p>

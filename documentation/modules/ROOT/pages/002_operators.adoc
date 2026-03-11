@@ -26,7 +26,7 @@ The OpenShift Dev Spaces operator tile will be displayed, which should then be s
 
 The text of the operator installation screen shows useful information and links regarding the creation of a Dev Spaces instance and the option to install customer certificates for access to the routes managed by Dev Spaces.
 
-Leave the channel set to 'stable' and the Version as the latest version and click the blue 'Install' button.
+*Leave the channel set to 'stable' and the Version as the latest version and click the blue 'Install' button.*
 
 image::dev-spaces-operator-install-part-1.png[Dev Spaces operator installation - part 1,width=6500px,float="left",align="center"]
 {nbsp}
@@ -35,7 +35,7 @@ On the next screen there is a second opportunity to edit the update channel and 
 
 Finally, the update strategy for the operator can be selected to be either automatic (default) or manual. 
 
-leave all settings at the default and press the install button.
+*leave all settings at the default and press the install button.*
 
 image::dev-spaces-operator-install-part-2.png[Dev Spaces operator installation - part 2,width=6500px,float="left",align="center"]
 {nbsp}
@@ -66,17 +66,17 @@ The Che cluster provides the following capabilities
 * Customization: You can use it to set resource limits, define default IDEs (like VS Code or IntelliJ), manage GitHub/GitLab OAuth credentials, and enable features like the Kubernetes Image Puller. 
 ****
 
-Click the 'Create CheCluster' blue button and then you will see a screen similar to below.
+*Click the 'Create CheCluster' blue button and then you will see a screen similar to below.*
 
 image::dev-spaces-operator-install-part-5.png[Dev Spaces operator installation - che cluster,width=1000px, align="centre"]
 {nbsp}
 
 It is possible to switch the installation process between the form view and the YAML view using the radio buttons at the top of the screen. The YAML view is good if you have a pre-defined configuration for the Dev Spaces instance that you want to past over the existing YAML objects, or if you understand the options well and want to modify a small number of values. The form view is good to open up the option fields to explore the settings that are available.
 
-Click on the 'Developer environments' view and you will see various options, some of which are highlighted below :
+*Click on the 'Developer environments' view* and you will see various options, some of which are highlighted below :
 
 * startTimoutSeconds - Maximum duration of a workspace start action. Default is 300 seconds.
-* secondsOfRunBeforeIdling - Maximum runtime for a workspace in seconds. Helpful to ensure workspaces do not run forever, once started. A value of -1 disables the timout.
+* secondsOfRunBeforeIdling - Maximum runtime for a workspace in seconds. Helpful to ensure workspaces do not run forever, once started. A value of -1 disables the timeout.
 
 Other options include the connection of the Dev Spaces instance to a number of different Git platforms for easy access to repositories. 
 
@@ -84,7 +84,7 @@ Other options include the connection of the Dev Spaces instance to a number of d
 
 A specific option that is relevant to a number of customers references the ability to run containerised workloads within the containerised DevSpaces workspace. This is relevant for any customer who wants to run Podman within the workspace. 
 
-Scroll down the settings in the 'Developer environments' section until you get to the checkbox option for 'disableContainerRunCapabilities'. Ensure that this is NOT checked as shown below.
+*Scroll down the settings in the 'Developer environments'* section until you get to the checkbox option for 'disableContainerRunCapabilities'. *Ensure that this is NOT checked as shown below.* 
 
 image::disable-container-run.png[Che cluster - disable container run,width=1000px, align="centre"]
 {nbsp}
@@ -94,7 +94,7 @@ image::disable-container-run.png[Che cluster - disable container run,width=1000p
 Git platform integrations are possible to enable users to authenticate quickly and easily. To setup the connection will require a DevSpaces FQDN which you don’t get until the DevSpaces instance is actually created. So, the guidance here is to create the DevSpaces instance and then go back into the CheCluster configure settings to add the the Git integration as a secondary operation.
 ====
 
-Click the 'Create' button at the bottom of the screen to create the instance.
+*Click the 'Create' button at the bottom of the screen to create the instance.*
 
 == Installation summary
 

@@ -1,13 +1,13 @@
 = Using a Devfile - part 1
 
-In the previous section it was stated that the ideal location for a devfile is a git repository. An example repository that contains a devfile in the root of the repository is : https://github.com/marrober/pacman.git.
+In the previous section it was stated that the ideal location for a devfile is a Git repository. An example repository that contains a devfile in the root of the repository is : https://github.com/marrober/pacman.git.
 
 In this section you will experience launching a workspace from pasting the URL into the DevSpaces user interface. You will also explore some of the elements of the workspace. In the next section you will launch the workspace in a different way and will experience the code development process.
 
 image::pacman-repo-with-devfile.png[Pacman repo with a devfile, width=400px, align="centre"]
 {nbsp}
 
-To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the git repository given above.
+To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the Git repository given above.
 
 == Launch Dev Spaces 
 
@@ -71,7 +71,7 @@ _You don't have to read all of this detail but it is here if you are interested.
 
 *Header*
 
-Devfile header and a projects section to load the git repository into the workspace.
+Devfile header and a projects section to load the Git repository into the workspace.
 
 [.nowebcopy]
 [source,bash,subs="+attributes"]
