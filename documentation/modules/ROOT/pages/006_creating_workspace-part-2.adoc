@@ -1,4 +1,4 @@
-= Using a Devfile - part 2
+= Creating a workspace - part 2
 
 In this section you will launch the workspace using a link in a Git repository. This is a particularly helpful way to get into a workspace since all the user needs is a link to the Git repository. The information on how to launch the workspace is included in the repository readme file. 
 
@@ -40,7 +40,9 @@ The relevant section of the README.md containing the link to the devfile in the 
 
 == Launch the workspace
 
-Open the URL shown below to access the Git hub repository, by copying the URL and pasting into a browser window.
+Each workshop user has their own cluster on which to operate for the workshop. This is important as we want you all to experience the process of installing operators and the VS Code extension repository setup. Since these tasks can only be done once per cluster it is not possible to share a cluster.
+
+Due to this we need to simulate the use of the Git repository launch of a Dev Spaces workspace. You can take a look at the readme file for the Git repository mentioned above at the link below, but *please do not click* on the link to launch a workspace. 
 
 [.console-input]
 [source,bash,subs="+attributes"]
@@ -48,9 +50,16 @@ Open the URL shown below to access the Git hub repository, by copying the URL an
 https://github.com/marrober/pacman
 ----
 
-Scroll down the window past the file browser section until you get to the README file which should match the image shown above. 
+The link below is a custom link to launch DevSpaces in your personal cluster against the devfile in the repository mentioned above.
 
-Float the mouse over the DevSpaces icon to view the URL to which it links, and then press the DevSpaces icon to launch it. You may be presented with a login screen for the OpenShift cluster. If you are, press the blue 'Log in with OpenShift' button and then login with the provided credentials for your cluster.
+Copy the link from below and paste into a new browser tab. You may be asked to provide your credentials again for the 'cluster-admin' user and the password that you have access to from the workshop launcher application.
+
+[.console-input]
+[source,bash,subs="+attributes"]
+----
+https://devspaces.%CLUSTER_SUBDOMAIN%/dashboard/#/load-factory?url=https://github.com/marrober/pacman.git
+----
+
 
 The workspace creation process will then begin and the progress will be indicated as shown below.
 

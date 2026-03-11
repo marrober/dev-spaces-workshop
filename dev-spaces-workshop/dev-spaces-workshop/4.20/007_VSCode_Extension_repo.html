@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Using a Devfile - part 1 :: OpenShift DevSpaces</title>
+    <title>VS Code Extension Repository :: OpenShift DevSpaces</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -163,12 +163,12 @@
     <a class="nav-link" href="004_devfile.html">The devfile introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#005_creating_workspace-part-1.adoc">Creating a workspace - Part 1</a>
+    <a class="nav-link" href="005_creating_workspace-part-1.html">Creating a workspace - 1</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#006_creating_workspace-part-2.adoc">Creating a workspace - Part 2</a>
+    <a class="nav-link" href="006_creating_workspace-part-2.html">Creating a workspace - 2</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="007_VSCode_Extension_repo.html">VS Code extension repo</a>
   </li>
 </ul>
@@ -186,7 +186,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#010_links_references.adoc">Links and References</a>
+    <a class="nav-link" href="011_links_references.html">Links and References</a>
   </li>
 </ul>
   </li>
@@ -219,32 +219,25 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
-    <li><a href="005_using_a_devfile-part-1.html">Using a Devfile - part 1</a></li>
+    <li><a href="003_workspaces.html">Workspaces</a></li>
+    <li><a href="007_VSCode_Extension_repo.html">VS Code extension repo</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/marrober/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/005_using_a_devfile-part-1.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/marrober/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/007_VSCode_Extension_repo.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Using a Devfile - part 1</h1>
+<h1 class="page">VS Code Extension Repository</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the previous section it was stated that the ideal location for a devfile is a Git repository. An example repository that contains a devfile in the root of the repository is : <a href="https://github.com/marrober/pacman.git" class="bare">https://github.com/marrober/pacman.git</a>.</p>
+<p>The VS Code editor used in Dev Spaces can use any VS Code editor extension. This is an opportunity to create an extensive library of assets that can extend and augment the developer experience. However, giving developers free access to add any extension they find may create security, compliance and consistency problems that organizations would prefer to avoid.</p>
 </div>
 <div class="paragraph">
-<p>In this section you will experience launching a workspace from pasting the URL into the DevSpaces user interface. You will also explore some of the elements of the workspace. In the next section you will launch the workspace in a different way and will experience the code development process.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/pacman-repo-with-devfile.png" alt="Pacman repo with a devfile" width="400px">
-</div>
+<p>Creating a self hosted Open VSX library of extensions disconnected from the internet enables an organisation to offer developers a curated set of extensions while maintaining an acceptable security posture and control.</p>
 </div>
 <div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>To use the above devfile it is possible to simple go to the DevSpaces web UI and paste the URL for the Git repository given above.</p>
+<p>To create a self hosted Open VSX library you will use a DevSpaces environment that has access to the required command line utilities.</p>
 </div>
 </div>
 </div>
@@ -301,11 +294,8 @@
 <p>&#160;</p>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_creating_a_workspace"><a class="anchor" href="#_creating_a_workspace"></a>Creating a workspace</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_creating_a_workspace"><a class="anchor" href="#_creating_a_workspace"></a>Creating a workspace</h3>
 <div class="paragraph">
 <p>After the DevSpaced web UI has launched you need to create a workspace. Select the 'add workspace' button on the screen shown below.</p>
 </div>
@@ -322,166 +312,218 @@
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://github.com/marrober/pacman.git</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">https://github.com/cgruver/che-openvsx-registry.git</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>As the workspace starts the progress is displayed as shown below. Log and event tabs are also available for tracking the progress in more detail.</p>
+<p>When the DevSpaces instance has launched open a terminal window by clicking on the three bar menu on the top left hand corner and selecting terminal as shown below.</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">
-<img src="_images/workspace-startup-process.png" alt="Dev Spaces workspace startup" width="500px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">The devfile</div>
-<div class="paragraph">
-<p>The devfile that has just been loaded is explained below.</p>
-</div>
-<div class="paragraph">
-<p><em>You don&#8217;t have to read all of this detail but it is here if you are interested.</em></p>
-</div>
-<div class="paragraph">
-<p><strong>Header</strong></p>
-</div>
-<div class="paragraph">
-<p>Devfile header and a projects section to load the Git repository into the workspace.</p>
-</div>
-<div class="listingblock nowebcopy">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">dschemaVersion: 2.2.2
-metadata:
-  name: pacman
-projects:
-  - name: pacman
-    git:
-      remotes:
-        origin: 'https://github.com/marrober/pacman.git'
-      checkoutFrom:
-        revision: main</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Components</strong></p>
-</div>
-<div class="paragraph">
-<p>A component consisting of a universal developer image from Red Hat with specific cpu and memory resource requirements and limits. This section also exposes specific endpoints on ports that the application uses.</p>
-</div>
-<div class="listingblock nowebcopy">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">components:
-  - name: tools
-    container:
-      image: registry.redhat.io/devspaces/udi-rhel8@sha256:d147892c643a0127cfcf868daee0ff416a8df922fe2a7c716ebfc457ff526fa2
-      endpoints:
-        - exposure: public
-          name: nodejs
-          protocol: https
-          targetPort: 8080
-      memoryLimit: 1Gi
-      memoryRequest: 600Mi
-      cpuLimit: '0.5'
-      cpuRequest: '0.25'
-      mountSources: true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Commands</strong></p>
-</div>
-<div class="paragraph">
-<p>Commands that are made available from the</p>
-</div>
-<div class="listingblock nowebcopy">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">commands:
-  - id: 1-dependencies
-    exec:
-      label: Download dependencies
-      component: tools
-      workingDir: ${PROJECTS_ROOT}/pacman/src
-      commandLine: npm install
-      group:
-        kind: build
-  - id: 2-run
-    exec:
-      label: Run the web app
-      component: tools
-      workingDir: ${PROJECTS_ROOT}/pacman/src
-      commandLine: npm start
-      group:
-        kind: run
-  - id: 3-install-and-run
-    exec:
-      label: Run the web app (and download dependencies)
-      component: tools
-      workingDir: ${PROJECTS_ROOT}/pacman/src
-      commandLine: npm install; npm start
-      group:
-        kind: run</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>As soon as the workspace has loaded the display will change to be similar to that which is shown below. You are promoted to trust the author of the content being cloned into the workspace. Generally you will be cloning trusted content from you organisations' repositories so you can expect to say yes to this if it is internal content.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/welcome-and-trust-message.png" alt="Welcome and trust message" width="1000px">
+<img src="_images/launch-terminal.png" alt="Launch terminal" width="500px">
 </div>
 </div>
 <div class="paragraph">
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>The welcome screen gives information and links. This page can be dismissed in the same manner as closing a file in VS Code.</p>
+<p>The next section of instructions involve a copy of commands using the button on the right hand side of each text block and paste the content into the terminal window. For the first paste operation you may be asked if you want to allow pasting. This should only happen once.</p>
 </div>
-<div class="sect2">
-<h3 id="_browsing_the_workspace"><a class="anchor" href="#_browsing_the_workspace"></a>Browsing the workspace</h3>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_the_openvsx_registry"><a class="anchor" href="#_install_the_openvsx_registry"></a>Install the OpenVSX Registry</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Take a look at the following areas of the workspace :</p>
+<p>Create a new project and within that project create a build config to create the open-vsx-server deployment.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Left hand side menu (top) - The file browser, file search, source code integration, debug and test, Extensions</p>
-</li>
-<li>
-<p>The explorer view next the icon menu on the left - This has options to display the file tree, file outline, SCM timeline and endpoints. The explorer view has three dots on the right hand side that can be used to switch off some of these views if they are not required.</p>
-</li>
-<li>
-<p>The bottom toolbar - This shows the current SCM branch, which can be clicked to change the branch or create a new branch. This area also shows the current memory and cpu consumption of the workspace including the percentage of memory being used compared to the limit. Clicking on the resource consumption text gives a pop-up window at the top of the workspace showing the breakdown of cpu and memory consumption for the different container images in the workspace.</p>
-</li>
-<li>
-<p>The left hand side white corner - This gives you access to a number of options for workspace management without having to go back to the DevSpaces UI screen. When you press the white corner you will get a pop-up menu in the toolbar at the top of the screen giving the following options :</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Stop workspace</p>
-</li>
-<li>
-<p>Restart workspace</p>
-</li>
-<li>
-<p>Restart workspace from local devFile - When this option is selected you are promoted to select a devfile from the files loaded in the workspace. Don&#8217;t be confused that 'local' means your local laptop, local means the content within the workspace.</p>
-</li>
-<li>
-<p>Open dashboard</p>
-</li>
-<li>
-<p>Open OpenShift console</p>
-</li>
-<li>
-<p>Open documentation</p>
-</li>
-</ul>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project che-openvsx
+oc apply -f build-config.yaml
+oc start-build open-vsx-server -n che-openvsx -w -F</code></pre>
 </div>
-</li>
-</ul>
+</div>
+<div class="paragraph">
+<p>Create an image stream to host the postgresql container image and pull it from the external quay.io repository</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc import-image postgresql-15-c9s:c9s --from=quay.io/sclorg/postgresql-15-c9s:c9s --confirm -n che-openvsx</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Deploy the postgresql container</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f deploy-postgres.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the postgresql container to complete the deployment process and become available.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc wait --for=condition=Available deployment/open-vsx-pg -n che-openvsx --timeout=180s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Deploy Open VSX Registry container</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f deploy-openvsx.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the Open VSX Registry container to complete the deployment process and become available.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc wait --for=condition=Available deployment/open-vsx-server -n che-openvsx --timeout=180s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enable Eclipse Che / OpenShift Dev Spaces to use the hosted OpenVSX instance. Get the route for the OpenVSX application and then add that to the Che Cluster definition that was created previously.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">OVSX_URL=https://$(oc get route open-vsx-server -n che-openvsx -o jsonpath={.spec.host})</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch CheCluster devspaces -n devspaces --type merge --patch "{\"spec\":{\"components\":{\"pluginRegistry\":{\"openVSXURL\":\"${OVSX_URL}\"}}}}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To validate the above change use the OpenShift web user interface. Find the project in which you installed Dev Spaces, called devspaces.
+On the left hand side menu of OpenShift select the 'ecosystem' menu and then select the 'Installed Operators' menu item. This will display a list of all operators installed in the devspaces namespace. Select the 'Red Hat OpenShift DevSpaces' operator and then on the sub menu within it select the option 'Red Hat OpenShift Dev Spaces instance Specification'. This will display a list of Che clusters (you will have only one called 'devspaces').</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/che-cluster-list.png" alt="Che cluster list" width="1000px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>Select the link to the Che cluster called devspaces (the link under the 'name' heading, not the link under the 'namespace' heading).</p>
+</div>
+<div class="paragraph">
+<p>On the view of the Che cluster select the YAML tab and you should see the full definition as shown below. Scroll down slightly to see the section below which should indicate the OpenVSX registry URL in the pluginRegistry section.</p>
+</div>
+<div class="imageblock text-centre">
+<div class="content">
+<img src="_images/che-cluster-yaml.png" alt="Che cluster YAML" width="1000px">
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>Create an access token for the postgresql database by executing a command on the pod via a remote shell connection.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PG_POD=$(oc get pods --selector name=open-vsx-pg -n che-openvsx -o name)
+
+oc rsh -n che-openvsx ${PG_POD} bash "-c" "PGDATA=/var/lib/pgsql/data psql -d openvsx -c \"INSERT INTO user_data (id, login_name) VALUES (1001, 'eclipse-che');\" &amp;&amp; \
+  psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description) VALUES (1001, 1001, 'eclipse_che_token', false, current_timestamp, current_timestamp, 'extensions');\" &amp;&amp; \
+  psql -d openvsx -c \"UPDATE user_data SET role='admin' WHERE user_data.login_name='eclipse-che';\""</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enable the access token on the database</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PG_POD=$(oc get pods --selector name=open-vsx-pg -n che-openvsx -o name)
+oc rsh -n che-openvsx ${PG_POD} bash "-c" "PGDATA=/var/lib/pgsql/data psql -d openvsx -c \"UPDATE personal_access_token SET active = true;\""</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install OpenVSX command line interface into the Dev Spaces instance.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This is a temporary addition of node modules to the Dev Spaces workspace. These changes will not persist a workspace restart operation but can be used here for the a specific task.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">npm install --global ovsx</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Set <code>ovsx</code> environment variables that are to be used for the extension download.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export OVSX_REGISTRY_URL=https://$(oc get route open-vsx-server -n che-openvsx -o jsonpath={.spec.host})
+export OVSX_PAT=eclipse_che_token
+export NODE_TLS_REJECT_UNAUTHORIZED='0'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Download the extension into a tar file.</p>
+</div>
+<div class="paragraph">
+<p>You may modify <code>extension-list.yaml</code> to suit your needs if there is a specific extension that you would like to see in the workshop.</p>
+</div>
+<div class="paragraph">
+<p><span class="image left"><img src="_images/clock.png" alt="clock" width="50" height="50"></span>
+The download will take around 1 - 2 minutes to complete.</p>
+</div>
+<div class="paragraph">
+<p><br></p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./offline-extensions.sh -d -f=extension-list.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Take a note of the name of the bundle that is created.</p>
+</div>
+<div class="paragraph">
+<p>Import the extensions</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./offline-extensions.sh -u -b=/path/to/the/&lt;filename-from-previous-command.tar&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Disable the access token</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc rsh -n che-openvsx ${PG_POD} bash "-c" "PGDATA=/var/lib/pgsql/data psql -d openvsx -c \"UPDATE personal_access_token SET active = false;\""</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_test_the_open_vsx_registry"><a class="anchor" href="#_test_the_open_vsx_registry"></a>Test the Open VSX Registry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You should now have a running extension repository. To test this restart this workspace and wait for the extensions to load.</p>
+</div>
+<div class="paragraph">
+<p>To restart the workspace press the small white icon in the bottom left hand cover of the screen shown below, and then select 'Dev Spaces: Restart Workspace' from the menu at the top of the screen.</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">
@@ -491,152 +533,15 @@ projects:
 <div class="paragraph">
 <p>&#160;</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Left hand side menu (bottom) - Just above the white corner is the cog icon for access to :</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Command palette</p>
-</li>
-<li>
-<p>Profiles</p>
-</li>
-<li>
-<p>Settings</p>
-</li>
-<li>
-<p>Extensions</p>
-</li>
-<li>
-<p>Keyboard shortcuts</p>
-</li>
-<li>
-<p>Snippets</p>
-</li>
-<li>
-<p>Tasks</p>
-</li>
-<li>
-<p>Themes</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_the_command_palette"><a class="anchor" href="#_the_command_palette"></a>The command palette</h3>
 <div class="paragraph">
-<p>The command palette results in a menu of commands being displayed in the top central window as shown below</p>
+<p>When the workspace restarts you will be asked again to trust the author of the content being cloned into the workspace. Trust the content and then wait a second for the extensions to load. One of the extensions sets the workspace appearance so you should see a change to a white background and blue text theme called 'Winter is coming'.</p>
+</div>
+<div class="paragraph">
+<p>Click on the 'extensions' icon on the far left hand side of the DevSpace which should be the fifth down from the top. This will show a list of extensions loaded into the workspace as shown below.</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">
-<img src="_images/command-palette.png" alt="Command palette" width="500px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>The command palette can also be displayed simply by clicking on the workspace search function at the top centre of the screen shown below.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/workspace-search.png" alt="Workspace search" width="1000px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>As soon as you click into the workspace search field you will see a list of commonly used options. Press the '&gt;' greater than character to see a full list of all available commands as shown below. There are a lot of items in the list so it scrolls to show all options.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/workspace-search-populated.png" alt="Workspace search" width="1000px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>Some of the entries above have a keyboard shortcut to get to the popular items quickly. The top item (highlighted in dark blue) has a settings wheel next to it which can be used to assign a keyboard shortcut to any of the items in the list.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_delete_the_workspace"><a class="anchor" href="#_delete_the_workspace"></a>Delete the workspace</h3>
-<div class="paragraph">
-<p>Delete the workspace ready to recreate it in the next chapter.</p>
-</div>
-<div class="paragraph">
-<p>Click on the left hand side white corner area of the DevSpaces workspace described above and shown in the a prior screen image. The top menu will show a number of options as indicated below.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/workspace-top-menu-options.png" alt="Workspace top menu" width="800px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>Select the option 'Dev Spaces: Open Dashboard'</p>
-</div>
-<div class="paragraph">
-<p>This will display an external website trust warning as shown below. Click 'Open' to accept that the website is OK. When working on your production implementation it is worth clicking the 'Configure Trust Domains' so that you don&#8217;t get the warning again.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/external-website-trust-warning.png" alt="External site warning" width="700px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>A new browser tab will launch listing all workspaces that you have. A green dot next to a workspace indicates that it is running, as shown below.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/workspaces-list.png" alt="Workspaces list" width="1000px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>Click on the three dots to the right of your workspace. From here you can:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Open a workspace</p>
-</li>
-<li>
-<p>Open a workspace in debug mode</p>
-</li>
-<li>
-<p>Start a workspace in background (The difference between open and start is that 'open' will launch the workspace and take you to it in a new tab, while 'start' will start the workspace running but does not take you to it in a new tab).</p>
-</li>
-<li>
-<p>Restart a workspace</p>
-</li>
-<li>
-<p>Stop a workspace</p>
-</li>
-<li>
-<p>Delete a workspace</p>
-</li>
-<li>
-<p>View workspace details</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Click on the 'delete' option and accept the notification that you 'understand that it cannot be reverted' once delete.</p>
+<img src="_images/workspace-loaded-extensions.png" alt="Workspace loaded extensions" width="1000px">
 </div>
 </div>
 </div>

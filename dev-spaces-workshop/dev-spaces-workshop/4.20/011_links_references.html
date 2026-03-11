@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Monitoring :: OpenShift DevSpaces</title>
+    <title>Links and References :: OpenShift DevSpaces</title>
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../_/css/site.css">
 <link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
@@ -163,10 +163,10 @@
     <a class="nav-link" href="004_devfile.html">The devfile introduction</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="005_using_a_devfile-part-1.html">Using a devfile - Part 1</a>
+    <a class="nav-link" href="005_creating_workspace-part-1.html">Creating a workspace - 1</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="006_using_a_devfile-part-2.html">Using a devfile - Part 2</a>
+    <a class="nav-link" href="006_creating_workspace-part-2.html">Creating a workspace - 2</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="007_VSCode_Extension_repo.html">VS Code extension repo</a>
@@ -175,18 +175,18 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#007_management.adoc">Management</a>
+    <a class="nav-link" href="008_management.html">Management</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="008_monitoring.html">DevSpaces monitoring</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="009_monitoring.html">DevSpaces monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="009_management.html">Workspace management</a>
+    <a class="nav-link" href="010_management_details.html">Workspace management</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="010_links_references.html">Links and References</a>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="011_links_references.html">Links and References</a>
   </li>
 </ul>
   </li>
@@ -219,80 +219,95 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">OpenShift DevSpaces</a></li>
-    <li><a href="#007_management.adoc">Management</a></li>
-    <li><a href="008_monitoring.html">DevSpaces monitoring</a></li>
+    <li><a href="011_links_references.html">Links and References</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/marrober/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/008_monitoring.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/marrober/data/git-repos/dev-spaces-workshop/documentation/modules/ROOT/pages/011_links_references.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Monitoring</h1>
+<h1 class="page">Links and References</h1>
 <div class="sect1">
-<h2 id="_dashboard"><a class="anchor" href="#_dashboard"></a>Dashboard</h2>
+<h2 id="_red_hat_documentation_for_devspaces"><a class="anchor" href="#_red_hat_documentation_for_devspaces"></a>Red Hat documentation for DevSpaces</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The DevSpaces instance on the cluster can be monitored using the installed OpenShift observability capabilities. On the left hand side of the OpenShift web user interface select the 'Observe' menu and then select the 'Dashboards' option. Ensure that the project into which DevSpaces was installed is selected, which for the workshop will be 'openshift-operators'.</p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.26/html/release_notes_and_known_issues">Release notes</a>
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.26/html/administration_guide">Administration guide</a>
+<a href="https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.26/html/user_guide">User guide</a></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>From the Dashboard menu shown below you can select different views of metrics regarding the DevSpaces instance.</p>
+<p>Red Hat product documentation always as a version identifier link in the URL. The links above are for DevSpaces version 3.26, but care should be taken when bookmarking such pages to check the drop down field on the left hand side to ensure that you have the latest version, or that you are looking at teh specific version of documentation for the version you are using on your clusters.</p>
 </div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/monitoring-1.png" alt="Momitoring - 1" width="1000px">
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;</p>
-</div>
-<div class="paragraph">
-<p>The Dashboards drop down menu allows you to select the following displays :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Namespaces (pods) - View the statistics and charts broken down by pods in the namespace.</p>
-</li>
-<li>
-<p>Namespaces (workloads) - View the statistics and charts broken down by deployments in the namespace.</p>
-</li>
-<li>
-<p>Pod - View the statistics and charts of an individual pod and select the specific pod of interest in a new dropdown list that appears.</p>
-</li>
-<li>
-<p>Workload - View the statistics and charts of an individual deployment and select the specific deployment of interest in a new dropdown list that appears.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Whichever selection is made from the above it is possible to scroll the screen down further to see textual charts of information on CPU consumption, memory usage charts, memory usage against quota, network bandwidth and dropped packets.</p>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_metrics"><a class="anchor" href="#_metrics"></a>Metrics</h2>
+<h2 id="_red_hat_blog_posts_on_devspaces"><a class="anchor" href="#_red_hat_blog_posts_on_devspaces"></a>Red Hat blog posts on DevSpaces</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The metrics view allows promQL queries to be constructed from the graphical selections made on screen or the queries can be hand written by users who are familiar with the syntax. An example of this is shown below in which just two pods have been selected to view a graph of their CPU consumption. In cases where the namespace has a lot of pods running within it this metrics view allows the user to select a subset of pods. The 'namespace - pods' view mentioned above in the dashboard section can lead to too much data being displayed on the screen.</p>
+<p><a href="https://developers.redhat.com/articles/2026/01/23/enterprise-multi-cluster-scalability-openshift-dev-spaces?source=sso#">Enterprise multi-cluster scalability with OpenShift Dev Spaces</a></p>
 </div>
 <div class="paragraph">
-<p>Additional queries can be added to the metrics section to display a number of specific charts of interest.</p>
-</div>
-<div class="imageblock text-centre">
-<div class="content">
-<img src="_images/monitoring-2.png" alt="Momitoring - 2" width="1000px">
-</div>
+<p><a href="https://developers.redhat.com/articles/2025/03/31/new-local-development-jetbrains-ides-openshift-dev-spaces?source=sso#">Local development with JetBrains IDEs in OpenShift Dev Spaces</a></p>
 </div>
 <div class="paragraph">
-<p>&#160;</p>
+<p><a href="https://developers.redhat.com/articles/2022/07/12/how-run-vs-code-openshift-dev-spaces#select_visual_studio_code_as_the_editor_of_a_dev_space_environment">IDE Customisation for VS Code in OpenShift DevSpaces</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.opensourcerers.org/2022/10/17/develop-the-inner-loop-with-openshift-dev-spaces/">Develop: The Inner Loop with OpenShift Dev Spaces</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://developers.redhat.com/articles/2023/06/22/how-create-workspace-try-dev-spaces-extension#">How to create a workspace via Try in Dev Spaces extension</a></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The above blog post covers the concepts performed in the workshop in the section on 'Using a devfile -part 2'</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_external_metrics"><a class="anchor" href="#_external_metrics"></a>External metrics</h2>
+<h2 id="_videos"><a class="anchor" href="#_videos"></a>Videos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>DevSpaces metrics and resource consumption information can be fed to external systems for aggregated reporting and charting in the same manner as other OpenShift information on the platform as a whole and other operator that you are already reporting on.</p>
+<p>The following videos form a series recorded by Red Hat specialist Charro Gruver</p>
+</div>
+<div class="paragraph">
+<p><a href="https://youtu.be/86S2ErWyorQ?si=HBGwb0lhetrvtdif">OpenShift Dev Spaces Overview</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://youtu.be/gvbpDDhAgxM?si=Y77BLfRrfv8TlixJ">OpenShift Dev Spaces Devfile Tour</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://youtu.be/A0Stdf8wTXA?si=fH-yOqSxKG8bWSO_">OpenShift Dev Spaces Resiliency</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://youtu.be/W_eQ4OZ_fJE?si=OEyjicM0j2yiIqtN">OpenShift Dev Spaces Chrome In Container</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://youtu.be/rLTpZEFQUsA?si=vyj9Vxwfm2e9FQts">OpenShift Dev Spaces Nested Containers</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://youtu.be/zjn8Oq8U6yM?si=bBq2Yc2enP62xa2u">Experimental - Open Source GitHub Copilot In OpenShift Dev Spaces</a></p>
 </div>
 </div>
 </div>
