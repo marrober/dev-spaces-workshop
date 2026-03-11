@@ -316,6 +316,9 @@
 </div>
 </div>
 <div class="paragraph">
+<p><strong>CLick the 'Create &amp; Open' button</strong>.</p>
+</div>
+<div class="paragraph">
 <p>When the DevSpaces instance has launched open a terminal window by clicking on the three bar menu on the top left hand corner and selecting terminal as shown below.</p>
 </div>
 <div class="imageblock text-centre">
@@ -395,12 +398,23 @@ oc start-build open-vsx-server -n che-openvsx -w -F</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch CheCluster devspaces -n devspaces --type merge --patch "{\"spec\":{\"components\":{\"pluginRegistry\":{\"openVSXURL\":\"${OVSX_URL}\"}}}}"</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch CheCluster devspaces -n openshift-operators --type merge --patch "{\"spec\":{\"components\":{\"pluginRegistry\":{\"openVSXURL\":\"${OVSX_URL}\"}}}}"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>To validate the above change use the OpenShift web user interface. Find the project in which you installed Dev Spaces, called devspaces.
-On the left hand side menu of OpenShift select the 'ecosystem' menu and then select the 'Installed Operators' menu item. This will display a list of all operators installed in the devspaces namespace. Select the 'Red Hat OpenShift DevSpaces' operator and then on the sub menu within it select the option 'Red Hat OpenShift Dev Spaces instance Specification'. This will display a list of Che clusters (you will have only one called 'devspaces').</p>
+<p>To validate the above change use the OpenShift web user interface. Find the project in which you installed Dev Spaces, called openshift-operators.</p>
+</div>
+<div class="paragraph">
+<p>On the left hand side menu of OpenShift <strong>select the 'ecosystem' menu and then select the 'Installed Operators' menu item</strong>.</p>
+</div>
+<div class="paragraph">
+<p>This will display a list of all operators installed in the openshift-operators namespace.</p>
+</div>
+<div class="paragraph">
+<p><strong>Select the 'Red Hat OpenShift DevSpaces' operator</strong> and then on the sub menu within it <strong>select the option 'Red Hat OpenShift Dev Spaces instance Specification'</strong>.</p>
+</div>
+<div class="paragraph">
+<p>This will display a list of Che clusters (you will have only one called 'devspaces').</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">
@@ -411,7 +425,7 @@ On the left hand side menu of OpenShift select the 'ecosystem' menu and then sel
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>Select the link to the Che cluster called devspaces (the link under the 'name' heading, not the link under the 'namespace' heading).</p>
+<p><strong>Select the link to the Che cluster called devspaces</strong> (the link under the 'name' heading, not the link under the 'namespace' heading).</p>
 </div>
 <div class="paragraph">
 <p>On the view of the Che cluster select the YAML tab and you should see the full definition as shown below. Scroll down slightly to see the section below which should indicate the OpenVSX registry URL in the pluginRegistry section.</p>
@@ -423,6 +437,9 @@ On the left hand side menu of OpenShift select the 'ecosystem' menu and then sel
 </div>
 <div class="paragraph">
 <p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>Go back to the workspace where you executed the commands in the terminal window to continue the configuration of the VS Code extension repository.</p>
 </div>
 <div class="paragraph">
 <p>Create an access token for the postgresql database by executing a command on the pod via a remote shell connection.</p>
@@ -523,7 +540,7 @@ The download will take around 1 - 2 minutes to complete.</p>
 <p>You should now have a running extension repository. To test this restart this workspace and wait for the extensions to load.</p>
 </div>
 <div class="paragraph">
-<p>To restart the workspace press the small white icon in the bottom left hand cover of the screen shown below, and then select 'Dev Spaces: Restart Workspace' from the menu at the top of the screen.</p>
+<p>To restart the workspace <strong>press the small white icon in the bottom left hand cover of the screen</strong> shown below, and then <strong>select 'Dev Spaces: Restart Workspace'</strong> from the menu at the top of the screen.</p>
 </div>
 <div class="imageblock text-centre">
 <div class="content">

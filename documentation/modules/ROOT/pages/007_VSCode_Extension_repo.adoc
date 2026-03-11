@@ -46,13 +46,15 @@ After the DevSpaced web UI has launched you need to create a workspace. Select t
 image::add-workspace.png[Dev Spaces add workspace,width=1000px, align="centre"]
 {nbsp}
 
-Copy the URL below and paste it into the field 'Git repo URL', after clicking the 'add workspace' button.
+Copy the URL below and paste it into the field 'Git repo URL', after clicking the 'add workspace' button. 
 
 [.console-input]
 [source,bash,subs="+attributes"]
 ----
 https://github.com/cgruver/che-openvsx-registry.git
 ----
+
+*CLick the 'Create & Open' button*.
 
 When the DevSpaces instance has launched open a terminal window by clicking on the three bar menu on the top left hand corner and selecting terminal as shown below.
 
@@ -124,22 +126,30 @@ OVSX_URL=https://$(oc get route open-vsx-server -n che-openvsx -o jsonpath={.spe
 [.console-input]
 [source,bash,subs="+attributes"]
 ----
-oc patch CheCluster devspaces -n devspaces --type merge --patch "{\"spec\":{\"components\":{\"pluginRegistry\":{\"openVSXURL\":\"${OVSX_URL}\"}}}}"
+oc patch CheCluster devspaces -n openshift-operators --type merge --patch "{\"spec\":{\"components\":{\"pluginRegistry\":{\"openVSXURL\":\"${OVSX_URL}\"}}}}"
 ----
 
-To validate the above change use the OpenShift web user interface. Find the project in which you installed Dev Spaces, called devspaces.
-On the left hand side menu of OpenShift select the 'ecosystem' menu and then select the 'Installed Operators' menu item. This will display a list of all operators installed in the devspaces namespace. Select the 'Red Hat OpenShift DevSpaces' operator and then on the sub menu within it select the option 'Red Hat OpenShift Dev Spaces instance Specification'. This will display a list of Che clusters (you will have only one called 'devspaces').
+To validate the above change use the OpenShift web user interface. Find the project in which you installed Dev Spaces, called openshift-operators.
+
+On the left hand side menu of OpenShift *select the 'ecosystem' menu and then select the 'Installed Operators' menu item*. 
+
+This will display a list of all operators installed in the openshift-operators namespace. 
+
+*Select the 'Red Hat OpenShift DevSpaces' operator* and then on the sub menu within it *select the option 'Red Hat OpenShift Dev Spaces instance Specification'*. 
+
+This will display a list of Che clusters (you will have only one called 'devspaces').
 
 image::che-cluster-list.png[Che cluster list,width=1000px, align="centre"]
 {nbsp}
 
-Select the link to the Che cluster called devspaces (the link under the 'name' heading, not the link under the 'namespace' heading).
+*Select the link to the Che cluster called devspaces* (the link under the 'name' heading, not the link under the 'namespace' heading).
 
 On the view of the Che cluster select the YAML tab and you should see the full definition as shown below. Scroll down slightly to see the section below which should indicate the OpenVSX registry URL in the pluginRegistry section.
 
 image::che-cluster-yaml.png[Che cluster YAML,width=1000px, align="centre"]
 {nbsp}
 
+Go back to the workspace where you executed the commands in the terminal window to continue the configuration of the VS Code extension repository.
 
 Create an access token for the postgresql database by executing a command on the pod via a remote shell connection.
 
@@ -222,7 +232,7 @@ oc rsh -n che-openvsx ${PG_POD} bash "-c" "PGDATA=/var/lib/pgsql/data psql -d op
 
 You should now have a running extension repository. To test this restart this workspace and wait for the extensions to load.
 
-To restart the workspace press the small white icon in the bottom left hand cover of the screen shown below, and then select 'Dev Spaces: Restart Workspace' from the menu at the top of the screen.
+To restart the workspace *press the small white icon in the bottom left hand cover of the screen* shown below, and then *select 'Dev Spaces: Restart Workspace'* from the menu at the top of the screen.
 
 image::bottom-left-area-dev-space.png[Bottom left menu,width=500px, align="centre"]
 {nbsp}

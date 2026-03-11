@@ -150,7 +150,13 @@ image::task-options-3.png[Task options third level, width=600px, align="centre"]
 
 Select 'download dependencies' task.
 
-The dependency download will then run in the terminal window and the output will be displayed. When you have ready anything that you need from the terminal window click into it and press any key to dismiss the results.
+The dependency download will then run in the terminal window and the output will be displayed. 
+
+When you have ready anything that you need from the terminal window click into it and press any key to dismiss the results.
+
+If you need multiple terminal windows then click on the + sign on the top right of the terminal window area as shown below. Multiple terminals can be displayed in a variety of configurations including side-by-side to enable you to operate in different directories without constants changing directory of a single terminal.
+
+image::terminal-completion-window.png[terminal completion window, width=1000px, align="centre"]
 
 In the terminal window run the following commands to see that the time of the creation of the node_modules directory was just a minute or two ago.
 

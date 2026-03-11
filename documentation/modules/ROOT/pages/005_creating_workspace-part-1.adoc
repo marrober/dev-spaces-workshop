@@ -30,6 +30,8 @@ For the cluster that you are using right now the above command should show a res
 https://devspaces.%CLUSTER_SUBDOMAIN%/
 ----
 
+The first time you launch the Dev Spaces web UI you will be asked to authenticate with your username and password. For the workshop your username is 'cluster-admin' and the password is available on the workshop launcher app.
+
 [NOTE]
 =====
 The URL above can be put into a global load balancer alongside DevSpaces URLs from other OpenShift cluster instances. This will enable a load balancer to distribute users across a number of OpenShift clusters for DevSpaces access which is recommended when the number of users exceeds 1000.

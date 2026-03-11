@@ -35,12 +35,14 @@ On the next screen there is a second opportunity to edit the update channel and 
 
 Finally, the update strategy for the operator can be selected to be either automatic (default) or manual. 
 
-*leave all settings at the default and press the install button.*
+*Leave all settings at the default and press the install button.*
 
 image::dev-spaces-operator-install-part-2.png[Dev Spaces operator installation - part 2,width=6500px,float="left",align="center"]
 {nbsp}
 
-The operator installation will then take place, which may take a minute or two to complete. When it has completed the screen will show that it has installed correctly. Click the blue button to 'View operator' as shown below.
+The operator installation will then take place, which may take a minute or two to complete. When it has completed the screen will show that it has installed correctly. 
+
+*Click the blue button to 'View operator' as shown below.*
 
 image::dev-spaces-operator-install-part-3.png[Dev Spaces operator completed,width=500px, align="centre"]
 {nbsp}
@@ -51,7 +53,7 @@ image::dev-spaces-operator-install-part-4.png[Dev Spaces operator installation -
 
 == Creation of the Che cluster
 
-On the sub menu, currently with 'Details' highlighted above select the 'Red Hat OpenShift Dev Spaces interface Specification' menu item. This will give you the opportunity to create a 'Che Cluster'. 
+On the sub menu, currently with 'Details' highlighted above *select the 'Red Hat OpenShift Dev Spaces interface Specification' menu item*. This will give you the opportunity to create a 'Che Cluster'. 
 
 .The Che Cluster
 ****
@@ -67,6 +69,8 @@ The Che cluster provides the following capabilities
 ****
 
 *Click the 'Create CheCluster' blue button and then you will see a screen similar to below.*
+
+*Don't scroll down and hit 'Create' straight away - there is some configuration to do.*
 
 image::dev-spaces-operator-install-part-5.png[Dev Spaces operator installation - che cluster,width=1000px, align="centre"]
 {nbsp}
@@ -98,7 +102,7 @@ Git platform integrations are possible to enable users to authenticate quickly a
 
 == Installation summary
 
-The result of installing the DevSpaces operator is that two operators are added to the platform as shown below.
+The result of installing the DevSpaces operator is that two operators are added to the platform as shown below. To view the summary as shown below click on the *Ecosystem* menu item on the left hand side and then select the *Installed Operators* menu.
 
 image::dev-spaces-operator-install-part-6.png[Dev Spaces operator installation - summary,width=1000px, align="centre"]
 {nbsp}
