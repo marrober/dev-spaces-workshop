@@ -30,10 +30,16 @@ function escapeAttr(s) {
 
 function workshopUrlFromConsole(consoleURL) {
   if (!consoleURL || typeof consoleURL !== 'string') return '';
-  const lower = consoleURL.trim().toLowerCase();
+  const trimmed = consoleURL.trim();
+  const withoutPrefix = trimmed.replace(/^https?:\/\/console-openshift-console\./i, '');
+  if (withoutPrefix !== trimmed) {
+    const pathStart = withoutPrefix.indexOf('/');
+    return pathStart === -1 ? withoutPrefix : withoutPrefix.substring(0, pathStart);
+  }
+  const lower = trimmed.toLowerCase();
   const idx = lower.indexOf('apps.');
   if (idx === -1) return '';
-  const fromApps = consoleURL.trim().substring(idx);
+  const fromApps = trimmed.substring(idx);
   const pathStart = fromApps.indexOf('/');
   return pathStart === -1 ? fromApps : fromApps.substring(0, pathStart);
 }

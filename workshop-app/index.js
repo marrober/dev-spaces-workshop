@@ -4,11 +4,11 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Map external key names to our stored names
+// Map external key names to our stored names (ResourceClaim / RHPDS YAML)
 const TEXT_KEYS = {
-  rosa_openshift_admin_password: 'adminPassword',
-  rosa_openshift_admin_user: 'adminUser',
-  rosa_openshift_console_url: 'consoleURL',
+  openshift_cluster_admin_password: 'adminPassword',
+  openshift_cluster_admin_username: 'adminUser',
+  openshift_cluster_console_url: 'consoleURL',
 };
 
 // All extracted credential sets (multiple drops over time)
@@ -17,23 +17,29 @@ const storedCredentials = [];
 // Workshop URL (set by admin, shown on clusters page)
 let workshopUrl = null;
 
+function extractYamlValue(text, key) {
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const regex = new RegExp(
+    `${escapedKey}\\s*[:=]\\s*(?:>-?\\s*)?(?:([^\\r\\n]+)|[\\r\\n]+\\s*([^\\r\\n]+))`,
+    'gi'
+  );
+  let lastMatch = null;
+  let m;
+  while ((m = regex.exec(text)) !== null) {
+    const sameLine = (m[1] || '').trim();
+    const nextLine = (m[2] || '').trim();
+    const value = nextLine || sameLine;
+    if (value && value !== '>-') lastMatch = value;
+  }
+  return lastMatch;
+}
+
 function extractCredentials(text) {
   if (typeof text !== 'string') return {};
   const result = {};
-  const raw = text;
   for (const [key, storeAs] of Object.entries(TEXT_KEYS)) {
-    // Same-line value, or value on next line after :>- (YAML-style)
-    const regex = new RegExp(
-      `${key}\\s*[:=]\\s*(?:>-?\\s*)?(?:([^\\r\\n]+)|[\\r\\n]+\\s*([^\\r\\n]+))`,
-      'i'
-    );
-    const m = raw.match(regex);
-    if (m) {
-      const sameLine = (m[1] || '').trim();
-      const nextLine = (m[2] || '').trim();
-      const value = nextLine || sameLine;
-      if (value && value !== '>-') result[storeAs] = value;
-    }
+    const value = extractYamlValue(text, key);
+    if (value) result[storeAs] = value;
   }
   return result;
 }
