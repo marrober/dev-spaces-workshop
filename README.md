@@ -14,8 +14,7 @@ To run the rendered workshop create a new deployment using the topology browser 
 
 ## RHPDS instance 
 
-To deliver the workshop spin instances of the 'AWS with ROSA Open Environment'. Allocate one instance for each user.
-
+To deliver the workshop spin instances of the 'Red Hat OpenShift Container Platform Cluster (AWS)'. Allocate one instance for each user.
 
 ## Workshop Environment Selection
 
